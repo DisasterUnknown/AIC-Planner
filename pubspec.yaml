@@ -1,0 +1,43 @@
+name: aci_planner
+description: A factory planning tool inspired by ACI-style automation systems.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # State management (BLoC)
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.5
+
+  # Local storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Gestures / UI helpers
+  collection: ^1.18.0
+  shared_preferences: ^2.5.4
+  file_selector: ^1.1.0
+  path_provider: ^2.1.5
+  sensors_plus: ^7.0.0
+  bloc: ^8.1.4
+  url_launcher: ^6.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/aci_home_bg.png
