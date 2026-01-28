@@ -1,4 +1,4 @@
-name: aci_planner
+name: aic_planner
 description: A factory planning tool inspired by AIC-style automation systems.
 publish_to: 'none'
 

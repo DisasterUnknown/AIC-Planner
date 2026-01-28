@@ -1,4 +1,4 @@
-package com.example.aci_planner
+package com.example.aic_planner
 
 import io.flutter.embedding.android.FlutterActivity
 

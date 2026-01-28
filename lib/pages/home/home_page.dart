@@ -1,6 +1,6 @@
-import 'package:aci_planner/pages/home/widget/cornerIcon_button.dart';
-import 'package:aci_planner/pages/home/widget/main_button.dart';
-import 'package:aci_planner/shared/network/network_controle.dart';
+import 'package:aic_planner/pages/home/widget/cornerIcon_button.dart';
+import 'package:aic_planner/pages/home/widget/main_button.dart';
+import 'package:aic_planner/shared/network/network_controle.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
                   icon: Icons.add_box_outlined,
                   color: const Color(0xB3717171),
                   onTap: () {
-                    Navigator.pushNamed(context, '/aci_planner');
+                    Navigator.pushNamed(context, '/aic_planner');
                   },
                 ),
                 const SizedBox(height: 24),

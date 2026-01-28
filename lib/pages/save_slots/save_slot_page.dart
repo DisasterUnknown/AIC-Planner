@@ -1,11 +1,11 @@
-import 'package:aci_planner/shared/widget/corner_back_button.dart';
+import 'package:aic_planner/shared/widget/corner_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/save_slot_bloc.dart';
 import 'bloc/save_slot_event.dart';
 import 'bloc/save_slot_state.dart';
 import 'widget/save_slot_card.dart';
-import 'package:aci_planner/shared/data/constants.dart';
+import 'package:aic_planner/shared/data/constants.dart';
 
 class SaveSlotPage extends StatelessWidget {
   const SaveSlotPage({super.key});

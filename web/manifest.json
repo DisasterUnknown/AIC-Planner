@@ -1,6 +1,6 @@
 {
-    "name": "aci_planner",
-    "short_name": "aci_planner",
+    "name": "aic_planner",
+    "short_name": "aic_planner",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

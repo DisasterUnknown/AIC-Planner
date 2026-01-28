@@ -1,8 +1,8 @@
-import 'package:aci_planner/pages/about/about_page.dart';
-import 'package:aci_planner/pages/aci_planner/aci_planner_page.dart';
-import 'package:aci_planner/pages/home/home_page.dart';
-import 'package:aci_planner/pages/save_slots/save_slot_page.dart';
-import 'package:aci_planner/pages/settings/settings_page.dart';
+import 'package:aic_planner/pages/about/about_page.dart';
+import 'package:aic_planner/pages/aic_planner/aic_planner_page.dart';
+import 'package:aic_planner/pages/home/home_page.dart';
+import 'package:aic_planner/pages/save_slots/save_slot_page.dart';
+import 'package:aic_planner/pages/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 
 class RoutingService {
@@ -14,7 +14,7 @@ class RoutingService {
 
   static const String homePage = '/';
   static const String aboutPage = '/about';
-  static const String aciPlannerPage = '/aci_planner';
+  static const String aciPlannerPage = '/aic_planner';
   static const String saveSlotPage = '/save_slot';
   static const String settingsPage = '/settings';
 

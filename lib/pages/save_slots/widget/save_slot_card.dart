@@ -1,6 +1,6 @@
-import 'package:aci_planner/shared/data/constants.dart';
+import 'package:aic_planner/shared/data/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:aci_planner/pages/save_slots/model/save_slot.dart';
+import 'package:aic_planner/pages/save_slots/model/save_slot.dart';
 
 class SaveSlotCard extends StatelessWidget {
   final SaveSlot slot;

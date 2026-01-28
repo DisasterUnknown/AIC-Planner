@@ -1,4 +1,4 @@
-import 'package:aci_planner/shared/service/log_service.dart';
+import 'package:aic_planner/shared/service/log_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalSharedPreferences {

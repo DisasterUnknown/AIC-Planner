@@ -1,8 +1,8 @@
-import 'package:aci_planner/shared/network/network_controle.dart';
-import 'package:aci_planner/shared/widget/corner_back_button.dart';
+import 'package:aic_planner/shared/network/network_controle.dart';
+import 'package:aic_planner/shared/widget/corner_back_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:aci_planner/shared/data/constants.dart';
+import 'package:aic_planner/shared/data/constants.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
