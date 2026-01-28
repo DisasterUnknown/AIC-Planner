@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 buildMainButton(
-                  title: 'Save ACI',
+                  title: 'Save AIC',
                   icon: Icons.save_outlined,
                   color: const Color(0xB3717171),
                   onTap: () {

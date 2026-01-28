@@ -28,7 +28,7 @@ class AciPlannerApp extends StatelessWidget {
     final routing = RoutingService();
 
     return MaterialApp(
-      title: 'ACI Planner',
+      title: 'AIC Planner',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       navigatorKey: routing.navigatorKey,

@@ -53,7 +53,7 @@ class AboutPage extends StatelessWidget {
                 children: [
                   const SizedBox(height: 100),
                   Text(
-                    'ACI Planner',
+                    'AIC Planner',
                     style: TextStyle(
                       color: AppCustomColors.text,
                       fontSize: 36,
@@ -74,7 +74,7 @@ class AboutPage extends StatelessWidget {
                       children: [
                         const TextSpan(
                           text:
-                              'Hey there! Welcome to ACI Planner, your handy little tool to make factory planning in Arknights: Endfield way easier. '
+                              'Hey there! Welcome to AIC Planner, your handy little tool to make factory planning in Arknights: Endfield way easier. '
                               'Here, you can save and manage your resources, check exactly what materials you need for each factory, '
                               'and even plan future factory layouts without messing anything up in-game.\n\n'
                               'Just to be clear: this is NOT a game itself. It’s a planning assistant. '

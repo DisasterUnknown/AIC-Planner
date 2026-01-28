@@ -1,5 +1,5 @@
 name: aci_planner
-description: A factory planning tool inspired by ACI-style automation systems.
+description: A factory planning tool inspired by AIC-style automation systems.
 publish_to: 'none'
 
 version: 1.0.0+1
