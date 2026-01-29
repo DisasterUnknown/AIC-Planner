@@ -1,5 +1,5 @@
 import 'package:aic_planner/shared/data/enums/facility_type_enums.dart';
-import 'package:aic_planner/shared/data/registry/refining_unit_recipes_registry.dart';
+import 'package:aic_planner/shared/data/registry/recipes/refining_unit_recipes_registry.dart';
 import 'package:aic_planner/shared/model/facility_model.dart';
 
 class FacilityRegistry {
@@ -650,5 +650,35 @@ class FacilityRegistry {
     baseImgPath: null,
     topDownImgPath: null,
     recipes: RefiningUnitRecipesRegistry.kRefiningUnitRecipes,
+  );
+
+  static final kShreddingUnit = FacilityDefinition(
+    id: 'kShreddingUnit',
+    row: 3,
+    col: 3,
+    name: 'Shredding Unit',
+    power: 5,
+    tier: 'Basic I',
+    node: 'Shredding I',
+    description: 'Heavy facility that shreds and pulverizes various materials.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+    recipes: RefiningUnitRecipesRegistry.kShreddingUnitRecipes,
+  );
+
+  static final kGearingUnit = FacilityDefinition(
+    id: 'kGearingUnit',
+    row: 6,
+    col: 4,
+    name: 'Gearing Unit',
+    power: 10,
+    tier: 'Basic II',
+    node: 'Gearing Tech',
+    description: 'A facility that laminates different materials together to create gear components. Important for Operator Gear component creation.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+    recipes: RefiningUnitRecipesRegistry.kGearingUnitRecipes,
   );
 }

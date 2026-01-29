@@ -312,9 +312,9 @@ class ProductRegistry {
     name: 'Amethyst Component',
     productImgPath: null,
   );
-  static const kAketlinePowder = ProductModel(
-    id: 'aketlinePowder',
-    name: 'Aketline Powder',
+  static const kAketinePowder = ProductModel(
+    id: 'aketinePowder',
+    name: 'Aketine Powder',
     productImgPath: null,
   );
   static const kRedjadeGinsengSeed = ProductModel(

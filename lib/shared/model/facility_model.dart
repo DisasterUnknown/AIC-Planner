@@ -13,7 +13,6 @@ class FacilityDefinition {
   final String description;
   final FacilityType facilityType;
 
-  final List<Enum>? products;
   final String? baseImgPath;
   final String? topDownImgPath;
 
@@ -37,7 +36,6 @@ class FacilityDefinition {
 
     this.skill,
     this.node,
-    this.products,
     this.baseImgPath,
     this.topDownImgPath,
 
