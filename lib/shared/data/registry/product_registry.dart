@@ -377,4 +377,54 @@ class ProductRegistry {
     name: 'Ferrium Ore',
     productImgPath: null,
   );
+  static const kCleanWater = ProductModel(
+    id: 'cleanWater',
+    name: 'Clean Water',
+    productImgPath: null,
+  );
+  static const kFerriumBottleCleanWater = ProductModel(
+    id: 'ferriumBottleCleanWater',
+    name: 'Ferrium Bottle Clean Water',
+    productImgPath: null,
+  );
+  static const kFerriumBottleJincaoSolution = ProductModel(
+    id: 'ferriumBottleJincaoSolution',
+    name: 'Ferrium Bottle Jincao Solution',
+    productImgPath: null,
+  );
+  static const kFerriumBottleYazhenSolution = ProductModel(
+    id: 'ferriumBottleYazhenSolution',
+    name: 'Ferrium Bottle Yazhen Solution',
+    productImgPath: null,
+  );
+  static const kFerriumBottleLiquidXiranite = ProductModel(
+    id: 'ferriumBottleLiquidXiranite',
+    name: 'Ferrium Bottle Liquid Xiranite',
+    productImgPath: null,
+  );
+  static const kCannedCitromeC = ProductModel(
+    id: 'cannedCitromeC',
+    name: 'Canned Citrome C',
+    productImgPath: null,
+  );
+  static const kLCWulingBattery = ProductModel(
+    id: 'lcWulingBattery',
+    name: 'LC Wuling Battery',
+    productImgPath: null,
+  );
+  static const kHCValleyBattery = ProductModel(
+    id: 'hcValleyBattery',
+    name: 'HC Valley Battery',
+    productImgPath: null,
+  );
+  static const kSCValleyBattery = ProductModel(
+    id: 'scValleyBattery',
+    name: 'SC Valley Battery',
+    productImgPath: null,
+  );
+  static const kLCValleyBattery = ProductModel(
+    id: 'lcValleyBattery',
+    name: 'LC Valley Battery',
+    productImgPath: null,
+  );
 }

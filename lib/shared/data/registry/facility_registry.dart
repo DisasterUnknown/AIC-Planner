@@ -681,4 +681,64 @@ class FacilityRegistry {
     topDownImgPath: null,
     recipes: RefiningUnitRecipesRegistry.kGearingUnitRecipes,
   );
+
+  static final kMouldingUnit = FacilityDefinition(
+    id: 'kMouldingUnit',
+    row: 3,
+    col: 3,
+    name: 'Moulding Unit',
+    power: 10,
+    tier: 'Basic II',
+    node: 'Material Moulding',
+    description: 'A facility capable of producing various containers via stamp moulding. Bottles are usually produced here.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+    recipes: RefiningUnitRecipesRegistry.kMouldingUnitRecipes,
+  );
+
+  static final kFittingUnit = FacilityDefinition(
+    id: 'kFittingUnit',
+    row: 3,
+    col: 3,
+    name: 'Fitting Unit',
+    power: 20,
+    tier: 'Basic II',
+    node: 'Parts Fitting',
+    description: 'A facility capable of processing various parts that can be fitted together.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+    recipes: RefiningUnitRecipesRegistry.kFittingUnitRecipes,
+  );
+
+  static final kFillingUnit = FacilityDefinition(
+    id: 'kFillingUnit',
+    row: 6,
+    col: 4,
+    name: 'Filling Unit',
+    power: 20,
+    tier: 'Basic II',
+    node: 'Solid Filling',
+    description: 'Fills containers with various materials. Can also accept fluids.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+    recipes: RefiningUnitRecipesRegistry.kFillingUnitRecipes,
+  );
+
+  static final kPackagingUnit = FacilityDefinition(
+    id: 'kPackagingUnit',
+    row: 6,
+    col: 4,
+    name: 'Packaging Unit',
+    power: 20,
+    tier: 'Basic II',
+    node: 'Packaging Tech',
+    description: 'A facility for packaging certain power components. Mostly used for batteries, but also for used for other items.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+    recipes: RefiningUnitRecipesRegistry.kPackagingUnitRecipes,
+  );
 }
