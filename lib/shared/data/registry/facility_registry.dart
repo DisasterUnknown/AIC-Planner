@@ -318,6 +318,20 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
+  static final kConveyorBelts = FacilityDefinition(
+    id: 'kConveyorBelts',
+    row: 1,
+    col: 1,
+    name: 'Conveyor Belts',
+    power: 0,
+    tier: 'Basic I',
+    description:
+        'A basic logistics structure used to continuously transport items between facilities. Provides reliable, automated item movement without processing or modification.',
+    facilityType: FacilityType.logistics,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
   static final kFluidTank = FacilityDefinition(
     id: 'kFluidTank',
     row: 3,
@@ -509,6 +523,20 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
+  static final kAutomationCore = FacilityDefinition(
+    id: 'kAutomationCore',
+    row: 9,
+    col: 9,
+    name: 'Automation Core',
+    power: 0,
+    tier: 'null',
+    skill: 'null',
+    description: 'Error: Not Yet Added Ask Admin.',
+    facilityType: FacilityType.hero,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
   static final kDepotBusSection = FacilityDefinition(
     id: 'kDepotBusSection',
     row: 8,
@@ -617,7 +645,8 @@ class FacilityRegistry {
     power: 10,
     tier: 'Basic III',
     skill: 'Mining III',
-    description: 'Mining rig for digging up Ferrium Ore and other minerals. Requires 10 Power and automatically transfers ores to the Depot at set intervals.',
+    description:
+        'Mining rig for digging up Ferrium Ore and other minerals. Requires 10 Power and automatically transfers ores to the Depot at set intervals.',
     facilityType: FacilityType.resourcing,
     baseImgPath: null,
     topDownImgPath: null,
@@ -675,7 +704,8 @@ class FacilityRegistry {
     power: 10,
     tier: 'Basic II',
     node: 'Gearing Tech',
-    description: 'A facility that laminates different materials together to create gear components. Important for Operator Gear component creation.',
+    description:
+        'A facility that laminates different materials together to create gear components. Important for Operator Gear component creation.',
     facilityType: FacilityType.processing,
     baseImgPath: null,
     topDownImgPath: null,
@@ -690,7 +720,8 @@ class FacilityRegistry {
     power: 10,
     tier: 'Basic II',
     node: 'Material Moulding',
-    description: 'A facility capable of producing various containers via stamp moulding. Bottles are usually produced here.',
+    description:
+        'A facility capable of producing various containers via stamp moulding. Bottles are usually produced here.',
     facilityType: FacilityType.processing,
     baseImgPath: null,
     topDownImgPath: null,
@@ -705,7 +736,8 @@ class FacilityRegistry {
     power: 20,
     tier: 'Basic II',
     node: 'Parts Fitting',
-    description: 'A facility capable of processing various parts that can be fitted together.',
+    description:
+        'A facility capable of processing various parts that can be fitted together.',
     facilityType: FacilityType.processing,
     baseImgPath: null,
     topDownImgPath: null,
@@ -720,7 +752,8 @@ class FacilityRegistry {
     power: 20,
     tier: 'Basic II',
     node: 'Solid Filling',
-    description: 'Fills containers with various materials. Can also accept fluids.',
+    description:
+        'Fills containers with various materials. Can also accept fluids.',
     facilityType: FacilityType.processing,
     baseImgPath: null,
     topDownImgPath: null,
@@ -735,7 +768,8 @@ class FacilityRegistry {
     power: 20,
     tier: 'Basic II',
     node: 'Packaging Tech',
-    description: 'A facility for packaging certain power components. Mostly used for batteries, but also for used for other items.',
+    description:
+        'A facility for packaging certain power components. Mostly used for batteries, but also for used for other items.',
     facilityType: FacilityType.processing,
     baseImgPath: null,
     topDownImgPath: null,
@@ -750,7 +784,8 @@ class FacilityRegistry {
     power: 10,
     tier: 'Basic II',
     node: 'Planting',
-    description: 'A facility that extracts seeds from common crops. Can also be upgraded to have a pipe input for some plants and crops.',
+    description:
+        'A facility that extracts seeds from common crops. Can also be upgraded to have a pipe input for some plants and crops.',
     facilityType: FacilityType.processing,
     baseImgPath: null,
     topDownImgPath: null,
@@ -765,7 +800,8 @@ class FacilityRegistry {
     power: 20,
     tier: 'Basic II',
     node: 'Planting',
-    description: 'A cultivating silo for growing various common plants and crops. Can also be upgraded to have a pipe input for some plants and crops.',
+    description:
+        'A cultivating silo for growing various common plants and crops. Can also be upgraded to have a pipe input for some plants and crops.',
     facilityType: FacilityType.processing,
     baseImgPath: null,
     topDownImgPath: null,
@@ -780,7 +816,8 @@ class FacilityRegistry {
     power: 50,
     tier: 'Basic III',
     node: 'Grinding',
-    description: 'Performs fine grinding of powdered materials. Mostly processes shredded items and turn them into a finer material.',
+    description:
+        'Performs fine grinding of powdered materials. Mostly processes shredded items and turn them into a finer material.',
     facilityType: FacilityType.processing,
     baseImgPath: null,
     topDownImgPath: null,
@@ -795,7 +832,8 @@ class FacilityRegistry {
     power: 50,
     tier: 'Wuling I',
     node: 'Liquid Reaction',
-    description: 'A facility for running solid or liquid-state chemical reactions.',
+    description:
+        'A facility for running solid or liquid-state chemical reactions.',
     facilityType: FacilityType.processing,
     baseImgPath: null,
     topDownImgPath: null,
@@ -810,7 +848,8 @@ class FacilityRegistry {
     power: 50,
     tier: 'Wuling I',
     node: 'Separation Technique',
-    description: 'A facility for disassembling various items or extracting liquid from filled bottles.',
+    description:
+        'A facility for disassembling various items or extracting liquid from filled bottles.',
     facilityType: FacilityType.processing,
     baseImgPath: null,
     topDownImgPath: null,
@@ -825,7 +864,8 @@ class FacilityRegistry {
     power: 10,
     tier: 'Wuling I',
     node: 'Fluid Supply',
-    description: 'Placed near a lake or other bodies of water to supply fluids into the target area. The fluid outlet must be above the water body.',
+    description:
+        'Placed near a lake or other bodies of water to supply fluids into the target area. The fluid outlet must be above the water body.',
     facilityType: FacilityType.processing,
     baseImgPath: null,
     topDownImgPath: null,

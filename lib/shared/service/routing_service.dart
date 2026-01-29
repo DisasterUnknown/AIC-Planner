@@ -1,5 +1,6 @@
 import 'package:aic_planner/pages/about/about_page.dart';
 import 'package:aic_planner/pages/aic_planner/aic_planner_page.dart';
+import 'package:aic_planner/pages/database/database_page.dart';
 import 'package:aic_planner/pages/home/home_page.dart';
 import 'package:aic_planner/pages/save_slots/save_slot_page.dart';
 import 'package:aic_planner/pages/settings/settings_page.dart';
@@ -17,6 +18,7 @@ class RoutingService {
   static const String aciPlannerPage = '/aic_planner';
   static const String saveSlotPage = '/save_slot';
   static const String settingsPage = '/settings';
+  static const String databasePage = '/database';
 
   Future<dynamic>? navigateTo(String routeName, {Object? arguments}) {
     return navigatorKey.currentState?.pushNamed(
@@ -48,5 +50,6 @@ class RoutingService {
     aciPlannerPage: (context) => const AciPlannerPage(),
     saveSlotPage: (context) => const SaveSlotPage(),
     settingsPage: (context) => const SettingsPage(),
+    databasePage: (context) => const DatabasePage(),
   };
 }

@@ -6,4 +6,5 @@ enum FacilityType {
   processing,
   resourcing,
   xiranite,
+  hero
 }

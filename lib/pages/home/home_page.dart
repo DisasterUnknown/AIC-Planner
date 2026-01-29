@@ -14,16 +14,11 @@ class HomePage extends StatelessWidget {
         children: [
           // ===== BACKGROUND IMAGE =====
           SizedBox.expand(
-            child: Image.asset(
-              'assets/aci_home_bg.png',
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset('assets/aci_home_bg.png', fit: BoxFit.cover),
           ),
 
           // Optional: dark overlay for readability
-          Container(
-            color: Colors.black.withValues(alpha: 0.4),
-          ),
+          Container(color: Colors.black.withValues(alpha: 0.4)),
 
           // ===== MAIN BUTTONS =====
           Center(
@@ -31,6 +26,7 @@ class HomePage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 buildMainButton(
+                  width: 424,
                   title: 'New Pallet',
                   icon: Icons.add_box_outlined,
                   color: const Color(0xB3717171),
@@ -39,16 +35,33 @@ class HomePage extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 24),
-                buildMainButton(
-                  title: 'Save AIC',
-                  icon: Icons.save_outlined,
-                  color: const Color(0xB3717171),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/save_slot');
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    buildMainButton(
+                      width: 200,
+                      title: 'Save AIC',
+                      icon: Icons.save_outlined,
+                      color: const Color(0xB3717171),
+                      onTap: () {
+                        Navigator.pushNamed(context, '/save_slot');
+                      },
+                    ),
+                    const SizedBox(width: 24),
+                    buildMainButton(
+                      width: 200,
+                      title: 'DataBase',
+                      icon: Icons.save_outlined,
+                      color: const Color(0xB3717171),
+                      onTap: () {
+                        Navigator.pushNamed(context, '/database');
+                      },
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 24),
                 buildMainButton(
+                  width: 424,
                   title: 'About',
                   icon: Icons.info_outline,
                   color: const Color(0xB3717171),

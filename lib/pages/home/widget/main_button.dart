@@ -6,11 +6,12 @@ Widget buildMainButton({
     required IconData icon,
     required Color color,
     required VoidCallback onTap,
+    double? width = 250,
   }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 250,
+        width: width,
         height: 80,
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 27, 27, 27),
