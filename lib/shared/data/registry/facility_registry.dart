@@ -741,4 +741,93 @@ class FacilityRegistry {
     topDownImgPath: null,
     recipes: RefiningUnitRecipesRegistry.kPackagingUnitRecipes,
   );
+
+  static final kSeedPickingUnit = FacilityDefinition(
+    id: 'kSeedPickingUnit',
+    row: 5,
+    col: 5,
+    name: 'Seed Picking Unit',
+    power: 10,
+    tier: 'Basic II',
+    node: 'Planting',
+    description: 'A facility that extracts seeds from common crops. Can also be upgraded to have a pipe input for some plants and crops.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+    recipes: RefiningUnitRecipesRegistry.kSeedPickingUnitRecipes,
+  );
+
+  static final kPlantingUnit = FacilityDefinition(
+    id: 'kPlantingUnit',
+    row: 5,
+    col: 5,
+    name: 'Planting Unit',
+    power: 20,
+    tier: 'Basic II',
+    node: 'Planting',
+    description: 'A cultivating silo for growing various common plants and crops. Can also be upgraded to have a pipe input for some plants and crops.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+    recipes: RefiningUnitRecipesRegistry.kPlantingUnitRecipes,
+  );
+
+  static final kGrindingUnit = FacilityDefinition(
+    id: 'kGrindingUnit',
+    row: 6,
+    col: 4,
+    name: 'Grinding Unit',
+    power: 50,
+    tier: 'Basic III',
+    node: 'Grinding',
+    description: 'Performs fine grinding of powdered materials. Mostly processes shredded items and turn them into a finer material.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+    recipes: RefiningUnitRecipesRegistry.kGrindingUnitRecipes,
+  );
+
+  static final kReactorCrucible = FacilityDefinition(
+    id: 'kReactorCrucible',
+    row: 5,
+    col: 5,
+    name: 'Reactor Crucible',
+    power: 50,
+    tier: 'Wuling I',
+    node: 'Liquid Reaction',
+    description: 'A facility for running solid or liquid-state chemical reactions.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+    recipes: RefiningUnitRecipesRegistry.kReactorCrucibleRecipes,
+  );
+
+  static final kSeparatingUnit = FacilityDefinition(
+    id: 'kSeparatingUnit',
+    row: 6,
+    col: 4,
+    name: 'Separating Unit',
+    power: 50,
+    tier: 'Wuling I',
+    node: 'Separation Technique',
+    description: 'A facility for disassembling various items or extracting liquid from filled bottles.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+    recipes: RefiningUnitRecipesRegistry.kSeparatingUnitRecipes,
+  );
+
+  static final kFluidSupplyUnit = FacilityDefinition(
+    id: 'kFluidSupplyUnit',
+    row: 3,
+    col: 3,
+    name: 'Fluid Supply Unit',
+    power: 10,
+    tier: 'Wuling I',
+    node: 'Fluid Supply',
+    description: 'Placed near a lake or other bodies of water to supply fluids into the target area. The fluid outlet must be above the water body.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
 }
