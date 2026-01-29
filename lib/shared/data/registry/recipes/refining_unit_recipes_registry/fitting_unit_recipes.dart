@@ -1,13 +1,13 @@
 import 'package:aic_planner/shared/data/registry/product_registry.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_input_model.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_model.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_output_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_input_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_output_model.dart';
 
 class FittingUnitRecipesRegistryClass {
-  static final List<RefiningUnitRecipes> data = [
-    RefiningUnitRecipes(
+  static const List<UnitRecipes> data = [
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kAmethystFiber,
           inputAmount: 1,
           inputTime: 30,
@@ -17,7 +17,7 @@ class FittingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kAmethystPart,
           outputAmount: 1,
           outputTime: 30,
@@ -25,9 +25,9 @@ class FittingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kFerrium,
           inputAmount: 1,
           inputTime: 30,
@@ -37,7 +37,7 @@ class FittingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kFerriumPart,
           outputAmount: 1,
           outputTime: 30,
@@ -45,9 +45,9 @@ class FittingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kCrystonFiber,
           inputAmount: 1,
           inputTime: 30,
@@ -57,7 +57,7 @@ class FittingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kCrystonPart,
           outputAmount: 1,
           outputTime: 30,
@@ -65,9 +65,9 @@ class FittingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kSteel,
           inputAmount: 1,
           inputTime: 30,
@@ -77,7 +77,7 @@ class FittingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kSteelPart,
           outputAmount: 1,
           outputTime: 30,

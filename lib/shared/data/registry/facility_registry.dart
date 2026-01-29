@@ -3,7 +3,7 @@ import 'package:aic_planner/shared/data/registry/recipes/refining_unit_recipes_r
 import 'package:aic_planner/shared/model/facility_model.dart';
 
 class FacilityRegistry {
-  static final kBeamTower = FacilityDefinition(
+  static const kBeamTower = FacilityDefinition(
     id: 'kBeamTower',
     row: 2,
     col: 2,
@@ -23,7 +23,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static final kGrenadeTower = FacilityDefinition(
+  static const kGrenadeTower = FacilityDefinition(
     id: 'kGrenadeTower',
     row: 2,
     col: 2,
@@ -41,7 +41,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static final kGunTower = FacilityDefinition(
+  static const kGunTower = FacilityDefinition(
     id: 'kGunTower',
     row: 2,
     col: 2,
@@ -60,7 +60,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static final kHeGrenadeTower = FacilityDefinition(
+  static const kHeGrenadeTower = FacilityDefinition(
     id: 'kHeGrenadeTower',
     row: 2,
     col: 2,
@@ -78,7 +78,7 @@ class FacilityRegistry {
     atkInterval: '3s',
   );
 
-  static final kHeavyGunTower = FacilityDefinition(
+  static const kHeavyGunTower = FacilityDefinition(
     id: 'kHeavyGunTower',
     row: 2,
     col: 2,
@@ -98,7 +98,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static final kLnTower = FacilityDefinition(
+  static const kLnTower = FacilityDefinition(
     id: 'kLnTower',
     row: 2,
     col: 2,
@@ -117,7 +117,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static final kMarshGasMkITower = FacilityDefinition(
+  static const kMarshGasMkITower = FacilityDefinition(
     id: 'kMarshGasMkITower',
     row: 2,
     col: 2,
@@ -135,7 +135,7 @@ class FacilityRegistry {
     atkInterval: '5s',
   );
 
-  static final kMedicalTower = FacilityDefinition(
+  static const kMedicalTower = FacilityDefinition(
     id: 'kMedicalTower',
     row: 3,
     col: 3,
@@ -154,7 +154,7 @@ class FacilityRegistry {
     maxCharge: 30000,
   );
 
-  static final kOmnidirectionalSonicTower = FacilityDefinition(
+  static const kOmnidirectionalSonicTower = FacilityDefinition(
     id: 'kOmnidirectionalSonicTower',
     row: 2,
     col: 2,
@@ -173,7 +173,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static final kSentryTower = FacilityDefinition(
+  static const kSentryTower = FacilityDefinition(
     id: 'kSentryTower',
     row: 2,
     col: 2,
@@ -193,7 +193,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static final kSurgeTower = FacilityDefinition(
+  static const kSurgeTower = FacilityDefinition(
     id: 'kSurgeTower',
     row: 2,
     col: 2,
@@ -213,7 +213,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static final kEasyStash = FacilityDefinition(
+  static const kEasyStash = FacilityDefinition(
     id: 'kEasyStash',
     row: 3,
     col: 3,
@@ -228,7 +228,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kMemoBeacon = FacilityDefinition(
+  static const kMemoBeacon = FacilityDefinition(
     id: 'kMemoBeacon',
     row: 1,
     col: 1,
@@ -243,7 +243,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kProtocolStash = FacilityDefinition(
+  static const kProtocolStash = FacilityDefinition(
     id: 'kProtocolStash',
     row: 3,
     col: 3,
@@ -258,7 +258,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kZiplinePylon = FacilityDefinition(
+  static const kZiplinePylon = FacilityDefinition(
     id: 'kZiplinePylon',
     row: 3,
     col: 3,
@@ -273,7 +273,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kZiplineTower = FacilityDefinition(
+  static const kZiplineTower = FacilityDefinition(
     id: 'kZiplineTower',
     row: 3,
     col: 3,
@@ -288,7 +288,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kBeltBridge = FacilityDefinition(
+  static const kBeltBridge = FacilityDefinition(
     id: 'kBeltBridge',
     row: 1,
     col: 1,
@@ -303,7 +303,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kConverger = FacilityDefinition(
+  static const kConverger = FacilityDefinition(
     id: 'kConverger',
     row: 1,
     col: 1,
@@ -318,7 +318,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kConveyorBelts = FacilityDefinition(
+  static const kConveyorBelts = FacilityDefinition(
     id: 'kConveyorBelts',
     row: 1,
     col: 1,
@@ -332,7 +332,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kFluidTank = FacilityDefinition(
+  static const kFluidTank = FacilityDefinition(
     id: 'kFluidTank',
     row: 3,
     col: 3,
@@ -346,7 +346,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kItemControlPort = FacilityDefinition(
+  static const kItemControlPort = FacilityDefinition(
     id: 'kItemControlPort',
     row: 1,
     col: 1,
@@ -361,7 +361,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kPipeBridge = FacilityDefinition(
+  static const kPipeBridge = FacilityDefinition(
     id: 'kPipeBridge',
     row: 1,
     col: 1,
@@ -376,7 +376,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kPipeControlPort = FacilityDefinition(
+  static const kPipeControlPort = FacilityDefinition(
     id: 'kPipeControlPort',
     row: 1,
     col: 1,
@@ -391,7 +391,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kPipeConverger = FacilityDefinition(
+  static const kPipeConverger = FacilityDefinition(
     id: 'kPipeConverger',
     row: 1,
     col: 1,
@@ -405,7 +405,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kPipeSplitter = FacilityDefinition(
+  static const kPipeSplitter = FacilityDefinition(
     id: 'kPipeSplitter',
     row: 1,
     col: 1,
@@ -420,7 +420,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kSplitter = FacilityDefinition(
+  static const kSplitter = FacilityDefinition(
     id: 'kSplitter',
     row: 1,
     col: 1,
@@ -435,7 +435,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kSprinkler = FacilityDefinition(
+  static const kSprinkler = FacilityDefinition(
     id: 'kSprinkler',
     row: 3,
     col: 3,
@@ -450,7 +450,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kDepotLoader = FacilityDefinition(
+  static const kDepotLoader = FacilityDefinition(
     id: 'kDepotLoader',
     row: 1,
     col: 3,
@@ -465,7 +465,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kDepotUnloader = FacilityDefinition(
+  static const kDepotUnloader = FacilityDefinition(
     id: 'kDepotUnloader',
     row: 1,
     col: 3,
@@ -480,7 +480,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kElectricPylon = FacilityDefinition(
+  static const kElectricPylon = FacilityDefinition(
     id: 'kElectricPylon',
     row: 2,
     col: 2,
@@ -494,7 +494,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kRelayTower = FacilityDefinition(
+  static const kRelayTower = FacilityDefinition(
     id: 'kRelayTower',
     row: 3,
     col: 3,
@@ -508,7 +508,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kThermalBank = FacilityDefinition(
+  static const kThermalBank = FacilityDefinition(
     id: 'kThermalBank',
     row: 2,
     col: 2,
@@ -523,7 +523,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kAutomationCore = FacilityDefinition(
+  static const kAutomationCore = FacilityDefinition(
     id: 'kAutomationCore',
     row: 9,
     col: 9,
@@ -537,7 +537,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kDepotBusSection = FacilityDefinition(
+  static const kDepotBusSection = FacilityDefinition(
     id: 'kDepotBusSection',
     row: 8,
     col: 4,
@@ -551,7 +551,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kDepotBusPort = FacilityDefinition(
+  static const kDepotBusPort = FacilityDefinition(
     id: 'kDepotBusPort',
     row: 4,
     col: 4,
@@ -565,7 +565,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kForgeOfTheSky = FacilityDefinition(
+  static const kForgeOfTheSky = FacilityDefinition(
     id: 'kForgeOfTheSky',
     row: 5,
     col: 5,
@@ -579,7 +579,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kXiranitePylon = FacilityDefinition(
+  static const kXiranitePylon = FacilityDefinition(
     id: 'kXiranitePylon',
     row: 2,
     col: 2,
@@ -593,7 +593,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kXiraniteRelay = FacilityDefinition(
+  static const kXiraniteRelay = FacilityDefinition(
     id: 'kXiraniteRelay',
     row: 3,
     col: 3,
@@ -607,7 +607,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kPortableOriginiumRig = FacilityDefinition(
+  static const kPortableOriginiumRig = FacilityDefinition(
     id: 'kPortableOriginiumRig',
     row: 3,
     col: 3,
@@ -622,7 +622,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kElectricMiningRig = FacilityDefinition(
+  static const kElectricMiningRig = FacilityDefinition(
     id: 'kElectricMiningRig',
     row: 3,
     col: 3,
@@ -637,7 +637,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kElectricMiningRigMkII = FacilityDefinition(
+  static const kElectricMiningRigMkII = FacilityDefinition(
     id: 'kElectricMiningRigMkII',
     row: 3,
     col: 3,
@@ -652,7 +652,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kFluidPump = FacilityDefinition(
+  static const kFluidPump = FacilityDefinition(
     id: 'kFluidPump',
     row: 3,
     col: 3,
@@ -666,7 +666,7 @@ class FacilityRegistry {
     topDownImgPath: null,
   );
 
-  static final kRefiningUnit = FacilityDefinition(
+  static const kRefiningUnit = FacilityDefinition(
     id: 'kRefiningUnit',
     row: 3,
     col: 3,
@@ -681,7 +681,7 @@ class FacilityRegistry {
     recipes: RefiningUnitRecipesRegistry.kRefiningUnitRecipes,
   );
 
-  static final kShreddingUnit = FacilityDefinition(
+  static const kShreddingUnit = FacilityDefinition(
     id: 'kShreddingUnit',
     row: 3,
     col: 3,
@@ -696,7 +696,7 @@ class FacilityRegistry {
     recipes: RefiningUnitRecipesRegistry.kShreddingUnitRecipes,
   );
 
-  static final kGearingUnit = FacilityDefinition(
+  static const kGearingUnit = FacilityDefinition(
     id: 'kGearingUnit',
     row: 6,
     col: 4,
@@ -712,7 +712,7 @@ class FacilityRegistry {
     recipes: RefiningUnitRecipesRegistry.kGearingUnitRecipes,
   );
 
-  static final kMouldingUnit = FacilityDefinition(
+  static const kMouldingUnit = FacilityDefinition(
     id: 'kMouldingUnit',
     row: 3,
     col: 3,
@@ -728,7 +728,7 @@ class FacilityRegistry {
     recipes: RefiningUnitRecipesRegistry.kMouldingUnitRecipes,
   );
 
-  static final kFittingUnit = FacilityDefinition(
+  static const kFittingUnit = FacilityDefinition(
     id: 'kFittingUnit',
     row: 3,
     col: 3,
@@ -744,7 +744,7 @@ class FacilityRegistry {
     recipes: RefiningUnitRecipesRegistry.kFittingUnitRecipes,
   );
 
-  static final kFillingUnit = FacilityDefinition(
+  static const kFillingUnit = FacilityDefinition(
     id: 'kFillingUnit',
     row: 6,
     col: 4,
@@ -760,7 +760,7 @@ class FacilityRegistry {
     recipes: RefiningUnitRecipesRegistry.kFillingUnitRecipes,
   );
 
-  static final kPackagingUnit = FacilityDefinition(
+  static const kPackagingUnit = FacilityDefinition(
     id: 'kPackagingUnit',
     row: 6,
     col: 4,
@@ -776,7 +776,7 @@ class FacilityRegistry {
     recipes: RefiningUnitRecipesRegistry.kPackagingUnitRecipes,
   );
 
-  static final kSeedPickingUnit = FacilityDefinition(
+  static const kSeedPickingUnit = FacilityDefinition(
     id: 'kSeedPickingUnit',
     row: 5,
     col: 5,
@@ -792,7 +792,7 @@ class FacilityRegistry {
     recipes: RefiningUnitRecipesRegistry.kSeedPickingUnitRecipes,
   );
 
-  static final kPlantingUnit = FacilityDefinition(
+  static const kPlantingUnit = FacilityDefinition(
     id: 'kPlantingUnit',
     row: 5,
     col: 5,
@@ -808,7 +808,7 @@ class FacilityRegistry {
     recipes: RefiningUnitRecipesRegistry.kPlantingUnitRecipes,
   );
 
-  static final kGrindingUnit = FacilityDefinition(
+  static const kGrindingUnit = FacilityDefinition(
     id: 'kGrindingUnit',
     row: 6,
     col: 4,
@@ -824,7 +824,7 @@ class FacilityRegistry {
     recipes: RefiningUnitRecipesRegistry.kGrindingUnitRecipes,
   );
 
-  static final kReactorCrucible = FacilityDefinition(
+  static const kReactorCrucible = FacilityDefinition(
     id: 'kReactorCrucible',
     row: 5,
     col: 5,
@@ -840,7 +840,7 @@ class FacilityRegistry {
     recipes: RefiningUnitRecipesRegistry.kReactorCrucibleRecipes,
   );
 
-  static final kSeparatingUnit = FacilityDefinition(
+  static const kSeparatingUnit = FacilityDefinition(
     id: 'kSeparatingUnit',
     row: 6,
     col: 4,
@@ -856,7 +856,7 @@ class FacilityRegistry {
     recipes: RefiningUnitRecipesRegistry.kSeparatingUnitRecipes,
   );
 
-  static final kFluidSupplyUnit = FacilityDefinition(
+  static const kFluidSupplyUnit = FacilityDefinition(
     id: 'kFluidSupplyUnit',
     row: 3,
     col: 3,

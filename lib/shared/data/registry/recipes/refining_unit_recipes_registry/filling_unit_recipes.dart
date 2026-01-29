@@ -1,19 +1,19 @@
 import 'package:aic_planner/shared/data/registry/product_registry.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_input_model.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_model.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_output_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_input_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_output_model.dart';
 
 class FillingUnitRecipesRegistryClass {
-  static final List<RefiningUnitRecipes> data = [
-    RefiningUnitRecipes(
+  static const List<UnitRecipes> data = [
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kAmethystBottle,
           inputAmount: 5,
           inputTime: 30,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kCitromePowder,
           inputAmount: 5,
           inputTime: 30,
@@ -23,7 +23,7 @@ class FillingUnitRecipesRegistryClass {
       processingTime: 10,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kCannedCitromeC,
           outputAmount: 1,
           outputTime: 6,
@@ -31,15 +31,15 @@ class FillingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kAmethystBottle,
           inputAmount: 5,
           inputTime: 30,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kBuckFlowerPowder,
           inputAmount: 5,
           inputTime: 30,
@@ -49,7 +49,7 @@ class FillingUnitRecipesRegistryClass {
       processingTime: 10,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kBuckCapsuleC,
           outputAmount: 1,
           outputTime: 6,
@@ -57,15 +57,15 @@ class FillingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kFerriumBottle,
           inputAmount: 10,
           inputTime: 60,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kBuckFlowerPowder,
           inputAmount: 10,
           inputTime: 60,
@@ -75,7 +75,7 @@ class FillingUnitRecipesRegistryClass {
       processingTime: 10,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kBuckCapsuleB,
           outputAmount: 1,
           outputTime: 6,
@@ -83,15 +83,15 @@ class FillingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kFerriumBottle,
           inputAmount: 10,
           inputTime: 60,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kCitromePowder,
           inputAmount: 10,
           inputTime: 60,
@@ -101,7 +101,7 @@ class FillingUnitRecipesRegistryClass {
       processingTime: 10,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kCannedCitromeB,
           outputAmount: 1,
           outputTime: 6,
@@ -109,15 +109,15 @@ class FillingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kSteelBottle,
           inputAmount: 10,
           inputTime: 60,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kGroundBuckflowerPowder,
           inputAmount: 10,
           inputTime: 60,
@@ -127,7 +127,7 @@ class FillingUnitRecipesRegistryClass {
       processingTime: 10,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kBuckCapsuleA,
           outputAmount: 1,
           outputTime: 6,
@@ -135,15 +135,15 @@ class FillingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kSteelBottle,
           inputAmount: 10,
           inputTime: 60,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kGroundCitromePowder,
           inputAmount: 10,
           inputTime: 60,
@@ -153,7 +153,7 @@ class FillingUnitRecipesRegistryClass {
       processingTime: 10,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kCannedCitromeA,
           outputAmount: 1,
           outputTime: 6,
@@ -162,15 +162,15 @@ class FillingUnitRecipesRegistryClass {
       ],
     ),
     // Special single-input solutions
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kFerriumBottle,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kCleanWater,
           inputAmount: 1,
           inputTime: 30,
@@ -180,7 +180,7 @@ class FillingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kFerriumBottleCleanWater,
           outputAmount: 1,
           outputTime: 30,
@@ -188,15 +188,15 @@ class FillingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kFerriumBottle,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kJincaoSolution,
           inputAmount: 1,
           inputTime: 30,
@@ -206,7 +206,7 @@ class FillingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kFerriumBottleJincaoSolution,
           outputAmount: 1,
           outputTime: 30,
@@ -214,15 +214,15 @@ class FillingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kFerriumBottle,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kYazhenSolution,
           inputAmount: 1,
           inputTime: 30,
@@ -232,7 +232,7 @@ class FillingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kFerriumBottleYazhenSolution,
           outputAmount: 1,
           outputTime: 30,
@@ -240,15 +240,15 @@ class FillingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kFerriumBottle,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kLiquidXiranite,
           inputAmount: 1,
           inputTime: 30,
@@ -258,7 +258,7 @@ class FillingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kFerriumBottleLiquidXiranite,
           outputAmount: 1,
           outputTime: 30,

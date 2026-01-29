@@ -1,19 +1,19 @@
 import 'package:aic_planner/shared/data/registry/product_registry.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_input_model.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_model.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_output_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_input_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_output_model.dart';
 
 class ReactorCrucibleRecipesRegistryClass {
-  static final List<RefiningUnitRecipes> data = [
-    RefiningUnitRecipes(
+  static const List<UnitRecipes> data = [
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kJincaoPowder,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kCleanWater,
           inputAmount: 1,
           inputTime: 30,
@@ -23,7 +23,7 @@ class ReactorCrucibleRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kJincaoSolution,
           outputAmount: 1,
           outputTime: 30,
@@ -31,15 +31,15 @@ class ReactorCrucibleRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kJincaoPowder,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kCleanWater,
           inputAmount: 1,
           inputTime: 30,
@@ -49,7 +49,7 @@ class ReactorCrucibleRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kYazhenSolution,
           outputAmount: 1,
           outputTime: 30,
@@ -57,15 +57,15 @@ class ReactorCrucibleRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kJincaoPowder,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
         ),
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kCleanWater,
           inputAmount: 1,
           inputTime: 30,
@@ -75,7 +75,7 @@ class ReactorCrucibleRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kLiquidXiranite,
           outputAmount: 1,
           outputTime: 30,

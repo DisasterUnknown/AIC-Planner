@@ -1,5 +1,5 @@
 import 'package:aic_planner/shared/data/enums/facility_type_enums.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_model.dart';
 
 class FacilityDefinition {
   final String id;
@@ -22,9 +22,9 @@ class FacilityDefinition {
   final String? energyPerUse;
   final int? maxCharge;
 
-  final List<RefiningUnitRecipes>? recipes;
+  final List<UnitRecipes>? recipes;
 
-  FacilityDefinition({
+  const FacilityDefinition({
     required this.id,
     required this.row,
     required this.col,

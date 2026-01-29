@@ -1,13 +1,13 @@
 import 'package:aic_planner/shared/data/registry/product_registry.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_input_model.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_model.dart';
-import 'package:aic_planner/shared/model/refining_unit_recipes_output_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_input_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_model.dart';
+import 'package:aic_planner/shared/model/unit_recipes_output_model.dart';
 
-class GearingUnitRecipesRegistryClass {
-  final List<RefiningUnitRecipes> data = [
-    RefiningUnitRecipes(
+class RefiningRecipesRegistryClass {
+  static const List<UnitRecipes> data = [
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kAmethystOre,
           inputAmount: 1,
           inputTime: 30,
@@ -17,7 +17,7 @@ class GearingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kAmethystFiber,
           outputAmount: 1,
           outputTime: 30,
@@ -25,9 +25,9 @@ class GearingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kOriginiumOre,
           inputAmount: 1,
           inputTime: 30,
@@ -37,7 +37,7 @@ class GearingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kOrigocrust,
           outputAmount: 1,
           outputTime: 30,
@@ -45,9 +45,9 @@ class GearingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kBuckFlower,
           inputAmount: 1,
           inputTime: 30,
@@ -57,7 +57,7 @@ class GearingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kCarbon,
           outputAmount: 1,
           outputTime: 30,
@@ -65,9 +65,9 @@ class GearingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kFerriumOre,
           inputAmount: 1,
           inputTime: 30,
@@ -77,7 +77,7 @@ class GearingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kFerrium,
           outputAmount: 1,
           outputTime: 30,
@@ -85,9 +85,9 @@ class GearingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kDenseCarbonPowder,
           inputAmount: 1,
           inputTime: 30,
@@ -97,7 +97,7 @@ class GearingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kStabilizedCarbon,
           outputAmount: 1,
           outputTime: 30,
@@ -105,9 +105,9 @@ class GearingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kDenseOrigocrustPowder,
           inputAmount: 1,
           inputTime: 30,
@@ -117,7 +117,7 @@ class GearingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kPackedOrigocrust,
           outputAmount: 1,
           outputTime: 30,
@@ -125,9 +125,9 @@ class GearingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kCrystonPowder,
           inputAmount: 1,
           inputTime: 30,
@@ -137,7 +137,7 @@ class GearingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kCrystonFiber,
           outputAmount: 1,
           outputTime: 30,
@@ -145,9 +145,9 @@ class GearingUnitRecipesRegistryClass {
         ),
       ],
     ),
-    RefiningUnitRecipes(
+    UnitRecipes(
       input: [
-        RefiningUnitRecipesInputModel(
+        UnitRecipesInputModel(
           input: ProductRegistry.kDenseFerriumPowder,
           inputAmount: 1,
           inputTime: 30,
@@ -157,7 +157,7 @@ class GearingUnitRecipesRegistryClass {
       processingTime: 2,
       processingTimeUnit: 's',
       output: [
-        RefiningUnitRecipesOutputModel(
+        UnitRecipesOutputModel(
           output: ProductRegistry.kSteel,
           outputAmount: 1,
           outputTime: 30,
