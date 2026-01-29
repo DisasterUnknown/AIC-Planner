@@ -1,8 +1,9 @@
 import 'package:aic_planner/shared/data/enums/facility_type_enums.dart';
+import 'package:aic_planner/shared/data/registry/refining_unit_recipes_registry.dart';
 import 'package:aic_planner/shared/model/facility_model.dart';
 
 class FacilityRegistry {
-  static const kBeamTower = FacilityDefinition(
+  static final kBeamTower = FacilityDefinition(
     id: 'kBeamTower',
     row: 2,
     col: 2,
@@ -13,7 +14,8 @@ class FacilityRegistry {
     description:
         'Consumes vast amounts of energy to emit a beam that deals massive Electric DMG to enemies.',
     facilityType: FacilityType.combat,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
 
     atk: 22338,
     atkInterval: '8s',
@@ -21,7 +23,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static const kGrenadeTower = FacilityDefinition(
+  static final kGrenadeTower = FacilityDefinition(
     id: 'kGrenadeTower',
     row: 2,
     col: 2,
@@ -39,7 +41,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static const kGunTower = FacilityDefinition(
+  static final kGunTower = FacilityDefinition(
     id: 'kGunTower',
     row: 2,
     col: 2,
@@ -49,7 +51,8 @@ class FacilityRegistry {
     skill: 'Defense I',
     description: 'Continuously fires energy bolts that deal Physical DMG.',
     facilityType: FacilityType.combat,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
 
     atk: 609,
     atkInterval: '2s',
@@ -57,7 +60,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static const kHeGrenadeTower = FacilityDefinition(
+  static final kHeGrenadeTower = FacilityDefinition(
     id: 'kHeGrenadeTower',
     row: 2,
     col: 2,
@@ -68,13 +71,14 @@ class FacilityRegistry {
     description:
         'Attacks enemies by launching Mk II grenades along a ballistic trajectory that detonate above ground near enemies. The grenade explosion deals area of effect Heat DMG and leaves a burning zone that deals DMG to enemies within it.',
     facilityType: FacilityType.combat,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
 
     atk: 5585,
     atkInterval: '3s',
   );
 
-  static const kHeavyGunTower = FacilityDefinition(
+  static final kHeavyGunTower = FacilityDefinition(
     id: 'kHeavyGunTower',
     row: 2,
     col: 2,
@@ -85,7 +89,8 @@ class FacilityRegistry {
     description:
         'Continuously fires Mk II energy bolts with every 4th shot being an empowered bolt. The bolts deal Physical DMG.',
     facilityType: FacilityType.combat,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
 
     atk: 2136,
     atkInterval: '2s',
@@ -93,7 +98,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static const kLnTower = FacilityDefinition(
+  static final kLnTower = FacilityDefinition(
     id: 'kLnTower',
     row: 2,
     col: 2,
@@ -104,14 +109,15 @@ class FacilityRegistry {
     description:
         'Fires special liquid nitrogen (LN) crystals that shatter upon impact to slow the movement speed of enemies in the area of effect.',
     facilityType: FacilityType.combat,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
 
     atkInterval: '5s',
     energyPerUse: '50/min',
     maxCharge: 2000,
   );
 
-  static const kMarshGasMkITower = FacilityDefinition(
+  static final kMarshGasMkITower = FacilityDefinition(
     id: 'kMarshGasMkITower',
     row: 2,
     col: 2,
@@ -122,13 +128,14 @@ class FacilityRegistry {
     description:
         'Launches special mist grenades that detonate above ground near enemies. The mist grenade explosion deals area of effect Nature DMG and leaves a mist zone that deals DMG and slows the movement speed of enemies within it.',
     facilityType: FacilityType.combat,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
 
     atk: 5485,
     atkInterval: '5s',
   );
 
-  static const kMedicalTower = FacilityDefinition(
+  static final kMedicalTower = FacilityDefinition(
     id: 'kMedicalTower',
     row: 3,
     col: 3,
@@ -139,14 +146,15 @@ class FacilityRegistry {
     description:
         'Converts electrical power into healinga arts that can treat injured operators nearby.',
     facilityType: FacilityType.combat,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
 
     atkInterval: '5s',
     energyPerUse: '6000/min',
     maxCharge: 30000,
   );
 
-  static const kOmnidirectionalSonicTower = FacilityDefinition(
+  static final kOmnidirectionalSonicTower = FacilityDefinition(
     id: 'kOmnidirectionalSonicTower',
     row: 2,
     col: 2,
@@ -157,14 +165,15 @@ class FacilityRegistry {
     description:
         'Fires a shockwave that stuns common and advanced enemies within the area of effects.',
     facilityType: FacilityType.combat,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
 
     atkInterval: '5s',
     energyPerUse: '100/min',
     maxCharge: 2000,
   );
 
-  static const kSentryTower = FacilityDefinition(
+  static final kSentryTower = FacilityDefinition(
     id: 'kSentryTower',
     row: 2,
     col: 2,
@@ -175,7 +184,8 @@ class FacilityRegistry {
     description:
         'Unleashes long-range attacks that target high-threat enemies first and deal massive Physical DMG.',
     facilityType: FacilityType.combat,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
 
     atk: 11634,
     atkInterval: '5s',
@@ -183,7 +193,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static const kSurgeTower = FacilityDefinition(
+  static final kSurgeTower = FacilityDefinition(
     id: 'kSurgeTower',
     row: 2,
     col: 2,
@@ -194,7 +204,8 @@ class FacilityRegistry {
     description:
         'Releases electrical arcs that attack enemies. The arc also chains to nearby enemies (up to 2) and deals Electro DMG.',
     facilityType: FacilityType.combat,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
 
     atk: 4886,
     atkInterval: '3s',
@@ -202,7 +213,7 @@ class FacilityRegistry {
     maxCharge: 2000,
   );
 
-  static const kEasyStash = FacilityDefinition(
+  static final kEasyStash = FacilityDefinition(
     id: 'kEasyStash',
     row: 3,
     col: 3,
@@ -213,10 +224,11 @@ class FacilityRegistry {
     description:
         'Provides direct access to the local Depot even when outside in the wilderness. Must be connected to power though, so you will need to use it near a Pylon or Relay Tower.',
     facilityType: FacilityType.exploration,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kMemoBeacon = FacilityDefinition(
+  static final kMemoBeacon = FacilityDefinition(
     id: 'kMemoBeacon',
     row: 1,
     col: 1,
@@ -227,10 +239,11 @@ class FacilityRegistry {
     description:
         'A facility used to post and leave beacon memos for other players to see. It may include icons or special messages that you want other players to see when they chance your beacon in their world.',
     facilityType: FacilityType.exploration,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kProtocolStash = FacilityDefinition(
+  static final kProtocolStash = FacilityDefinition(
     id: 'kProtocolStash',
     row: 3,
     col: 3,
@@ -241,10 +254,11 @@ class FacilityRegistry {
     description:
         'A facility used to post and leave beacon memos for other players to see. It may include icons or special messages that you want other players to see when they chance your beacon in their world.',
     facilityType: FacilityType.exploration,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kZiplinePylon = FacilityDefinition(
+  static final kZiplinePylon = FacilityDefinition(
     id: 'kZiplinePylon',
     row: 3,
     col: 3,
@@ -255,10 +269,11 @@ class FacilityRegistry {
     description:
         'Set up zipline routes with Zipline Pylons to quickly zip from one Pylon to another. Zipline distances can cover ~80m.',
     facilityType: FacilityType.exploration,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kZiplineTower = FacilityDefinition(
+  static final kZiplineTower = FacilityDefinition(
     id: 'kZiplineTower',
     row: 3,
     col: 3,
@@ -269,10 +284,11 @@ class FacilityRegistry {
     description:
         'Set up zipline routes with Zipline Tower to quickly zip from one Tower to another. Zipline distances can cover ~110m.',
     facilityType: FacilityType.exploration,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kBeltBridge = FacilityDefinition(
+  static final kBeltBridge = FacilityDefinition(
     id: 'kBeltBridge',
     row: 1,
     col: 1,
@@ -283,10 +299,11 @@ class FacilityRegistry {
     description:
         'Allows a transport belt to go over another without disrupting the flow of items on both belts.',
     facilityType: FacilityType.logistics,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kConverger = FacilityDefinition(
+  static final kConverger = FacilityDefinition(
     id: 'kConverger',
     row: 1,
     col: 1,
@@ -297,10 +314,11 @@ class FacilityRegistry {
     description:
         'Converge product flows of 3 transport belts into a single belt.',
     facilityType: FacilityType.logistics,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kFluidTank = FacilityDefinition(
+  static final kFluidTank = FacilityDefinition(
     id: 'kFluidTank',
     row: 3,
     col: 3,
@@ -310,10 +328,11 @@ class FacilityRegistry {
     skill: 'Fluid Storage',
     description: 'Stores a single type of fluid delivered to it via pipelines.',
     facilityType: FacilityType.logistics,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kItemControlPort = FacilityDefinition(
+  static final kItemControlPort = FacilityDefinition(
     id: 'kItemControlPort',
     row: 1,
     col: 1,
@@ -324,10 +343,11 @@ class FacilityRegistry {
     description:
         'Limits the type and quantity of items allowed to pass through transport belts. Used in blueprints to mark the type of items to be moved into various transport belt sections.',
     facilityType: FacilityType.logistics,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kPipeBridge = FacilityDefinition(
+  static final kPipeBridge = FacilityDefinition(
     id: 'kPipeBridge',
     row: 1,
     col: 1,
@@ -338,10 +358,11 @@ class FacilityRegistry {
     description:
         'Allows a pipeline to go over another without disrupting the flow of fluids in both pipelines.',
     facilityType: FacilityType.logistics,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kPipeControlPort = FacilityDefinition(
+  static final kPipeControlPort = FacilityDefinition(
     id: 'kPipeControlPort',
     row: 1,
     col: 1,
@@ -352,10 +373,11 @@ class FacilityRegistry {
     description:
         'Limits the fluid and the quantity of fluids allowed to pass through pipelines. Used in bluprints to mark the type of fluid to be moved through various pipelines.',
     facilityType: FacilityType.logistics,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kPipeConverger = FacilityDefinition(
+  static final kPipeConverger = FacilityDefinition(
     id: 'kPipeConverger',
     row: 1,
     col: 1,
@@ -365,10 +387,11 @@ class FacilityRegistry {
     skill: 'Pipe Fittings',
     description: 'Converges up to 3 pipelines into a single pipeline.',
     facilityType: FacilityType.logistics,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kPipeSplitter = FacilityDefinition(
+  static final kPipeSplitter = FacilityDefinition(
     id: 'kPipeSplitter',
     row: 1,
     col: 1,
@@ -379,10 +402,11 @@ class FacilityRegistry {
     description:
         'Splits 1 pipeline into 2 or 3 pipelines to divide fluid flow.',
     facilityType: FacilityType.logistics,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kSplitter = FacilityDefinition(
+  static final kSplitter = FacilityDefinition(
     id: 'kSplitter',
     row: 1,
     col: 1,
@@ -393,10 +417,11 @@ class FacilityRegistry {
     description:
         'Splits the product flow of 1 transport belt to up to 3 transport belts.',
     facilityType: FacilityType.logistics,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kSprinkler = FacilityDefinition(
+  static final kSprinkler = FacilityDefinition(
     id: 'kSprinkler',
     row: 3,
     col: 3,
@@ -407,10 +432,11 @@ class FacilityRegistry {
     description:
         'Connects to a water source to automatically sprinkle water on a target.',
     facilityType: FacilityType.logistics,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kDepotLoader = FacilityDefinition(
+  static final kDepotLoader = FacilityDefinition(
     id: 'kDepotLoader',
     row: 1,
     col: 3,
@@ -421,10 +447,11 @@ class FacilityRegistry {
     description:
         'Loading point attached to the Depot Bus that acts like an intake for items for Depot Storage. Can only be attached to a Depot Bus.',
     facilityType: FacilityType.power,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kDepotUnloader = FacilityDefinition(
+  static final kDepotUnloader = FacilityDefinition(
     id: 'kDepotUnloader',
     row: 1,
     col: 3,
@@ -435,10 +462,11 @@ class FacilityRegistry {
     description:
         'Unloading point attached to the Depot Bus that acts like a source for items from the Depot Storage. Can only be attached to a Depot Bus.',
     facilityType: FacilityType.power,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kElectricPylon = FacilityDefinition(
+  static final kElectricPylon = FacilityDefinition(
     id: 'kElectricPylon',
     row: 2,
     col: 2,
@@ -448,10 +476,11 @@ class FacilityRegistry {
     skill: 'Electricity I',
     description: 'Error: Not Yet Added Ask Admin.',
     facilityType: FacilityType.power,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kRelayTower = FacilityDefinition(
+  static final kRelayTower = FacilityDefinition(
     id: 'kRelayTower',
     row: 3,
     col: 3,
@@ -461,10 +490,11 @@ class FacilityRegistry {
     skill: 'Power Relay',
     description: 'Error: Not Yet Added Ask Admin.',
     facilityType: FacilityType.power,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
   );
 
-  static const kThermalBank = FacilityDefinition(
+  static final kThermalBank = FacilityDefinition(
     id: 'kThermalBank',
     row: 2,
     col: 2,
@@ -475,6 +505,150 @@ class FacilityRegistry {
     description:
         'A facility that accepts batteries or Originium Ores as fuel to convert into electrical power. Must be connected to the power grid to work. The generated power is based on the fuel used.',
     facilityType: FacilityType.power,
-    imagePath: null,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
+  static final kDepotBusSection = FacilityDefinition(
+    id: 'kDepotBusSection',
+    row: 8,
+    col: 4,
+    name: 'Depot Bus Section',
+    power: 0,
+    tier: 'Wuling I',
+    skill: 'Wuling Depot Bus',
+    description: 'Error: Not Yet Added Ask Admin.',
+    facilityType: FacilityType.xiranite,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
+  static final kDepotBusPort = FacilityDefinition(
+    id: 'kDepotBusPort',
+    row: 4,
+    col: 4,
+    name: 'Depot Bus Port',
+    power: 0,
+    tier: 'Wuling I',
+    skill: 'Wuling Depot Bus',
+    description: 'Error: Not Yet Added Ask Admin.',
+    facilityType: FacilityType.xiranite,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
+  static final kForgeOfTheSky = FacilityDefinition(
+    id: 'kForgeOfTheSky',
+    row: 5,
+    col: 5,
+    name: 'Forge of the Sky',
+    power: 50,
+    tier: 'Wuling I',
+    skill: 'Xiranite Forging',
+    description: 'A facility for making Xiranite-based products.',
+    facilityType: FacilityType.xiranite,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
+  static final kXiranitePylon = FacilityDefinition(
+    id: 'kXiranitePylon',
+    row: 2,
+    col: 2,
+    name: 'Xiranite Pylon',
+    power: 0,
+    tier: 'Wuling I',
+    skill: 'Wuling Power',
+    description: 'Error: Not Yet Added Ask Admin.',
+    facilityType: FacilityType.xiranite,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
+  static final kXiraniteRelay = FacilityDefinition(
+    id: 'kXiraniteRelay',
+    row: 3,
+    col: 3,
+    name: 'Xiranite Relay',
+    power: 0,
+    tier: 'Wuling I',
+    skill: 'Wuling Power',
+    description: 'Error: Not Yet Added Ask Admin.',
+    facilityType: FacilityType.xiranite,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
+  static final kPortableOriginiumRig = FacilityDefinition(
+    id: 'kPortableOriginiumRig',
+    row: 3,
+    col: 3,
+    name: 'Portable Originium Rig',
+    power: 0,
+    tier: 'Basic I',
+    skill: 'Mining I',
+    description:
+        'Mining rig for digging up Originium Ore. Does not require power.',
+    facilityType: FacilityType.resourcing,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
+  static final kElectricMiningRig = FacilityDefinition(
+    id: 'kElectricMiningRig',
+    row: 3,
+    col: 3,
+    name: 'Electric Mining Rig',
+    power: 5,
+    tier: 'Basic II',
+    skill: 'Mining II',
+    description:
+        'Mining rig for digging up Originium and Amethyst Ore. Requires 5 Power and automatically transfers ores to the Depot at set intervals.',
+    facilityType: FacilityType.resourcing,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
+  static final kElectricMiningRigMkII = FacilityDefinition(
+    id: 'kElectricMiningRigMkII',
+    row: 3,
+    col: 3,
+    name: 'Electric Mining Rig Mk II',
+    power: 10,
+    tier: 'Basic III',
+    skill: 'Mining III',
+    description: 'Mining rig for digging up Ferrium Ore and other minerals. Requires 10 Power and automatically transfers ores to the Depot at set intervals.',
+    facilityType: FacilityType.resourcing,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
+  static final kFluidPump = FacilityDefinition(
+    id: 'kFluidPump',
+    row: 3,
+    col: 3,
+    name: 'Fluid Pump',
+    power: 10,
+    tier: 'Wuling I',
+    skill: 'Fluid Pumping',
+    description: 'A facility for pumping fluids. Requires 10 Power to work.',
+    facilityType: FacilityType.resourcing,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
+  static final kRefiningUnit = FacilityDefinition(
+    id: 'kRefiningUnit',
+    row: 3,
+    col: 3,
+    name: 'Refining Unit',
+    power: 5,
+    tier: 'Basic I',
+    node: 'Refine I',
+    description: 'Performs high temperature refining of various materials.',
+    facilityType: FacilityType.processing,
+    baseImgPath: null,
+    topDownImgPath: null,
+    recipes: RefiningUnitRecipesRegistry.kRefiningUnitRecipes,
   );
 }
