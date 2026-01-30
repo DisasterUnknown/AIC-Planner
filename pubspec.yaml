@@ -29,6 +29,8 @@ dependencies:
   sensors_plus: ^7.0.0
   bloc: ^8.1.4
   url_launcher: ^6.3.2
+  flutter_riverpod: ^3.2.0
+  vector_math: ^2.2.0
 
 dev_dependencies:
   flutter_test:

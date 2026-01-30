@@ -1,0 +1,30 @@
+import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
+import 'package:flutter/material.dart';
+
+class FactoryWidget extends StatelessWidget {
+  final FacilityInstance factory;
+  const FactoryWidget({super.key, required this.factory});
+
+  @override
+  Widget build(BuildContext context) {
+    final double cellSize = 20;
+    final width = (factory.def.col) * cellSize;
+    final height = (factory.def.row) * cellSize;
+
+    return Container(
+      width: width,
+      height: height,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: factory.active ? Colors.blue : Colors.grey,
+        border: Border.all(color: Colors.black, width: 2),
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Text(
+        factory.def.name,
+        textAlign: TextAlign.center,
+        style: const TextStyle(fontSize: 12, color: Colors.white),
+      ),
+    );
+  }
+}

@@ -1,5 +1,6 @@
 import 'package:aic_planner/shared/network/network_controle.dart';
 import 'package:aic_planner/shared/widget/corner_back_button.dart';
+import 'package:aic_planner/shared/widget/corner_back_button_painter.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:aic_planner/shared/data/constants.dart';
@@ -21,27 +22,7 @@ class AboutPage extends StatelessWidget {
           Container(color: Colors.black.withValues(alpha: 0.5)),
 
           // Game-style corner back button
-          Positioned(
-            top: 0,
-            left: 0,
-            child: GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: CustomPaint(
-                painter: CornerBackButtonPainter(),
-                child: SizedBox(
-                  width: 100,
-                  height: 50,
-                  child: Center(
-                    child: Icon(
-                      Icons.subdirectory_arrow_left,
-                      color: Colors.white,
-                      size: 24,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+          cornerBackBtn(context),
 
           // About content - scrollable
           Padding(
@@ -111,7 +92,8 @@ class AboutPage extends StatelessWidget {
                             },
                         ),
                         const TextSpan(
-                          text: ' ☕. It really helps keep the dev energy alive!',
+                          text:
+                              ' ☕. It really helps keep the dev energy alive!',
                         ),
                       ],
                     ),

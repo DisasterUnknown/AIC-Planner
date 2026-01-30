@@ -27,27 +27,7 @@ class SaveSlotPage extends StatelessWidget {
             Container(color: Colors.black.withValues(alpha: 0.55)),
 
             // Game-style corner back button
-            Positioned(
-              top: 0,
-              left: 0,
-              child: GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: CustomPaint(
-                  painter: CornerBackButtonPainter(),
-                  child: SizedBox(
-                    width: 100,
-                    height: 50,
-                    child: Center(
-                      child: Icon(
-                        Icons.subdirectory_arrow_left,
-                        color: Colors.white,
-                        size: 24,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            cornerBackBtn(context),
 
             // Content
             Center(
@@ -60,7 +40,7 @@ class SaveSlotPage extends StatelessWidget {
                 },
                 builder: (context, state) {
                   return SizedBox(
-                    height: 320, 
+                    height: 320,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
