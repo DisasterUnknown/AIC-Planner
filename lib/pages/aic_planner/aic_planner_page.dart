@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:aic_planner/pages/aic_planner/config/app_config.dart';
 import 'package:aic_planner/pages/aic_planner/layers/background_layer.dart';
 import 'package:aic_planner/pages/aic_planner/layers/editing_factory_layer.dart';
 import 'package:aic_planner/pages/aic_planner/layers/grid_layer.dart';
@@ -52,8 +53,8 @@ class _AciPlannerPageState extends State<AciPlannerPage> {
 
   // Snap position to 30x30 grid
   Offset snapToGrid(Offset pos) {
-    double x = (pos.dx / 20).round() * 20;
-    double y = (pos.dy / 20).round() * 20;
+    double x = (pos.dx / AppConfig.gridStep).round() * AppConfig.gridStep;
+    double y = (pos.dy / AppConfig.gridStep).round() * AppConfig.gridStep;
     return Offset(x, y);
   }
 
@@ -67,9 +68,9 @@ class _AciPlannerPageState extends State<AciPlannerPage> {
             transformationController: _controller,
             panEnabled: true,
             scaleEnabled: true,
-            minScale: 0.5,
+            minScale: AppConfig.minZoom,
             constrained: false,
-            maxScale: 5.0,
+            maxScale: AppConfig.maxZoom,
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 3,
               height: MediaQuery.of(context).size.height * 3,

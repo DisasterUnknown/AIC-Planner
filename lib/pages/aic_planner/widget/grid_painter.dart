@@ -1,9 +1,10 @@
+import 'package:aic_planner/pages/aic_planner/config/app_config.dart';
 import 'package:flutter/material.dart';
 
 class GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    const double step = 20;
+    const double step = AppConfig.gridStep;
     final paint = Paint()
       ..color = Colors.black12
       ..strokeWidth = 1;

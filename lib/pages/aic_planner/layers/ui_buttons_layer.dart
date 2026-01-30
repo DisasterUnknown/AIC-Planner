@@ -20,7 +20,7 @@ class UIButtonsLayer extends StatelessWidget {
             onPressed: () {
               onAddFactory(
                 FacilityInstance(
-                  def: FacilityRegistry.kBeamTower,
+                  def: FacilityRegistry.kPackagingUnit,
                   position: const Offset(0, 0),
                 ),
               );
