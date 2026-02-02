@@ -1,12 +1,12 @@
 import 'package:aic_planner/shared/data/constants.dart';
 import 'package:flutter/material.dart';
 
-class SideLineButton extends StatelessWidget {
+class CancelButton extends StatelessWidget {
   final VoidCallback onTap;
   final String label;
   final IconData icon;
 
-  const SideLineButton({
+  const CancelButton({
     super.key,
     required this.onTap,
     required this.label,
