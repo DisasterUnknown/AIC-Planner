@@ -1,4 +1,5 @@
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
+import 'package:aic_planner/pages/aic_planner/widget/ui_layer/cancle_btn.dart';
 import 'package:aic_planner/shared/data/constants.dart';
 import 'package:aic_planner/shared/data/registry/facility_registry/facility_registry.dart';
 import 'package:aic_planner/shared/widget/corner_back_button.dart';
@@ -17,15 +18,15 @@ class UIButtonsLayer extends StatelessWidget {
 
         // Top save and infor btn area
         Positioned(
-          top: -1,
-          right: -1,
+          top: -2,
+          right: -2,
           child: Column(
             children: [
               Container(
                 height: 40,
                 width: 165,
                 decoration: BoxDecoration(
-                  color: AppCustomColors.secondaryUI.withValues(alpha: 0.7),
+                  color: AppCustomColors.secondaryUI.withValues(alpha: 0.8),
                   border: Border.all(color: Colors.white54, width: 2),
                 ),
                 child: Center(child: Text('v1.0.0')),
@@ -39,12 +40,16 @@ class UIButtonsLayer extends StatelessWidget {
                       width: 55,
                       decoration: BoxDecoration(
                         color: AppCustomColors.secondaryUI.withValues(
-                          alpha: 0.7,
+                          alpha: 0.8,
                         ),
                         border: Border.all(color: Colors.white54, width: 2),
                       ),
                       child: Center(
-                        child: Icon(Icons.save, color: Colors.white, size: 24),
+                        child: Icon(
+                          Icons.save_outlined,
+                          color: Colors.white,
+                          size: 24,
+                        ),
                       ),
                     ),
                   ),
@@ -55,12 +60,16 @@ class UIButtonsLayer extends StatelessWidget {
                       width: 55,
                       decoration: BoxDecoration(
                         color: AppCustomColors.secondaryUI.withValues(
-                          alpha: 0.7,
+                          alpha: 0.8,
                         ),
                         border: Border.all(color: Colors.white54, width: 2),
                       ),
                       child: Center(
-                        child: Icon(Icons.account_tree, color: Colors.white, size: 24),
+                        child: Icon(
+                          Icons.account_tree_outlined,
+                          color: Colors.white,
+                          size: 24,
+                        ),
                       ),
                     ),
                   ),
@@ -71,12 +80,16 @@ class UIButtonsLayer extends StatelessWidget {
                       width: 55,
                       decoration: BoxDecoration(
                         color: AppCustomColors.secondaryUI.withValues(
-                          alpha: 0.7,
+                          alpha: 0.8,
                         ),
                         border: Border.all(color: Colors.white54, width: 2),
                       ),
                       child: Center(
-                        child: Icon(Icons.info, color: Colors.white, size: 24),
+                        child: Icon(
+                          Icons.info_outline_rounded,
+                          color: Colors.white,
+                          size: 24,
+                        ),
                       ),
                     ),
                   ),
@@ -86,9 +99,18 @@ class UIButtonsLayer extends StatelessWidget {
           ),
         ),
 
+        // bottum right area
+
+        // bottum left area
+        SideLineButton(
+          onTap: () {},
+          label: 'Cancel',
+          icon: Icons.cancel_outlined,
+        ),
+
         Positioned(
           bottom: 20,
-          left: 20,
+          left: 600,
           child: FloatingActionButton(
             onPressed: () {
               onAddFactory(
