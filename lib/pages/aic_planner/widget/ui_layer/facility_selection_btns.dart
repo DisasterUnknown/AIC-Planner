@@ -15,6 +15,7 @@ class FacilitySelectionButtons extends StatefulWidget {
 class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
   FacilityType? selectedType;
   FacilityDefinition? selectedFacility;
+  bool isDeleteMode = false;
 
   final List<FacilityType> facilityTypes = FacilityType.values;
 
@@ -47,6 +48,12 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
     });
   }
 
+  void toggleDeleteMode() {
+    setState(() {
+      isDeleteMode = !isDeleteMode;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -71,8 +78,11 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                           width: 40,
                           height: 40,
                         )
-                      : const Icon(Icons.help_outline,
-                          color: Colors.white, size: 24),
+                      : const Icon(
+                          Icons.help_outline,
+                          color: Colors.white,
+                          size: 24,
+                        ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -107,19 +117,30 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                 child: Row(
                   children: [
                     IconButton(
-                      onPressed: () {},
-                      icon:
-                          const Icon(Icons.edit, size: 20, color: Colors.white),
+                      onPressed: () {
+                        toggleDeleteMode();
+                      },
+                      icon: Icon(
+                        Icons.delete_outline,
+                        size: 20,
+                        color: isDeleteMode ? Colors.red : Colors.white,
+                      ),
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(Icons.delete,
-                          size: 20, color: Colors.white),
+                      icon: const Icon(
+                        Icons.copy_outlined,
+                        size: 20,
+                        color: Colors.white,
+                      ),
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(Icons.delete,
-                          size: 20, color: Colors.white),
+                      icon: const Icon(
+                        Icons.done,
+                        size: 20,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
@@ -142,8 +163,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
             padding: const EdgeInsets.all(4),
             child: SingleChildScrollView(
               child: Padding(
-                padding:
-                    const EdgeInsets.only(left: 4, top: 4, bottom: 30),
+                padding: const EdgeInsets.only(left: 4, top: 4, bottom: 30),
                 child: Wrap(
                   spacing: 12,
                   runSpacing: 7,
@@ -162,8 +182,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                         child: Icon(
                           _iconForFacilityType(type),
                           size: 20,
-                          color:
-                              isSelected ? Colors.orange : Colors.white,
+                          color: isSelected ? Colors.orange : Colors.white,
                         ),
                       ),
                     );
@@ -195,18 +214,24 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                         height: 60,
                         width: 60,
                         decoration: BoxDecoration(
-                          color: isSelected
-                              ? Colors.greenAccent.withValues(alpha: 0.7)
-                              : AppCustomColors.secondaryUI
-                                  .withValues(alpha: 0.8),
-                          border:
-                              Border.all(color: Colors.white54, width: 2),
+                          color: AppCustomColors.secondaryUI.withValues(
+                            alpha: 0.8,
+                          ),
+                          border: Border.all(
+                            color: isSelected ? Colors.orange : Colors.white54,
+                            width: 2,
+                          ),
                         ),
                         child: Center(
                           child: facility.baseImgPath != null
                               ? Image.asset(facility.baseImgPath!)
-                              : const Icon(Icons.help_outline,
-                                  color: Colors.white, size: 24),
+                              : Icon(
+                                  Icons.help_outline,
+                                  color: isSelected
+                                      ? Colors.orange
+                                      : Colors.white,
+                                  size: 24,
+                                ),
                         ),
                       ),
                     );
