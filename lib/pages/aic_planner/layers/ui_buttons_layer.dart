@@ -1,5 +1,6 @@
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
 import 'package:aic_planner/pages/aic_planner/widget/ui_layer/cancle_btn.dart';
+import 'package:aic_planner/pages/aic_planner/widget/ui_layer/facility_selection_btns.dart';
 import 'package:aic_planner/pages/aic_planner/widget/ui_layer/option_btns.dart';
 import 'package:aic_planner/shared/data/registry/facility_registry/facility_registry.dart';
 import 'package:aic_planner/shared/widget/corner_back_button.dart';
@@ -31,6 +32,7 @@ class UIButtonsLayer extends StatelessWidget {
         ),
 
         // bottum right area
+        FacilitySelectionButtons(),
 
         // bottum left area
         CancelButton(
@@ -40,7 +42,7 @@ class UIButtonsLayer extends StatelessWidget {
         ),
 
         Positioned(
-          bottom: 20,
+          bottom: 200,
           left: 600,
           child: FloatingActionButton(
             onPressed: () {

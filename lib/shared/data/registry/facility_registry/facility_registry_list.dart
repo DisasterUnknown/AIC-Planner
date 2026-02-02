@@ -1,7 +1,8 @@
 import 'package:aic_planner/shared/data/registry/facility_registry/facility_registry.dart';
 import 'package:aic_planner/shared/model/facility_model.dart';
 
-final List<FacilityDefinition> allFacilities = [
+class AllFacilitiesList {
+  static final List<FacilityDefinition> allFacilities = [
     FacilityRegistry.kBeamTower,
     FacilityRegistry.kGrenadeTower,
     FacilityRegistry.kGunTower,
@@ -58,3 +59,4 @@ final List<FacilityDefinition> allFacilities = [
     FacilityRegistry.kSeparatingUnit,
     FacilityRegistry.kFluidSupplyUnit,
   ];
+}
