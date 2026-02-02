@@ -51,7 +51,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Top info area (if facility selected)
+        // ───────────────── Top info panel ─────────────────
         if (selectedFacility != null)
           Positioned(
             top: -50,
@@ -71,13 +71,8 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                           width: 40,
                           height: 40,
                         )
-                      : const Center(
-                          child: Icon(
-                            Icons.help_outline,
-                            color: Colors.white,
-                            size: 24,
-                          ),
-                        ),
+                      : const Icon(Icons.help_outline,
+                          color: Colors.white, size: 24),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -89,9 +84,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {
-                      // your ? button callback
-                    },
+                    onPressed: () {},
                     icon: const Icon(Icons.help_outline, color: Colors.white),
                   ),
                 ],
@@ -99,69 +92,101 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
             ),
           ),
 
-        // Facility type buttons bottom-right
+        // ─────────── Edit option buttons (DIAGONAL ONLY HERE) ───────────
         Positioned(
-          bottom: -2,
+          bottom: 137,
           right: -2,
-          child: Container(
-            height: 120,
-            width: 140,
-            decoration: BoxDecoration(
-              color: AppCustomColors.secondaryUI.withValues(alpha: 0.8),
-              border: Border.all(color: Colors.white54, width: 2),
-            ),
-            padding: const EdgeInsets.all(4),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 4, top: 4),
-              child: Wrap(
-                spacing: 7, // horizontal spacing between buttons
-                runSpacing: 7, // vertical spacing between lines
-                children: List.generate(facilityTypes.length, (index) {
-                  final type = facilityTypes[index];
-                  return GestureDetector(
-                    onTap: () => toggleType(type),
-                    child: Container(
-                      height: 25,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        color: selectedType == type
-                            ? Colors.greenAccent.withOpacity(0.7)
-                            : null,
-                        border: selectedType == type
-                            ? Border.all(color: Colors.white54, width: 2)
-                            : null,
-                      ),
-                      child: Center(
-                        child: Icon(
-                          _iconForFacilityType(type),
-                          size: 20,
-                          color: Colors.white,
-                        ),
-                      ),
+          child: CustomPaint(
+            painter: _DiagonalLayeredBorderPainter(),
+            child: ClipPath(
+              clipper: _DiagonalTopLeftClipper(),
+              child: Container(
+                height: 50,
+                width: 148,
+                color: AppCustomColors.secondaryUI.withValues(alpha: 0.8),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon:
+                          const Icon(Icons.edit, size: 20, color: Colors.white),
                     ),
-                  );
-                }),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.delete,
+                          size: 20, color: Colors.white),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.delete,
+                          size: 20, color: Colors.white),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
 
-        // Horizontal scrollable filtered facilities
-        // Horizontal scrollable filtered facilities (max 10 visible at a time, scrolls RTL)
+        // ─────────── Facility type buttons ───────────
+        Positioned(
+          bottom: -2,
+          right: -2,
+          child: Container(
+            height: 140,
+            width: 150,
+            decoration: BoxDecoration(
+              color: AppCustomColors.secondaryUI.withValues(alpha: 0.8),
+              border: Border.all(color: Colors.white54, width: 2),
+            ),
+            padding: const EdgeInsets.all(4),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(left: 4, top: 4, bottom: 30),
+                child: Wrap(
+                  spacing: 12,
+                  runSpacing: 7,
+                  children: facilityTypes.map((type) {
+                    final isSelected = selectedType == type;
+                    return GestureDetector(
+                      onTap: () => toggleType(type),
+                      child: Container(
+                        height: 35,
+                        width: 35,
+                        decoration: BoxDecoration(
+                          border: isSelected
+                              ? Border.all(color: Colors.orange, width: 2)
+                              : null,
+                        ),
+                        child: Icon(
+                          _iconForFacilityType(type),
+                          size: 20,
+                          color:
+                              isSelected ? Colors.orange : Colors.white,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+          ),
+        ),
+
+        // ─────────── Filtered facilities (RTL scroll, max 10 visible) ───────────
         if (filteredFacilities.isNotEmpty)
           Positioned(
             bottom: -2,
-            right: 136,
+            right: 147,
             child: SizedBox(
               height: 60,
-              width:
-                  60 * 10 +
-                  4 * 9, // 10 buttons visible + spacing (adjust 4 as spacing)
+              width: 60 * 10,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                reverse: true, // start from right
+                reverse: true,
                 child: Row(
-                  textDirection: TextDirection.rtl, // layout right to left
+                  textDirection: TextDirection.rtl,
                   children: filteredFacilities.map((facility) {
                     final isSelected = selectedFacility == facility;
                     return GestureDetector(
@@ -171,20 +196,17 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                         width: 60,
                         decoration: BoxDecoration(
                           color: isSelected
-                              ? Colors.greenAccent.withOpacity(0.7)
-                              : AppCustomColors.secondaryUI.withValues(
-                                  alpha: 0.8,
-                                ),
-                          border: Border.all(color: Colors.white54, width: 2),
+                              ? Colors.greenAccent.withValues(alpha: 0.7)
+                              : AppCustomColors.secondaryUI
+                                  .withValues(alpha: 0.8),
+                          border:
+                              Border.all(color: Colors.white54, width: 2),
                         ),
                         child: Center(
                           child: facility.baseImgPath != null
                               ? Image.asset(facility.baseImgPath!)
-                              : const Icon(
-                                  Icons.help_outline,
-                                  color: Colors.white,
-                                  size: 24,
-                                ),
+                              : const Icon(Icons.help_outline,
+                                  color: Colors.white, size: 24),
                         ),
                       ),
                     );
@@ -217,4 +239,57 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
         return Icons.star;
     }
   }
+}
+
+/// ─────────── Diagonal helpers (USED ONLY ON EDIT BAR) ───────────
+
+class _DiagonalTopLeftClipper extends CustomClipper<Path> {
+  static const double cut = 16;
+
+  @override
+  Path getClip(Size size) {
+    return Path()
+      ..moveTo(cut, 0)
+      ..lineTo(size.width, 0)
+      ..lineTo(size.width, size.height)
+      ..lineTo(0, size.height)
+      ..lineTo(0, cut)
+      ..close();
+  }
+
+  @override
+  bool shouldReclip(_) => false;
+}
+
+class _DiagonalLayeredBorderPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    const cut = _DiagonalTopLeftClipper.cut;
+
+    // Inner darker border
+    final innerBorderPaint = Paint()
+      ..color = const Color.fromARGB(255, 15, 15, 15)
+      ..strokeWidth = 2
+      ..style = PaintingStyle.stroke;
+
+    // Outer white border
+    final outerBorderPaint = Paint()
+      ..color = const Color.fromARGB(137, 216, 210, 210)
+      ..strokeWidth = 3
+      ..style = PaintingStyle.stroke;
+
+    final path = Path()
+      ..moveTo(cut, 0)
+      ..lineTo(size.width, 0)
+      ..lineTo(size.width, size.height)
+      ..lineTo(0, size.height)
+      ..lineTo(0, cut)
+      ..close();
+
+    canvas.drawPath(path, innerBorderPaint);
+    canvas.drawPath(path, outerBorderPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
