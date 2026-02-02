@@ -61,43 +61,46 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
         // ───────────────── Top info panel ─────────────────
         if (selectedFacility != null)
           Positioned(
-            top: -50,
-            right: 0,
+            top: -2,
+            right: MediaQuery.of(context).size.width / 2 - 150,
             child: Container(
               height: 50,
-              width: 200,
+              width: 300,
               decoration: BoxDecoration(
                 color: AppCustomColors.secondaryUI.withValues(alpha: 0.7),
                 border: Border.all(color: Colors.white54, width: 2),
               ),
-              child: Row(
-                children: [
-                  selectedFacility!.baseImgPath != null
-                      ? Image.asset(
-                          selectedFacility!.baseImgPath!,
-                          width: 40,
-                          height: 40,
-                        )
-                      : const Icon(
-                          Icons.help_outline,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: Row(
+                  children: [
+                    selectedFacility!.baseImgPath != null
+                        ? Image.asset(
+                            selectedFacility!.baseImgPath!,
+                            width: 40,
+                            height: 40,
+                          )
+                        : const Icon(
+                            Icons.insert_drive_file_outlined,
+                            color: Colors.white,
+                            size: 24,
+                          ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        selectedFacility!.name,
+                        style: const TextStyle(
                           color: Colors.white,
-                          size: 24,
+                          fontWeight: FontWeight.bold,
                         ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      selectedFacility!.name,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.help_outline, color: Colors.white),
-                  ),
-                ],
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.help_outline, color: Colors.white),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
