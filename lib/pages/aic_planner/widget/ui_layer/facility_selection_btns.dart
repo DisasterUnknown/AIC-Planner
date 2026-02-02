@@ -125,8 +125,11 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                       width: 30,
                       decoration: BoxDecoration(
                         color: selectedType == type
-                            ? Colors.greenAccent.withOpacity(0.7) : null,
-                        border: selectedType == type ? Border.all(color: Colors.white54, width: 2) : null,
+                            ? Colors.greenAccent.withOpacity(0.7)
+                            : null,
+                        border: selectedType == type
+                            ? Border.all(color: Colors.white54, width: 2)
+                            : null,
                       ),
                       child: Center(
                         child: Icon(
@@ -144,40 +147,49 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
         ),
 
         // Horizontal scrollable filtered facilities
+        // Horizontal scrollable filtered facilities (max 10 visible at a time, scrolls RTL)
         if (filteredFacilities.isNotEmpty)
           Positioned(
             bottom: -2,
             right: 136,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: filteredFacilities.map((facility) {
-                  final isSelected = selectedFacility == facility;
-                  return GestureDetector(
-                    onTap: () => toggleFacility(facility),
-                    child: Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: isSelected
-                            ? Colors.greenAccent.withOpacity(0.7)
-                            : AppCustomColors.secondaryUI.withValues(
-                                alpha: 0.8,
-                              ),
-                        border: Border.all(color: Colors.white54, width: 2),
+            child: SizedBox(
+              height: 60,
+              width:
+                  60 * 10 +
+                  4 * 9, // 10 buttons visible + spacing (adjust 4 as spacing)
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                reverse: true, // start from right
+                child: Row(
+                  textDirection: TextDirection.rtl, // layout right to left
+                  children: filteredFacilities.map((facility) {
+                    final isSelected = selectedFacility == facility;
+                    return GestureDetector(
+                      onTap: () => toggleFacility(facility),
+                      child: Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                          color: isSelected
+                              ? Colors.greenAccent.withOpacity(0.7)
+                              : AppCustomColors.secondaryUI.withValues(
+                                  alpha: 0.8,
+                                ),
+                          border: Border.all(color: Colors.white54, width: 2),
+                        ),
+                        child: Center(
+                          child: facility.baseImgPath != null
+                              ? Image.asset(facility.baseImgPath!)
+                              : const Icon(
+                                  Icons.help_outline,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
+                        ),
                       ),
-                      child: Center(
-                        child: facility.baseImgPath != null
-                            ? Image.asset(facility.baseImgPath!)
-                            : const Icon(
-                                Icons.help_outline,
-                                color: Colors.white,
-                                size: 24,
-                              ),
-                      ),
-                    ),
-                  );
-                }).toList(),
+                    );
+                  }).toList(),
+                ),
               ),
             ),
           ),
@@ -203,8 +215,6 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
         return Icons.circle;
       case FacilityType.hero:
         return Icons.star;
-      default:
-        return Icons.help_outline;
     }
   }
 }
