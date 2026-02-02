@@ -20,13 +20,13 @@ class UIButtonsLayer extends StatelessWidget {
         OptionButtons(
           version: 'v1.2.3',
           onSave: () {
-            print('Save clicked');
+            debugPrint('Save clicked');
           },
           onTree: () {
-            print('Tree clicked');
+            debugPrint('Tree clicked');
           },
           onInfo: () {
-            print('Info clicked');
+            debugPrint('Info clicked');
           },
         ),
 
