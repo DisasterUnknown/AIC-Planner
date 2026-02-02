@@ -27,7 +27,7 @@ class OptionButtons extends StatelessWidget {
             height: 40,
             width: 165,
             decoration: BoxDecoration(
-              color: AppCustomColors.secondaryUI.withValues(alpha: 0.8),
+              color: AppCustomColors.secondaryUI.withValues(alpha: 0.9),
               border: Border.all(color: Colors.white54, width: 2),
             ),
             child: Center(
@@ -70,7 +70,7 @@ class OptionButtons extends StatelessWidget {
         height: 55,
         width: 55,
         decoration: BoxDecoration(
-          color: AppCustomColors.secondaryUI.withValues(alpha: 0.8),
+          color: AppCustomColors.secondaryUI.withValues(alpha: 0.9),
           border: Border.all(color: Colors.white54, width: 2),
         ),
         child: Center(

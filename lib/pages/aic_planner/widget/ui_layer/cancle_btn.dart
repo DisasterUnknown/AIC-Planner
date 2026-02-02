@@ -58,7 +58,7 @@ class _SideLineButtonPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color = AppCustomColors.secondaryUI
-          .withValues(alpha: 0.8) // background color
+          .withValues(alpha: 0.9) // background color
       ..style = PaintingStyle.fill;
 
     final borderPaint = Paint()

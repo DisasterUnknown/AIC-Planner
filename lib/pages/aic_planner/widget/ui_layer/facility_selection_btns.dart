@@ -67,7 +67,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
               height: 50,
               width: 300,
               decoration: BoxDecoration(
-                color: AppCustomColors.secondaryUI.withValues(alpha: 0.7),
+                color: AppCustomColors.secondaryUI.withValues(alpha: 0.9),
                 border: Border.all(color: Colors.white54, width: 2),
               ),
               child: Padding(
@@ -116,7 +116,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
               child: Container(
                 height: 50,
                 width: 148,
-                color: AppCustomColors.secondaryUI.withValues(alpha: 0.8),
+                color: AppCustomColors.secondaryUI.withValues(alpha: 0.9),
                 child: Row(
                   children: [
                     IconButton(
@@ -160,7 +160,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
             height: 140,
             width: 150,
             decoration: BoxDecoration(
-              color: AppCustomColors.secondaryUI.withValues(alpha: 0.8),
+              color: AppCustomColors.secondaryUI.withValues(alpha: 0.9),
               border: Border.all(color: Colors.white54, width: 2),
             ),
             padding: const EdgeInsets.all(4),
@@ -218,7 +218,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                         width: 60,
                         decoration: BoxDecoration(
                           color: AppCustomColors.secondaryUI.withValues(
-                            alpha: 0.8,
+                            alpha: 0.9,
                           ),
                           border: Border.all(
                             color: isSelected ? Colors.orange : Colors.white54,
