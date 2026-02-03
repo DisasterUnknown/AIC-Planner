@@ -58,8 +58,8 @@ class _AciPlannerPageState extends State<AciPlannerPage> {
                   minScale: 0.5,
                   maxScale: 2.5,
                   child: SizedBox(
-                    width: 3000,
-                    height: 3000,
+                    width: MediaQuery.of(context).size.width * 3,
+                    height: MediaQuery.of(context).size.height * 3,
                     child: GestureDetector(
                       child: Stack(
                         children: [

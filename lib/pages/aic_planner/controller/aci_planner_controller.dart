@@ -65,7 +65,6 @@ class AciPlannerController extends ChangeNotifier {
       facilities.add(f);
     }
     editingFactories.clear();
-    activeFactoryType = null;
     notifyListeners();
   }
 
