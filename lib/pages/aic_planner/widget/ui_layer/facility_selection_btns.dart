@@ -8,15 +8,8 @@ import 'package:aic_planner/shared/data/enums/facility_type_enums.dart';
 import 'package:aic_planner/shared/model/facility_model.dart';
 
 class FacilitySelectionButtons extends StatefulWidget {
-  final void Function(FacilityInstance) onAddFactory;
-  final VoidCallback onConfirm;
   final AciPlannerController controller;
-  const FacilitySelectionButtons({
-    super.key,
-    required this.onAddFactory,
-    required this.onConfirm,
-    required this.controller,
-  });
+  const FacilitySelectionButtons({super.key, required this.controller});
 
   @override
   State<FacilitySelectionButtons> createState() =>
@@ -150,7 +143,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                     ),
 
                     IconButton(
-                      onPressed: widget.onConfirm,
+                      onPressed: widget.controller.confirmEditing,
                       icon: const Icon(
                         Icons.done,
                         size: 20,
@@ -226,16 +219,20 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                     return GestureDetector(
                       onTap: () {
                         toggleFacility(facility);
+
+                        FacilityInstance? facInst;
                         if (selectedFacility != null) {
-                          widget.onAddFactory(
-                            FacilityInstance(
-                              def: AllFacilitiesList.allFacilities.firstWhere(
-                                (f) => f.id == selectedFacility!.id,
-                              ),
-                              position: const Offset(0, 0),
+                          facInst = FacilityInstance(
+                            def: AllFacilitiesList.allFacilities.firstWhere(
+                              (f) => f.id == selectedFacility!.id,
                             ),
+                            position: const Offset(0, 0),
                           );
+                        } else {
+                          facInst = null;
                         }
+
+                        widget.controller.startPlacing(facInst);
                       },
                       child: Container(
                         height: 60,

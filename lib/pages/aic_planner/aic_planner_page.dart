@@ -65,23 +65,15 @@ class _AciPlannerPageState extends State<AciPlannerPage> {
                         children: [
                           const BackgroundLayer(),
                           const GridLayer(),
-                          PlacedFacilitiesLayer(facilities: controller.facilities),
-                          EditingFactoryLayer(
-                            editingFactories: controller.editingFactories,
-                          ),
+                          PlacedFacilitiesLayer(controller: controller),
+                          EditingFactoryLayer(controller: controller),
                         ],
                       ),
                     ),
                   ),
                 ),
               ),
-              UIButtonsLayer(
-                controller: controller,
-                onAddFactory: controller.startPlacing,
-                onCancelShow: controller.showCancelBtn,
-                onCancel: controller.cancelEditing,
-                onConfirm: controller.confirmEditing,
-              ),
+              UIButtonsLayer(controller: controller),
             ],
           );
         },
