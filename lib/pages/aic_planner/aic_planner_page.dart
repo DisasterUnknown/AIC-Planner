@@ -46,32 +46,41 @@ class _AciPlannerPageState extends State<AciPlannerPage> {
         builder: (_, __) {
           return Stack(
             children: [
-              InteractiveViewer(
-                transformationController: viewController,
-                constrained: false,
-                minScale: 0.5,
-                maxScale: 2.5,
-                child: SizedBox(
-                  width: 3000,
-                  height: 3000,
-                  child: Stack(
-                    children: [
-                      const BackgroundLayer(),
-                      const GridLayer(),
-                      PlacedFacilitiesLayer(facilities: controller.facilities),
-                      EditingFactoryLayer(
-                        editingFactory: controller.editingFactory,
-                        onUpdate: controller.updateEditing,
-                        onPlaced: (_) => controller.placeEditing(),
-                        snapToGrid: controller.snapToGrid,
-                      ),
-                    ],
+              GestureDetector(
+                onTapDown: (details) {
+                  controller.placeFactoryAt(
+                    viewController.toScene(details.localPosition),
+                  );
+                },
+                onPanUpdate: (details) {
+                  // move all editing factories if dragging on an editing factory
+                  controller.moveEditing(details.delta);
+                },
+                child: InteractiveViewer(
+                  transformationController: viewController,
+                  constrained: false,
+                  minScale: 0.5,
+                  maxScale: 2.5,
+                  child: SizedBox(
+                    width: 3000,
+                    height: 3000,
+                    child: Stack(
+                      children: [
+                        const BackgroundLayer(),
+                        const GridLayer(),
+                        PlacedFacilitiesLayer(facilities: controller.facilities),
+                        EditingFactoryLayer(
+                          editingFactories: controller.editingFactories,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
               UIButtonsLayer(
                 onAddFactory: controller.startPlacing,
                 onCancel: controller.cancelEditing,
+                onConfirm: controller.confirmEditing,
               ),
             ],
           );

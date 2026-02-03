@@ -1,3 +1,4 @@
+import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
 import 'package:aic_planner/shared/data/registry/facility_registry/facility_registry_list.dart';
 import 'package:flutter/material.dart';
 import 'package:aic_planner/shared/data/constants.dart';
@@ -5,7 +6,13 @@ import 'package:aic_planner/shared/data/enums/facility_type_enums.dart';
 import 'package:aic_planner/shared/model/facility_model.dart';
 
 class FacilitySelectionButtons extends StatefulWidget {
-  const FacilitySelectionButtons({super.key});
+  final void Function(FacilityInstance) onAddFactory;
+  final VoidCallback onConfirm;
+  const FacilitySelectionButtons({
+    super.key,
+    required this.onAddFactory,
+    required this.onConfirm,
+  });
 
   @override
   State<FacilitySelectionButtons> createState() =>
@@ -138,7 +145,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: widget.onConfirm,
                       icon: const Icon(
                         Icons.done,
                         size: 20,
@@ -212,7 +219,17 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                   children: filteredFacilities.map((facility) {
                     final isSelected = selectedFacility == facility;
                     return GestureDetector(
-                      onTap: () => toggleFacility(facility),
+                      onTap: () {
+                        toggleFacility(facility);
+                        if (selectedFacility != null) {
+                          widget.onAddFactory(
+                            FacilityInstance(
+                              def: AllFacilitiesList.allFacilities.firstWhere((f) => f.id == selectedFacility!.id),
+                              position: const Offset(0, 0),
+                            ),
+                          );
+                        }
+                      },
                       child: Container(
                         height: 60,
                         width: 60,
