@@ -35,6 +35,14 @@ class AciPlannerController extends ChangeNotifier {
   }
 
   // -----------------
+  // UI UPDATES
+  // -----------------
+  bool showCancelBtn() {
+    if (editingFactories.isEmpty) return false;
+    return true;
+  }
+
+  // -----------------
   // USER ACTIONS
   // -----------------
 
@@ -70,10 +78,7 @@ class AciPlannerController extends ChangeNotifier {
 
     if (!_overlaps(snapped)) {
       editingFactories.add(
-        FacilityInstance(
-          def: activeFactoryType!.def,
-          position: snapped,
-        ),
+        FacilityInstance(def: activeFactoryType!.def, position: snapped),
       );
       notifyListeners();
     }

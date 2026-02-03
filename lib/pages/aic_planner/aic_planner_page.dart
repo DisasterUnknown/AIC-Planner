@@ -79,6 +79,7 @@ class _AciPlannerPageState extends State<AciPlannerPage> {
               ),
               UIButtonsLayer(
                 onAddFactory: controller.startPlacing,
+                onCancelShow: controller.showCancelBtn,
                 onCancel: controller.cancelEditing,
                 onConfirm: controller.confirmEditing,
               ),

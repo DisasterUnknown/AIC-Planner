@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 class UIButtonsLayer extends StatelessWidget {
   final void Function(FacilityInstance) onAddFactory;
+  final bool Function() onCancelShow;
   final VoidCallback onCancel;
   final VoidCallback onConfirm;
 
@@ -15,6 +16,7 @@ class UIButtonsLayer extends StatelessWidget {
     required this.onAddFactory,
     required this.onCancel,
     required this.onConfirm,
+    required this.onCancelShow,
   });
 
   @override
@@ -32,11 +34,13 @@ class UIButtonsLayer extends StatelessWidget {
           onConfirm: onConfirm,
           onAddFactory: onAddFactory,
         ),
-        CancelButton(
-          onTap: onCancel,
-          label: 'Cancel',
-          icon: Icons.cancel_outlined,
-        ),
+        onCancelShow()
+            ? CancelButton(
+                onTap: onCancel,
+                label: 'Cancel',
+                icon: Icons.cancel_outlined,
+              )
+            : const SizedBox(),
       ],
     );
   }
