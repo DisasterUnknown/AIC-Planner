@@ -20,7 +20,7 @@ class AicGroundPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.grey.withOpacity(0.05)
+      ..color = Colors.grey.withValues(alpha: 0.05)
       ..strokeWidth = 1;
 
     final rand = Random();
@@ -36,7 +36,7 @@ class AicGroundPainter extends CustomPainter {
 
     // optional: very subtle diagonal lines to mimic floor panels
     final linePaint = Paint()
-      ..color = Colors.grey.withOpacity(0.03)
+      ..color = Colors.grey.withValues(alpha: 0.03)
       ..strokeWidth = 1;
 
     const step = 40.0;

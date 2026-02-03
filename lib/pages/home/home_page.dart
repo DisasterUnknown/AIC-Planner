@@ -1,4 +1,4 @@
-import 'package:aic_planner/pages/home/widget/cornerIcon_button.dart';
+import 'package:aic_planner/pages/home/widget/corner_icon_button.dart';
 import 'package:aic_planner/pages/home/widget/main_button.dart';
 import 'package:aic_planner/shared/network/network_controle.dart';
 import 'package:flutter/material.dart';

@@ -8,8 +8,13 @@ import 'package:flutter/material.dart';
 
 class UIButtonsLayer extends StatelessWidget {
   final void Function(FacilityInstance) onAddFactory;
+  final VoidCallback onCancel;
 
-  const UIButtonsLayer({super.key, required this.onAddFactory});
+  const UIButtonsLayer({
+    super.key,
+    required this.onAddFactory,
+    required this.onCancel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,26 +22,17 @@ class UIButtonsLayer extends StatelessWidget {
       children: [
         cornerBackBtn(context),
 
-        // Top save and infor btn area
         OptionButtons(
           version: 'v1.2.3',
-          onSave: () {
-            debugPrint('Save clicked');
-          },
-          onTree: () {
-            debugPrint('Tree clicked');
-          },
-          onInfo: () {
-            debugPrint('Info clicked');
-          },
+          onSave: () {},
+          onTree: () {},
+          onInfo: () {},
         ),
 
-        // bottum right area
         FacilitySelectionButtons(),
 
-        // bottum left area
         CancelButton(
-          onTap: () {},
+          onTap: onCancel,
           label: 'Cancel',
           icon: Icons.cancel_outlined,
         ),
