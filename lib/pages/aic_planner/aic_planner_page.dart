@@ -27,7 +27,7 @@ class _AciPlannerPageState extends State<AciPlannerPage> {
       final size = MediaQuery.of(context).size;
       viewController.value = Matrix4.identity()
         ..translateByVector3(
-          Vector3((size.width - 2000) / 2, (size.height - 1000) / 2, 0),
+          Vector3((size.width - (size.width * 2)), (size.height - (size.height * 2)), 0),
         );
     });
   }
