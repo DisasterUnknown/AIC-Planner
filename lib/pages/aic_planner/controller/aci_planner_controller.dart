@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:aic_planner/pages/aic_planner/config/app_config.dart';
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
+import 'package:aic_planner/shared/model/facility_model.dart';
 import 'package:flutter/material.dart';
 
 class AciPlannerController extends ChangeNotifier {
@@ -55,7 +56,6 @@ class AciPlannerController extends ChangeNotifier {
   /// Cancel all editing factories
   void cancelEditing() {
     editingFactories.clear();
-    activeFactoryType = null;
     notifyListeners();
   }
 
@@ -70,17 +70,46 @@ class AciPlannerController extends ChangeNotifier {
   }
 
   /// Place a factory on a single click
+  /// Place a factory on a single click
   void placeFactoryAt(Offset position) {
     if (activeFactoryType == null) return;
 
-    final snapped = snapToGrid(position);
+    final def = activeFactoryType!.def;
 
-    if (!_overlaps(snapped)) {
-      editingFactories.add(
-        FacilityInstance(def: activeFactoryType!.def, position: snapped),
-      );
+    // Center the facility on the click
+    final offset = Offset(
+      def.col * AppConfig.gridStep / 2,
+      def.row * AppConfig.gridStep / 2,
+    );
+
+    // Calculate the top-left corner so the center is at the click
+    final snapped = snapToGrid(position - offset);
+
+    // Check if clicking on the same facility: remove it
+    for (var f in editingFactories) {
+      if (f.def == def &&
+          _rectFromPosition(f.position, f.def).contains(position)) {
+        editingFactories.remove(f);
+        notifyListeners();
+        return;
+      }
+    }
+
+    // Check for overlap with existing facilities or editing factories
+    if (!_overlaps(snapped, newDef: def)) {
+      editingFactories.add(FacilityInstance(def: def, position: snapped));
       notifyListeners();
     }
+  }
+
+  /// Helper to get a Rect for a facility from its position and def
+  Rect _rectFromPosition(Offset pos, FacilityDefinition def) {
+    return Rect.fromLTWH(
+      pos.dx,
+      pos.dy,
+      def.col * AppConfig.gridStep,
+      def.row * AppConfig.gridStep,
+    );
   }
 
   /// Move all editing factories (click + drag)
@@ -110,27 +139,34 @@ class AciPlannerController extends ChangeNotifier {
   }
 
   /// Check if a position would overlap existing facilities or editing factories
-  bool _overlaps(Offset pos, {FacilityInstance? ignore}) {
+  /// Check if a position would overlap existing facilities or editing factories
+  bool _overlaps(Offset pos, {FacilityInstance? ignore, FacilityDefinition? newDef}) {
     final all = [...facilities, ...editingFactories];
+
+    // Use newDef if provided, otherwise fallback to activeFactoryType
+    final defToCheck = newDef ?? activeFactoryType?.def;
+    if (defToCheck == null) return false;
+
+    final newRect = Rect.fromLTWH(
+      pos.dx,
+      pos.dy,
+      defToCheck.col * AppConfig.gridStep,
+      defToCheck.row * AppConfig.gridStep,
+    );
+
     for (var f in all) {
       if (ignore != null && f == ignore) continue;
 
-      final rect1 = Rect.fromLTWH(
-        pos.dx,
-        pos.dy,
-        f.def.col * AppConfig.gridStep,
-        f.def.row * AppConfig.gridStep,
-      );
-
-      final rect2 = Rect.fromLTWH(
+      final existingRect = Rect.fromLTWH(
         f.position.dx,
         f.position.dy,
         f.def.col * AppConfig.gridStep,
         f.def.row * AppConfig.gridStep,
       );
 
-      if (rect1.overlaps(rect2)) return true;
+      if (newRect.overlaps(existingRect)) return true;
     }
+
     return false;
   }
 }
