@@ -52,10 +52,6 @@ class _AciPlannerPageState extends State<AciPlannerPage> {
                     viewController.toScene(details.localPosition),
                   );
                 },
-                onPanUpdate: (details) {
-                  // move all editing factories if dragging on an editing factory
-                  controller.moveEditing(details.delta);
-                },
                 child: InteractiveViewer(
                   transformationController: viewController,
                   constrained: false,
@@ -64,15 +60,17 @@ class _AciPlannerPageState extends State<AciPlannerPage> {
                   child: SizedBox(
                     width: 3000,
                     height: 3000,
-                    child: Stack(
-                      children: [
-                        const BackgroundLayer(),
-                        const GridLayer(),
-                        PlacedFacilitiesLayer(facilities: controller.facilities),
-                        EditingFactoryLayer(
-                          editingFactories: controller.editingFactories,
-                        ),
-                      ],
+                    child: GestureDetector(
+                      child: Stack(
+                        children: [
+                          const BackgroundLayer(),
+                          const GridLayer(),
+                          PlacedFacilitiesLayer(facilities: controller.facilities),
+                          EditingFactoryLayer(
+                            editingFactories: controller.editingFactories,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -49,7 +49,6 @@ class AciPlannerController extends ChangeNotifier {
   /// Start placing a factory type
   void startPlacing(FacilityInstance instance) {
     activeFactoryType = instance;
-    editingFactories.clear();
     notifyListeners();
   }
 
