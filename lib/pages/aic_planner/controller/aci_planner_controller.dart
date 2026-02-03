@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:aic_planner/pages/aic_planner/config/app_config.dart';
+import 'package:aic_planner/pages/aic_planner/config/enums.dart';
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
 import 'package:aic_planner/shared/model/facility_model.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class AciPlannerController extends ChangeNotifier {
   final List<FacilityInstance> editingFactories = []; // in-edit factories
 
   FacilityInstance? activeFactoryType; // selected type for edit
+  PlacementDirection placementDirection = PlacementDirection.up;
 
   Timer? _timer;
 
@@ -68,15 +70,38 @@ class AciPlannerController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void rotatePlacementDirection() {
+    switch (placementDirection) {
+      case PlacementDirection.up:
+        placementDirection = PlacementDirection.right;
+        break;
+      case PlacementDirection.right:
+        placementDirection = PlacementDirection.down;
+        break;
+      case PlacementDirection.down:
+        placementDirection = PlacementDirection.left;
+        break;
+      case PlacementDirection.left:
+        placementDirection = PlacementDirection.up;
+        break;
+    }
+    notifyListeners();
+  }
+
   /// Place a factory on a single click
   /// Place a factory on a single click
   void placeFactoryAt(Offset position) {
     if (activeFactoryType == null) return;
 
-    final def = activeFactoryType!.def;
-
     // Center the facility on the click
-    final offset = Offset(
+    Offset offset;
+    FacilityDefinition def = activeFactoryType!.def;
+    if (placementDirection == PlacementDirection.left ||
+        placementDirection == PlacementDirection.right) {
+      def = _rotatedDef(def, placementDirection);
+    }
+
+    offset = Offset(
       def.col * AppConfig.gridStep / 2,
       def.row * AppConfig.gridStep / 2,
     );
@@ -86,7 +111,7 @@ class AciPlannerController extends ChangeNotifier {
 
     // Check if clicking on the same facility: remove it
     for (var f in editingFactories) {
-      if (f.def == def &&
+      if (f.def.id == def.id &&
           _rectFromPosition(f.position, f.def).contains(position)) {
         editingFactories.remove(f);
         notifyListeners();
@@ -99,6 +124,35 @@ class AciPlannerController extends ChangeNotifier {
       editingFactories.add(FacilityInstance(def: def, position: snapped));
       notifyListeners();
     }
+  }
+
+  FacilityDefinition _rotatedDef(
+    FacilityDefinition def,
+    PlacementDirection dir,
+  ) {
+    if (dir == PlacementDirection.left || dir == PlacementDirection.right) {
+      // swap row and col for rotated placement
+      return FacilityDefinition(
+        id: def.id,
+        row: def.col, // swapped
+        col: def.row, // swapped
+        name: def.name,
+        power: def.power,
+        tier: def.tier,
+        description: def.description,
+        facilityType: def.facilityType,
+        skill: def.skill,
+        node: def.node,
+        baseImgPath: def.baseImgPath,
+        topDownImgPath: def.topDownImgPath,
+        atk: def.atk,
+        atkInterval: def.atkInterval,
+        energyPerUse: def.energyPerUse,
+        maxCharge: def.maxCharge,
+        recipes: def.recipes,
+      );
+    }
+    return def; // up/down use original
   }
 
   /// Helper to get a Rect for a facility from its position and def
@@ -139,7 +193,11 @@ class AciPlannerController extends ChangeNotifier {
 
   /// Check if a position would overlap existing facilities or editing factories
   /// Check if a position would overlap existing facilities or editing factories
-  bool _overlaps(Offset pos, {FacilityInstance? ignore, FacilityDefinition? newDef}) {
+  bool _overlaps(
+    Offset pos, {
+    FacilityInstance? ignore,
+    FacilityDefinition? newDef,
+  }) {
     final all = [...facilities, ...editingFactories];
 
     // Use newDef if provided, otherwise fallback to activeFactoryType

@@ -1,3 +1,4 @@
+import 'package:aic_planner/pages/aic_planner/controller/aci_planner_controller.dart';
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
 import 'package:aic_planner/pages/aic_planner/widget/ui_layer/cancle_btn.dart';
 import 'package:aic_planner/pages/aic_planner/widget/ui_layer/facility_selection_btns.dart';
@@ -10,6 +11,7 @@ class UIButtonsLayer extends StatelessWidget {
   final bool Function() onCancelShow;
   final VoidCallback onCancel;
   final VoidCallback onConfirm;
+  final AciPlannerController controller;
 
   const UIButtonsLayer({
     super.key,
@@ -17,6 +19,7 @@ class UIButtonsLayer extends StatelessWidget {
     required this.onCancel,
     required this.onConfirm,
     required this.onCancelShow,
+    required this.controller,
   });
 
   @override
@@ -33,6 +36,7 @@ class UIButtonsLayer extends StatelessWidget {
         FacilitySelectionButtons(
           onConfirm: onConfirm,
           onAddFactory: onAddFactory,
+          controller: controller,
         ),
         onCancelShow()
             ? CancelButton(

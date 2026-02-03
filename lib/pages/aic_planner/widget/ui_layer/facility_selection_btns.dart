@@ -1,3 +1,5 @@
+import 'package:aic_planner/pages/aic_planner/config/enums.dart';
+import 'package:aic_planner/pages/aic_planner/controller/aci_planner_controller.dart';
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
 import 'package:aic_planner/shared/data/registry/facility_registry/facility_registry_list.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +10,12 @@ import 'package:aic_planner/shared/model/facility_model.dart';
 class FacilitySelectionButtons extends StatefulWidget {
   final void Function(FacilityInstance) onAddFactory;
   final VoidCallback onConfirm;
+  final AciPlannerController controller;
   const FacilitySelectionButtons({
     super.key,
     required this.onAddFactory,
     required this.onConfirm,
+    required this.controller,
   });
 
   @override
@@ -137,13 +141,14 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.copy_outlined,
+                      onPressed: widget.controller.rotatePlacementDirection,
+                      icon: Icon(
+                        _iconForDirection(widget.controller.placementDirection),
                         size: 20,
                         color: Colors.white,
                       ),
                     ),
+
                     IconButton(
                       onPressed: widget.onConfirm,
                       icon: const Icon(
@@ -224,7 +229,9 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                         if (selectedFacility != null) {
                           widget.onAddFactory(
                             FacilityInstance(
-                              def: AllFacilitiesList.allFacilities.firstWhere((f) => f.id == selectedFacility!.id),
+                              def: AllFacilitiesList.allFacilities.firstWhere(
+                                (f) => f.id == selectedFacility!.id,
+                              ),
                               position: const Offset(0, 0),
                             ),
                           );
@@ -262,6 +269,19 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
           ),
       ],
     );
+  }
+
+  IconData _iconForDirection(PlacementDirection dir) {
+    switch (dir) {
+      case PlacementDirection.up:
+        return Icons.arrow_upward;
+      case PlacementDirection.right:
+        return Icons.arrow_forward;
+      case PlacementDirection.down:
+        return Icons.arrow_downward;
+      case PlacementDirection.left:
+        return Icons.arrow_back;
+    }
   }
 
   IconData _iconForFacilityType(FacilityType type) {
