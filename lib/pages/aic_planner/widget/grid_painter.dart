@@ -1,4 +1,4 @@
-import 'package:aic_planner/pages/aic_planner/config/app_config.dart';
+import 'package:aic_planner/pages/aic_planner/config/aic_planner_config.dart';
 import 'package:flutter/material.dart';
 
 class GridPainter extends CustomPainter {

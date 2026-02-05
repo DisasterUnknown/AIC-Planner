@@ -1,8 +1,10 @@
 import 'dart:async';
-import 'package:aic_planner/pages/aic_planner/config/app_config.dart';
+import 'package:aic_planner/pages/aic_planner/config/aic_planner_config.dart';
 import 'package:aic_planner/pages/aic_planner/config/enums.dart';
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
+import 'package:aic_planner/shared/data/registry/facility_registry/facility_registry_list.dart';
 import 'package:aic_planner/shared/model/facility_model.dart';
+import 'package:aic_planner/shared/service/hive_storage_service.dart';
 import 'package:flutter/material.dart';
 
 class AciPlannerController extends ChangeNotifier {
@@ -37,6 +39,38 @@ class AciPlannerController extends ChangeNotifier {
     // ⚡ electricity checks
     // 🏭 production simulation
     // 🎞 animations later
+    notifyListeners();
+  }
+
+  // -----------------
+  // LOAD DATA
+  // -----------------
+  Future<void> loadLastSave() async {
+    // Load saved data from Hive
+    final savedFacilities = PlannerSaveStorage.loadLast();
+    if (savedFacilities.isEmpty) return; // nothing to load
+
+    // Clear current facilities
+    facilities.clear();
+
+    // Convert SavedFacility → FacilityInstance
+    for (var saved in savedFacilities) {
+      // Find the definition by ID
+      FacilityDefinition def = AllFacilitiesList.allFacilities.firstWhere(
+        (f) => f.id == saved.facilityId,
+      );
+
+      def = _rotatedDef(def, row: saved.row, col: saved.col);
+
+      facilities.add(
+        FacilityInstance(
+          def: def,
+          position: Offset(saved.x.toDouble(), saved.y.toDouble()),
+        ),
+      );
+    }
+
+    // Notify UI to rebuild
     notifyListeners();
   }
 
@@ -83,6 +117,9 @@ class AciPlannerController extends ChangeNotifier {
     deletingFactories.clear();
     isDeleteMode = false;
     notifyListeners();
+
+    // Save
+    PlannerSaveStorage.saveLast(facilities);
   }
 
   void rotatePlacementDirection() {
@@ -149,7 +186,7 @@ class AciPlannerController extends ChangeNotifier {
     FacilityDefinition def = activeFactoryType!.def;
     if (placementDirection == PlacementDirection.left ||
         placementDirection == PlacementDirection.right) {
-      def = _rotatedDef(def, placementDirection);
+      def = _rotatedDef(def, dir: placementDirection);
     }
 
     final offset = Offset(
@@ -166,15 +203,37 @@ class AciPlannerController extends ChangeNotifier {
   }
 
   FacilityDefinition _rotatedDef(
-    FacilityDefinition def,
-    PlacementDirection dir,
-  ) {
+    FacilityDefinition def, {
+    PlacementDirection? dir,
+    int? row,
+    int? col,
+  }) {
     if (dir == PlacementDirection.left || dir == PlacementDirection.right) {
       // swap row and col for rotated placement
       return FacilityDefinition(
         id: def.id,
         row: def.col, // swapped
         col: def.row, // swapped
+        name: def.name,
+        power: def.power,
+        tier: def.tier,
+        description: def.description,
+        facilityType: def.facilityType,
+        skill: def.skill,
+        node: def.node,
+        baseImgPath: def.baseImgPath,
+        topDownImgPath: def.topDownImgPath,
+        atk: def.atk,
+        atkInterval: def.atkInterval,
+        energyPerUse: def.energyPerUse,
+        maxCharge: def.maxCharge,
+        recipes: def.recipes,
+      );
+    } else if (row != null && col != null) {
+      return FacilityDefinition(
+        id: def.id,
+        row: row,
+        col: col,
         name: def.name,
         power: def.power,
         tier: def.tier,

@@ -23,11 +23,17 @@ class _AciPlannerPageState extends State<AciPlannerPage> {
     super.initState();
     controller = AciPlannerController();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       final size = MediaQuery.of(context).size;
+      await controller.loadLastSave();
+
       viewController.value = Matrix4.identity()
         ..translateByVector3(
-          Vector3((size.width - (size.width * 2)), (size.height - (size.height * 2)), 0),
+          Vector3(
+            (size.width - (size.width * 2)),
+            (size.height - (size.height * 2)),
+            0,
+          ),
         );
     });
   }

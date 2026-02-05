@@ -1,6 +1,8 @@
+import 'package:aic_planner/shared/data/config/config.dart';
 import 'package:aic_planner/shared/service/routing_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +18,10 @@ void main() async {
     SystemUiMode.immersiveSticky,
     overlays: [],
   );
+
+  // Initialize Hive
+  await Hive.initFlutter();
+  await Hive.openBox(AppConfig.hiveBoxName);
 
   runApp(const AciPlannerApp());
 }
