@@ -91,8 +91,19 @@ class AciPlannerController extends ChangeNotifier {
   /// Place a factory on a single click
   /// Place a factory on a single click
   void placeFactoryAt(Offset position) {
-    if (activeFactoryType == null) return;
+    FacilityDefinition? activeDef = activeFactoryType?.def;
 
+    // Check if clicking on the same facility: remove it
+    for (var f in editingFactories) {
+      if ((f.def.id == activeDef?.id || activeDef == null) &&
+          _rectFromPosition(f.position, f.def).contains(position)) {
+        editingFactories.remove(f);
+        notifyListeners();
+        return;
+      }
+    }
+
+    if (activeFactoryType == null) return;
     // Center the facility on the click
     Offset offset;
     FacilityDefinition def = activeFactoryType!.def;
@@ -108,16 +119,6 @@ class AciPlannerController extends ChangeNotifier {
 
     // Calculate the top-left corner so the center is at the click
     final snapped = snapToGrid(position - offset);
-
-    // Check if clicking on the same facility: remove it
-    for (var f in editingFactories) {
-      if (f.def.id == def.id &&
-          _rectFromPosition(f.position, f.def).contains(position)) {
-        editingFactories.remove(f);
-        notifyListeners();
-        return;
-      }
-    }
 
     // Check for overlap with existing facilities or editing factories
     if (!_overlaps(snapped, newDef: def)) {

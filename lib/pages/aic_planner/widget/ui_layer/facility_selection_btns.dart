@@ -35,6 +35,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
       if (selectedType == type) {
         selectedType = null;
         selectedFacility = null;
+        widget.controller.startPlacing(null);
       } else {
         selectedType = type;
         selectedFacility = null;
@@ -221,7 +222,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                         toggleFacility(facility);
 
                         FacilityInstance? facInst;
-                        if (selectedFacility != null) {
+                        if (selectedFacility != null && selectedType != null) {
                           facInst = FacilityInstance(
                             def: AllFacilitiesList.allFacilities.firstWhere(
                               (f) => f.id == selectedFacility!.id,
