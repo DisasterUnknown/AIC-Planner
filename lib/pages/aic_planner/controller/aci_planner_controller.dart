@@ -11,6 +11,9 @@ class AciPlannerController extends ChangeNotifier {
   // -----------------
   final List<FacilityInstance> facilities = []; // permanently placed
   final List<FacilityInstance> editingFactories = []; // in-edit factories
+  final List<FacilityInstance> deletingFactories = []; // in-delete factories
+
+  bool isDeleteMode = false; // delete mode
 
   FacilityInstance? activeFactoryType; // selected type for edit
   PlacementDirection placementDirection = PlacementDirection.up;
@@ -41,7 +44,7 @@ class AciPlannerController extends ChangeNotifier {
   // UI UPDATES
   // -----------------
   bool showCancelBtn() {
-    if (editingFactories.isEmpty) return false;
+    if (editingFactories.isEmpty && deletingFactories.isEmpty) return false;
     return true;
   }
 
@@ -58,15 +61,27 @@ class AciPlannerController extends ChangeNotifier {
   /// Cancel all editing factories
   void cancelEditing() {
     editingFactories.clear();
+    deletingFactories.clear();
+    isDeleteMode = false;
     notifyListeners();
   }
 
   /// Confirm all editing factories
   void confirmEditing() {
+    // Apply deletes
+    for (var f in deletingFactories) {
+      facilities.remove(f);
+    }
+
+    // Apply edits
     for (var f in editingFactories) {
       facilities.add(f);
     }
+
+    // Clear
     editingFactories.clear();
+    deletingFactories.clear();
+    isDeleteMode = false;
     notifyListeners();
   }
 
@@ -91,11 +106,39 @@ class AciPlannerController extends ChangeNotifier {
   /// Place a factory on a single click
   /// Place a factory on a single click
   void placeFactoryAt(Offset position) {
+    // ───────────────── DELETE MODE ─────────────────
+    if (isDeleteMode) {
+      // A) Click editing factory → remove immediately
+      for (var f in editingFactories) {
+        if (_rectFromPosition(f.position, f.def).contains(position)) {
+          editingFactories.remove(f);
+          notifyListeners();
+          return;
+        }
+      }
+
+      // B) Click permanent factory → toggle delete selection
+      for (var f in facilities) {
+        if (_rectFromPosition(f.position, f.def).contains(position)) {
+          if (deletingFactories.contains(f)) {
+            deletingFactories.remove(f);
+          } else {
+            deletingFactories.add(f);
+          }
+          notifyListeners();
+          return;
+        }
+      }
+
+      return; // delete mode consumes click
+    }
+
+    // ============================================================
+    // edit mode
     FacilityDefinition? activeDef = activeFactoryType?.def;
 
-    // Check if clicking on the same facility: remove it
     for (var f in editingFactories) {
-      if ((f.def.id == activeDef?.id || activeDef == null) &&
+      if ((activeDef == null || f.def.id == activeDef.id) &&
           _rectFromPosition(f.position, f.def).contains(position)) {
         editingFactories.remove(f);
         notifyListeners();
@@ -104,23 +147,20 @@ class AciPlannerController extends ChangeNotifier {
     }
 
     if (activeFactoryType == null) return;
-    // Center the facility on the click
-    Offset offset;
+
     FacilityDefinition def = activeFactoryType!.def;
     if (placementDirection == PlacementDirection.left ||
         placementDirection == PlacementDirection.right) {
       def = _rotatedDef(def, placementDirection);
     }
 
-    offset = Offset(
+    final offset = Offset(
       def.col * AppConfig.gridStep / 2,
       def.row * AppConfig.gridStep / 2,
     );
 
-    // Calculate the top-left corner so the center is at the click
     final snapped = snapToGrid(position - offset);
 
-    // Check for overlap with existing facilities or editing factories
     if (!_overlaps(snapped, newDef: def)) {
       editingFactories.add(FacilityInstance(def: def, position: snapped));
       notifyListeners();

@@ -11,11 +11,16 @@ class PlacedFacilitiesLayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: controller.facilities
-          .map((f) => Positioned(
-                left: f.position.dx,
-                top: f.position.dy,
-                child: FactoryWidget(factory: f),
-              ))
+          .map(
+            (f) => Positioned(
+              left: f.position.dx,
+              top: f.position.dy,
+              child: FactoryWidget(
+                factory: f,
+                isDeleting: controller.deletingFactories.contains(f),
+              ),
+            ),
+          )
           .toList(),
     );
   }

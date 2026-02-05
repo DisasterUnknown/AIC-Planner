@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class FactoryWidget extends StatelessWidget {
   final FacilityInstance factory;
-  const FactoryWidget({super.key, required this.factory});
+  final bool isDeleting;
+
+  const FactoryWidget({super.key, required this.factory, this.isDeleting = false});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,9 @@ class FactoryWidget extends StatelessWidget {
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: factory.active ? Colors.blue : Colors.grey,
-        border: Border.all(color: Colors.black, width: 2),
+        border: isDeleting
+            ? Border.all(color: Colors.red, width: 2)
+            : Border.all(color: Colors.black, width: 2),
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(

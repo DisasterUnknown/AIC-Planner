@@ -19,7 +19,6 @@ class FacilitySelectionButtons extends StatefulWidget {
 class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
   FacilityType? selectedType;
   FacilityDefinition? selectedFacility;
-  bool isDeleteMode = false;
 
   final List<FacilityType> facilityTypes = FacilityType.values;
 
@@ -54,9 +53,7 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
   }
 
   void toggleDeleteMode() {
-    setState(() {
-      isDeleteMode = !isDeleteMode;
-    });
+    widget.controller.isDeleteMode = !widget.controller.isDeleteMode;
   }
 
   @override
@@ -131,7 +128,9 @@ class _FacilitySelectionButtonsState extends State<FacilitySelectionButtons> {
                       icon: Icon(
                         Icons.delete_outline,
                         size: 20,
-                        color: isDeleteMode ? Colors.red : Colors.white,
+                        color: widget.controller.isDeleteMode
+                            ? Colors.red
+                            : Colors.white,
                       ),
                     ),
                     IconButton(
