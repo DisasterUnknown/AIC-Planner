@@ -3,8 +3,6 @@ import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
 import 'package:aic_planner/shared/data/config/config.dart' show AppConfig;
 import 'package:aic_planner/shared/model/saved_facility_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:aic_planner/shared/data/registry/facility_registry/facility_registry_list.dart';
-import 'package:flutter/material.dart';
 
 class PlannerSaveStorage {
   static final _box = Hive.box(AppConfig.hiveBoxName);
@@ -32,23 +30,24 @@ class PlannerSaveStorage {
     await _box.put('${AppConfig.hiveSlotKey}$slot', saved);
   }
 
-  static List<FacilityInstance> loadSlot(int slot) {
-    final savedList =
-        _box.get('${AppConfig.hiveSlotKey}$slot') as List<SavedFacility>?;
+  static List<SavedFacility> loadSlot(int slot) {
+    final raw = _box.get('${AppConfig.hiveSlotKey}$slot') as List?;
+    if (raw == null) return [];
 
-    if (savedList == null) return [];
+    final List<SavedFacility> facilities = [];
+    for (var item in raw) {
+      facilities.add(
+        SavedFacility(
+          facilityId: item['id'],
+          x: item['x'] as int,
+          y: item['y'] as int,
+          row: item['row'] as int,
+          col: item['col'] as int,
+        ),
+      );
+    }
 
-    // Convert SavedFacility → FacilityInstance
-    return savedList.map((s) {
-      final def = AllFacilitiesList.allFacilities.firstWhere(
-        (f) => f.id == s.facilityId,
-        orElse: () => throw Exception('Facility ID not found: ${s.facilityId}'),
-      );
-      return FacilityInstance(
-        def: def,
-        position: Offset(s.x.toDouble(), s.y.toDouble()),
-      );
-    }).toList();
+    return facilities;
   }
 
   // -----------------
@@ -62,7 +61,7 @@ class PlannerSaveStorage {
             'x': f.position.dx.toInt(),
             'y': f.position.dy.toInt(),
             'row': f.def.row,
-            'col': f.def.col
+            'col': f.def.col,
           },
         )
         .toList();
