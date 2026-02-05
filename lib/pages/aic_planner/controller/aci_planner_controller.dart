@@ -1,28 +1,28 @@
 import 'dart:async';
 import 'package:aic_planner/pages/aic_planner/config/aic_planner_config.dart';
 import 'package:aic_planner/pages/aic_planner/config/enums.dart';
+import 'package:aic_planner/pages/aic_planner/controller/helpers/data_manager_controller.dart';
+import 'package:aic_planner/pages/aic_planner/controller/helpers/update_def_controller.dart';
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
-import 'package:aic_planner/shared/data/registry/facility_registry/facility_registry_list.dart';
 import 'package:aic_planner/shared/model/facility_model.dart';
-import 'package:aic_planner/shared/service/hive_storage_service.dart';
 import 'package:flutter/material.dart';
 
 class AciPlannerController extends ChangeNotifier {
   // -----------------
   // WORLD STATE
   // -----------------
-  final List<FacilityInstance> facilities = []; // permanently placed
-  final List<FacilityInstance> editingFactories = []; // in-edit factories
-  final List<FacilityInstance> deletingFactories = []; // in-delete factories
+  final List<FacilityInstance> facilities = [];        // permanently placed factories
+  final List<FacilityInstance> editingFactories = [];  // factories currently being edited
+  final List<FacilityInstance> deletingFactories = []; // factories selected for deletion
 
-  bool isDeleteMode = false; // delete mode
-
-  FacilityInstance? activeFactoryType; // selected type for edit
+  bool isDeleteMode = false;        // delete mode active
+  FacilityInstance? activeFactoryType; // factory type selected for placement
   PlacementDirection placementDirection = PlacementDirection.up;
 
   Timer? _timer;
 
   AciPlannerController() {
+    // Start periodic game loop
     _timer = Timer.periodic(const Duration(milliseconds: 100), (_) {
       _tick();
     });
@@ -36,63 +36,35 @@ class AciPlannerController extends ChangeNotifier {
   // GAME LOOP
   // -----------------
   void _tick() {
-    // ⚡ electricity checks
-    // 🏭 production simulation
-    // 🎞 animations later
+    // placeholder for electricity, production, animation updates
     notifyListeners();
   }
 
   // -----------------
-  // LOAD DATA
+  // DATA
   // -----------------
   Future<void> loadLastSave() async {
-    // Load saved data from Hive
-    final savedFacilities = PlannerSaveStorage.loadLast();
-    if (savedFacilities.isEmpty) return; // nothing to load
-
-    // Clear current facilities
-    facilities.clear();
-
-    // Convert SavedFacility → FacilityInstance
-    for (var saved in savedFacilities) {
-      // Find the definition by ID
-      FacilityDefinition def = AllFacilitiesList.allFacilities.firstWhere(
-        (f) => f.id == saved.facilityId,
-      );
-
-      def = _rotatedDef(def, row: saved.row, col: saved.col);
-
-      facilities.add(
-        FacilityInstance(
-          def: def,
-          position: Offset(saved.x.toDouble(), saved.y.toDouble()),
-        ),
-      );
-    }
-
-    // Notify UI to rebuild
-    notifyListeners();
+    DataManagerController.loadLastSave(facilities, notifyListeners);
   }
 
   // -----------------
-  // UI UPDATES
+  // UI HELPERS
   // -----------------
   bool showCancelBtn() {
-    if (editingFactories.isEmpty && deletingFactories.isEmpty) return false;
-    return true;
+    return editingFactories.isNotEmpty || deletingFactories.isNotEmpty;
   }
 
   // -----------------
   // USER ACTIONS
   // -----------------
 
-  /// Start placing a factory type
+  /// Select a factory type for placement
   void startPlacing(FacilityInstance? instance) {
     activeFactoryType = instance;
     notifyListeners();
   }
 
-  /// Cancel all editing factories
+  /// Cancel all edits and delete selections
   void cancelEditing() {
     editingFactories.clear();
     deletingFactories.clear();
@@ -100,28 +72,25 @@ class AciPlannerController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Confirm all editing factories
+  /// Apply edits and deletes, then save
   void confirmEditing() {
-    // Apply deletes
     for (var f in deletingFactories) {
       facilities.remove(f);
     }
 
-    // Apply edits
     for (var f in editingFactories) {
       facilities.add(f);
     }
 
-    // Clear
     editingFactories.clear();
     deletingFactories.clear();
     isDeleteMode = false;
     notifyListeners();
 
-    // Save
-    PlannerSaveStorage.saveLast(facilities);
+    DataManagerController.saveLastSave(facilities);
   }
 
+  /// Rotate placement direction clockwise
   void rotatePlacementDirection() {
     switch (placementDirection) {
       case PlacementDirection.up:
@@ -140,12 +109,11 @@ class AciPlannerController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Place a factory on a single click
-  /// Place a factory on a single click
+  /// Place a factory at the given position
   void placeFactoryAt(Offset position) {
-    // ───────────────── DELETE MODE ─────────────────
+    // DELETE MODE
     if (isDeleteMode) {
-      // A) Click editing factory → remove immediately
+      // remove editing factory if clicked
       for (var f in editingFactories) {
         if (_rectFromPosition(f.position, f.def).contains(position)) {
           editingFactories.remove(f);
@@ -154,7 +122,7 @@ class AciPlannerController extends ChangeNotifier {
         }
       }
 
-      // B) Click permanent factory → toggle delete selection
+      // toggle delete selection for permanent factories
       for (var f in facilities) {
         if (_rectFromPosition(f.position, f.def).contains(position)) {
           if (deletingFactories.contains(f)) {
@@ -168,10 +136,10 @@ class AciPlannerController extends ChangeNotifier {
       }
     }
 
-    // ============================================================
-    // edit mode
+    // EDIT MODE
     FacilityDefinition? activeDef = activeFactoryType?.def;
 
+    // remove duplicate editing factory if clicked
     for (var f in editingFactories) {
       if ((activeDef == null || f.def.id == activeDef.id) &&
           _rectFromPosition(f.position, f.def).contains(position)) {
@@ -186,7 +154,7 @@ class AciPlannerController extends ChangeNotifier {
     FacilityDefinition def = activeFactoryType!.def;
     if (placementDirection == PlacementDirection.left ||
         placementDirection == PlacementDirection.right) {
-      def = _rotatedDef(def, dir: placementDirection);
+      def = UpdateDefController.updateDef(def, dir: placementDirection);
     }
 
     final offset = Offset(
@@ -202,58 +170,7 @@ class AciPlannerController extends ChangeNotifier {
     }
   }
 
-  FacilityDefinition _rotatedDef(
-    FacilityDefinition def, {
-    PlacementDirection? dir,
-    int? row,
-    int? col,
-  }) {
-    if (dir == PlacementDirection.left || dir == PlacementDirection.right) {
-      // swap row and col for rotated placement
-      return FacilityDefinition(
-        id: def.id,
-        row: def.col, // swapped
-        col: def.row, // swapped
-        name: def.name,
-        power: def.power,
-        tier: def.tier,
-        description: def.description,
-        facilityType: def.facilityType,
-        skill: def.skill,
-        node: def.node,
-        baseImgPath: def.baseImgPath,
-        topDownImgPath: def.topDownImgPath,
-        atk: def.atk,
-        atkInterval: def.atkInterval,
-        energyPerUse: def.energyPerUse,
-        maxCharge: def.maxCharge,
-        recipes: def.recipes,
-      );
-    } else if (row != null && col != null) {
-      return FacilityDefinition(
-        id: def.id,
-        row: row,
-        col: col,
-        name: def.name,
-        power: def.power,
-        tier: def.tier,
-        description: def.description,
-        facilityType: def.facilityType,
-        skill: def.skill,
-        node: def.node,
-        baseImgPath: def.baseImgPath,
-        topDownImgPath: def.topDownImgPath,
-        atk: def.atk,
-        atkInterval: def.atkInterval,
-        energyPerUse: def.energyPerUse,
-        maxCharge: def.maxCharge,
-        recipes: def.recipes,
-      );
-    }
-    return def; // up/down use original
-  }
-
-  /// Helper to get a Rect for a facility from its position and def
+  /// Get bounding rect for a factory
   Rect _rectFromPosition(Offset pos, FacilityDefinition def) {
     return Rect.fromLTWH(
       pos.dx,
@@ -263,7 +180,7 @@ class AciPlannerController extends ChangeNotifier {
     );
   }
 
-  /// Move all editing factories (click + drag)
+  /// Move all editing factories by a delta
   void moveEditing(Offset delta) {
     for (var f in editingFactories) {
       final newPos = f.position + delta;
@@ -289,8 +206,7 @@ class AciPlannerController extends ChangeNotifier {
     );
   }
 
-  /// Check if a position would overlap existing facilities or editing factories
-  /// Check if a position would overlap existing facilities or editing factories
+  /// Check if a position overlaps existing or editing factories
   bool _overlaps(
     Offset pos, {
     FacilityInstance? ignore,
@@ -298,7 +214,6 @@ class AciPlannerController extends ChangeNotifier {
   }) {
     final all = [...facilities, ...editingFactories];
 
-    // Use newDef if provided, otherwise fallback to activeFactoryType
     final defToCheck = newDef ?? activeFactoryType?.def;
     if (defToCheck == null) return false;
 
