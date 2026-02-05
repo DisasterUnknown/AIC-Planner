@@ -129,8 +129,6 @@ class AciPlannerController extends ChangeNotifier {
           return;
         }
       }
-
-      return; // delete mode consumes click
     }
 
     // ============================================================
