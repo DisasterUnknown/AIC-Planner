@@ -1,4 +1,4 @@
-import 'package:aic_planner/pages/aic_planner/controller/aci_planner_controller.dart';
+import 'package:aic_planner/pages/aic_planner/controller/aic_planner_controller.dart';
 import 'package:aic_planner/pages/aic_planner/widget/factory_widget.dart';
 import 'package:flutter/material.dart';
 

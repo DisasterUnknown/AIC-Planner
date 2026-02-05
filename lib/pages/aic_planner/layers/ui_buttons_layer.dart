@@ -1,4 +1,4 @@
-import 'package:aic_planner/pages/aic_planner/controller/aci_planner_controller.dart';
+import 'package:aic_planner/pages/aic_planner/controller/aic_planner_controller.dart';
 import 'package:aic_planner/pages/aic_planner/widget/ui_layer/cancle_btn.dart';
 import 'package:aic_planner/pages/aic_planner/widget/ui_layer/facility_selection_btns.dart';
 import 'package:aic_planner/pages/aic_planner/widget/ui_layer/option_btns.dart';

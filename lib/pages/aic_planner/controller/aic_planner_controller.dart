@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'package:aic_planner/pages/aic_planner/config/aic_planner_config.dart';
 import 'package:aic_planner/pages/aic_planner/config/enums.dart';
-import 'package:aic_planner/pages/aic_planner/controller/helpers/data_manager_controller.dart';
-import 'package:aic_planner/pages/aic_planner/controller/helpers/update_def_controller.dart';
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
+import 'package:aic_planner/shared/data/registry/facility_registry/facility_registry_list.dart';
 import 'package:aic_planner/shared/model/facility_model.dart';
+import 'package:aic_planner/shared/service/hive_storage_service.dart';
 import 'package:flutter/material.dart';
+
+part 'helpers/data_manager_controller.dart';
+part 'helpers/update_def_controller.dart';
 
 class AciPlannerController extends ChangeNotifier {
   // -----------------
@@ -44,7 +47,7 @@ class AciPlannerController extends ChangeNotifier {
   // DATA
   // -----------------
   Future<void> loadLastSave() async {
-    DataManagerController.loadLastSave(facilities, notifyListeners);
+    loadLastSaveController(facilities, notifyListeners);
   }
 
   // -----------------
@@ -87,7 +90,7 @@ class AciPlannerController extends ChangeNotifier {
     isDeleteMode = false;
     notifyListeners();
 
-    DataManagerController.saveLastSave(facilities);
+    saveLastSaveController(facilities);
   }
 
   /// Rotate placement direction clockwise
@@ -154,7 +157,7 @@ class AciPlannerController extends ChangeNotifier {
     FacilityDefinition def = activeFactoryType!.def;
     if (placementDirection == PlacementDirection.left ||
         placementDirection == PlacementDirection.right) {
-      def = UpdateDefController.updateDef(def, dir: placementDirection);
+      def = updateDef(def, dir: placementDirection);
     }
 
     final offset = Offset(

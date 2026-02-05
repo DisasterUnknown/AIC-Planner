@@ -1,5 +1,5 @@
 import 'package:aic_planner/pages/aic_planner/config/enums.dart';
-import 'package:aic_planner/pages/aic_planner/controller/aci_planner_controller.dart';
+import 'package:aic_planner/pages/aic_planner/controller/aic_planner_controller.dart';
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
 import 'package:aic_planner/shared/data/registry/facility_registry/facility_registry_list.dart';
 import 'package:flutter/material.dart';
