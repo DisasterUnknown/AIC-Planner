@@ -71,7 +71,7 @@ class MapPreviewWidgetState extends State<MapPreviewWidget> {
 }
 
 /// Shows the save dialog with name, description, and map preview
-void showSaveAsDialog(
+Future<bool?> showSaveAsDialog(
   BuildContext context, {
   required Widget mapContent,
   required AciPlannerController controller,
@@ -82,7 +82,7 @@ void showSaveAsDialog(
   // Create a key to access MapPreviewWidgetState
   final mapKey = GlobalKey<MapPreviewWidgetState>();
 
-  showDialog(
+  return showDialog<bool>(
     context: context,
     barrierDismissible: false,
     builder: (context) {
@@ -214,15 +214,16 @@ void showSaveAsDialog(
                                       mapKey.currentState!.mapImageBytes!;
 
                                   // Save slot with name, description, image, and facilities
-                                  await PlannerSaveStorage.saveSlot(
-                                    name: name,
-                                    description: description,
-                                    mapImageBytes: mapImageBytes,
-                                    facilities: controller.getFacilities(),
-                                  );
+                                  final bool ressult =
+                                      await PlannerSaveStorage.saveSlot(
+                                        name: name,
+                                        description: description,
+                                        mapImageBytes: mapImageBytes,
+                                        facilities: controller.getFacilities(),
+                                      );
 
                                   if (!context.mounted) return;
-                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pop(ressult);
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(

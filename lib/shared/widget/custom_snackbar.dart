@@ -11,7 +11,7 @@ void showDarkStatusSnackBar({
 
   final entry = OverlayEntry(
     builder: (_) => Positioned(
-      top: 50,
+      top: 70,
       left: 16,
       right: 16,
       child: _DarkSnackBarWidget(

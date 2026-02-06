@@ -14,7 +14,7 @@ class PlannerSaveStorage {
   // -----------------
   // SAVE SLOT
   // -----------------
-  static Future<void> saveSlot({
+  static Future<bool> saveSlot({
     required String name,
     required String description,
     required Uint8List mapImageBytes,
@@ -44,6 +44,7 @@ class PlannerSaveStorage {
       AppConfig.sharedPrefSaveSlotKey,
       '${AppConfig.hiveSlotKey}$slotId',
     );
+    return true;
   }
 
   static Future<bool> updateSlot({

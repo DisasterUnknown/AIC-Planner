@@ -28,70 +28,77 @@ class FullScreenOverlay extends StatelessWidget {
         onTap: onBack,
         child: Material(
           color: Colors.black.withValues(alpha: 0.8),
-          child: SafeArea(
-            child: Center(
-              child: GestureDetector(
-                onTap: () {},
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    buildSaveOverlayerButton(
-                      title: 'Save',
-                      color: const Color(0xB3717171),
-                      onTap: () async {
-                        final String? saveSlotName =
-                            await LocalSharedPreferences.getString(
-                              AppConfig.sharedPrefSaveSlotKey,
-                            );
-                        debugPrint(saveSlotName);
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              buildSaveOverlayerButton(
+                title: 'Save',
+                color: const Color(0xB3717171),
+                onTap: () async {
+                  final String? saveSlotName =
+                      await LocalSharedPreferences.getString(
+                        AppConfig.sharedPrefSaveSlotKey,
+                      );
+                  debugPrint(saveSlotName);
 
-                        if (saveSlotName == null && context.mounted) {
-                          showSaveAsDialog(
-                            context,
-                            mapContent: mapPreview,
-                            controller: controller,
-                          );
-                        } else if (context.mounted) {
-                          final bool ressult =
-                              await PlannerSaveStorage.updateSlot(
-                                facilities: controller.facilities,
-                              );
+                  if (saveSlotName == null && context.mounted) {
+                    showSaveAsDialog(
+                      context,
+                      mapContent: mapPreview,
+                      controller: controller,
+                    );
+                  } else if (context.mounted) {
+                    final bool result = await PlannerSaveStorage.updateSlot(
+                      facilities: controller.facilities,
+                    );
 
-                          if (ressult && context.mounted) {
-                            showDarkStatusSnackBar(context: context, message: 'Saved');
-                          } else if (context.mounted) {
-                            showDarkStatusSnackBar(context: context, message: 'Failed to save');
-                          }
-                        }
+                    if (result && context.mounted) {
+                      showDarkStatusSnackBar(
+                        context: context,
+                        message: 'Saved',
+                      );
+                    } else if (context.mounted) {
+                      showDarkStatusSnackBar(
+                        context: context,
+                        message: 'Failed to save',
+                      );
+                    }
+                  }
 
-                        onContinue;
-                      },
-                    ),
-                    const SizedBox(height: 15),
-
-                    buildSaveOverlayerButton(
-                      title: 'Save As',
-                      color: const Color(0xB3717171),
-                      onTap: () {
-                        showSaveAsDialog(
-                          context,
-                          mapContent: mapPreview,
-                          controller: controller,
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 15),
-
-                    buildSaveOverlayerButton(
-                      title: 'Load From',
-                      color: const Color(0xB3717171),
-                      onTap: onContinue,
-                    ),
-                  ],
-                ),
+                  onContinue;
+                },
               ),
-            ),
+              const SizedBox(height: 15),
+
+              buildSaveOverlayerButton(
+                title: 'Save As',
+                color: const Color(0xB3717171),
+                onTap: () async {
+                  final bool? result = await showSaveAsDialog(
+                    context,
+                    mapContent: mapPreview,
+                    controller: controller,
+                  );
+
+                  if (result == true && context.mounted) {
+                    showDarkStatusSnackBar(context: context, message: 'Saved');
+                  } else if (result == false && context.mounted) {
+                    showDarkStatusSnackBar(
+                      context: context,
+                      message: 'Failed to save',
+                    );
+                  }
+                },
+              ),
+              const SizedBox(height: 15),
+
+              buildSaveOverlayerButton(
+                title: 'Load From',
+                color: const Color(0xB3717171),
+                onTap: onContinue,
+              ),
+            ],
           ),
         ),
       ),
