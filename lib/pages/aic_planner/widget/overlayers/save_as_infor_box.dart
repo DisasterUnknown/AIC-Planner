@@ -187,7 +187,6 @@ Future<bool?> showSaveAsDialog(
                                     'Cancel',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.redAccent,
                                     ),
                                   ),
                                 ),
@@ -235,7 +234,6 @@ Future<bool?> showSaveAsDialog(
                                     'Save',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.greenAccent,
                                     ),
                                   ),
                                 ),

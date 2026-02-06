@@ -1,4 +1,5 @@
 import 'package:aic_planner/pages/aic_planner/controller/aic_planner_controller.dart';
+import 'package:aic_planner/pages/aic_planner/widget/overlayers/clear_workspace.dart';
 import 'package:aic_planner/pages/aic_planner/widget/overlayers/save_as_infor_box.dart';
 import 'package:aic_planner/pages/aic_planner/widget/overlayers/save_overlayer_btns.dart';
 import 'package:aic_planner/shared/data/config/config.dart';
@@ -97,6 +98,19 @@ class FullScreenOverlay extends StatelessWidget {
                 title: 'Load From',
                 color: const Color(0xB3717171),
                 onTap: onContinue,
+              ),
+              const SizedBox(height: 15),
+
+              buildSaveOverlayerButton(
+                title: 'New Workspace',
+                color: const Color(0xB3717171),
+                onTap: () {
+                  showClearWorkspaceDialog(
+                    context: context,
+                    onConfirm: onContinue,
+                    controller: controller,
+                  );
+                },
               ),
             ],
           ),
