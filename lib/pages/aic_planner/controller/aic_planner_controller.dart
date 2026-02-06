@@ -2,9 +2,11 @@ import 'dart:async';
 import 'package:aic_planner/pages/aic_planner/config/aic_planner_config.dart';
 import 'package:aic_planner/pages/aic_planner/config/enums.dart';
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
+import 'package:aic_planner/shared/data/config/config.dart';
 import 'package:aic_planner/shared/data/registry/facility_registry/facility_registry_list.dart';
 import 'package:aic_planner/shared/model/facility_model.dart';
-import 'package:aic_planner/shared/service/hive_storage_service.dart';
+import 'package:aic_planner/shared/service/shared_pref_service.dart';
+import 'package:aic_planner/shared/storage/hive_storage.dart';
 import 'package:flutter/material.dart';
 
 part 'helpers/data_manager_controller.dart';
@@ -161,8 +163,8 @@ class AciPlannerController extends ChangeNotifier {
     }
 
     final offset = Offset(
-      def.col * AppConfig.gridStep / 2,
-      def.row * AppConfig.gridStep / 2,
+      def.col * AicPlannerConfig.gridStep / 2,
+      def.row * AicPlannerConfig.gridStep / 2,
     );
 
     final snapped = snapToGrid(position - offset);
@@ -178,8 +180,8 @@ class AciPlannerController extends ChangeNotifier {
     return Rect.fromLTWH(
       pos.dx,
       pos.dy,
-      def.col * AppConfig.gridStep,
-      def.row * AppConfig.gridStep,
+      def.col * AicPlannerConfig.gridStep,
+      def.row * AicPlannerConfig.gridStep,
     );
   }
 
@@ -202,7 +204,7 @@ class AciPlannerController extends ChangeNotifier {
 
   /// Snap position to grid
   Offset snapToGrid(Offset pos) {
-    final step = AppConfig.gridStep;
+    final step = AicPlannerConfig.gridStep;
     return Offset(
       (pos.dx / step).round() * step,
       (pos.dy / step).round() * step,
@@ -223,8 +225,8 @@ class AciPlannerController extends ChangeNotifier {
     final newRect = Rect.fromLTWH(
       pos.dx,
       pos.dy,
-      defToCheck.col * AppConfig.gridStep,
-      defToCheck.row * AppConfig.gridStep,
+      defToCheck.col * AicPlannerConfig.gridStep,
+      defToCheck.row * AicPlannerConfig.gridStep,
     );
 
     for (var f in all) {
@@ -233,8 +235,8 @@ class AciPlannerController extends ChangeNotifier {
       final existingRect = Rect.fromLTWH(
         f.position.dx,
         f.position.dy,
-        f.def.col * AppConfig.gridStep,
-        f.def.row * AppConfig.gridStep,
+        f.def.col * AicPlannerConfig.gridStep,
+        f.def.row * AicPlannerConfig.gridStep,
       );
 
       if (newRect.overlaps(existingRect)) return true;

@@ -1,4 +1,4 @@
-class AppConfig {
+class AicPlannerConfig {
   // Grid
   static const double gridStep = 20;
 

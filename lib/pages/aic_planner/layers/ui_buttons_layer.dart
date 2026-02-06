@@ -1,4 +1,7 @@
 import 'package:aic_planner/pages/aic_planner/controller/aic_planner_controller.dart';
+import 'package:aic_planner/pages/aic_planner/layers/background_layer.dart';
+import 'package:aic_planner/pages/aic_planner/layers/grid_layer.dart';
+import 'package:aic_planner/pages/aic_planner/layers/placed_facilities_layer.dart';
 import 'package:aic_planner/pages/aic_planner/overlayers/save_settings.dart';
 import 'package:aic_planner/pages/aic_planner/widget/ui_layer/cancle_btn.dart';
 import 'package:aic_planner/pages/aic_planner/widget/ui_layer/facility_selection_btns.dart';
@@ -49,7 +52,6 @@ class _UIButtonsLayerState extends State<UIButtonsLayer> {
               )
             : const SizedBox(),
 
-
         // ValueNotifier Overlays
         ValueListenableBuilder<bool>(
           valueListenable: showSaveOverlay,
@@ -59,10 +61,23 @@ class _UIButtonsLayerState extends State<UIButtonsLayer> {
             return FullScreenOverlay(
               onBack: () => showSaveOverlay.value = false,
               onContinue: () => showSaveOverlay.value = false,
+              mapPreview: mapPreview,
             );
           },
         ),
       ],
     );
   }
+
+  late Widget mapPreview = SizedBox(
+    width: MediaQuery.of(context).size.width * 3,
+    height: MediaQuery.of(context).size.height * 3,
+    child: Stack(
+      children: [
+        const BackgroundLayer(),
+        const GridLayer(),
+        PlacedFacilitiesLayer(controller: widget.controller),
+      ],
+    ),
+  );
 }

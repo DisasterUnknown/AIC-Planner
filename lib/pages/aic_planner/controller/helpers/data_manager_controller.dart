@@ -11,13 +11,14 @@ Future<void> loadLastSaveController(
   Function notifyListeners,
 ) async {
   // Load saved data from Hive
-  final savedFacilities = PlannerSaveStorage.loadLast();
-  if (savedFacilities.isEmpty) return; // nothing to load
+  final savedData = PlannerSaveStorage.loadLast();
+  if (savedData.isEmpty) return; // nothing to load
 
   // Clear current facilities
   facilities.clear();
 
   // Convert SavedFacility → FacilityInstance
+  final savedFacilities = savedData['facilities'];
   for (var saved in savedFacilities) {
     // Find the definition by ID
     FacilityDefinition def = AllFacilitiesList.allFacilities.firstWhere(
@@ -32,6 +33,11 @@ Future<void> loadLastSaveController(
         position: Offset(saved.x.toDouble(), saved.y.toDouble()),
       ),
     );
+  }
+
+  // add save slot to pref
+  if (savedData['slot'] != null) {
+    await LocalSharedPreferences.setString(AppConfig.sharedPrefSaveSlotKey, savedData['slot']);
   }
 
   // Notify UI to rebuild

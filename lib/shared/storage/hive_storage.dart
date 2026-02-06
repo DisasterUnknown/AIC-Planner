@@ -53,8 +53,11 @@ class PlannerSaveStorage {
   // -----------------
   // LAST SAVE
   // -----------------
-  static Future<void> saveLast(List<FacilityInstance> facilities) async {
-    final saved = facilities
+  static Future<void> saveLast(
+    List<FacilityInstance> facilities, {
+    String? fromSlot,
+  }) async {
+    final savedFacilities = facilities
         .map(
           (f) => {
             'id': f.def.id,
@@ -66,27 +69,30 @@ class PlannerSaveStorage {
         )
         .toList();
 
-    await _box.put(AppConfig.hiveLastSaveKey, saved);
+    final lastSaveData = {'facilities': savedFacilities, 'slot': fromSlot};
+
+    await _box.put(AppConfig.hiveLastSaveKey, lastSaveData);
   }
 
-  static List<SavedFacility> loadLast() {
-    final raw = _box.get(AppConfig.hiveLastSaveKey) as List?;
-    if (raw == null) return [];
+  static Map<String, dynamic> loadLast() {
+    final raw = _box.get(AppConfig.hiveLastSaveKey) as Map?;
+    if (raw == null) return {'facilities': <SavedFacility>[], 'slot': null};
 
-    final List<SavedFacility> facilities = [];
-    for (var item in raw) {
-      facilities.add(
-        SavedFacility(
-          facilityId: item['id'],
-          x: item['x'] as int,
-          y: item['y'] as int,
-          row: item['row'] as int,
-          col: item['col'] as int,
-        ),
+    final facilitiesRaw = raw['facilities'] as List?;
+    final facilities = (facilitiesRaw ?? []).map((item) {
+      return SavedFacility(
+        facilityId: item['id'],
+        x: item['x'] as int,
+        y: item['y'] as int,
+        row: item['row'] as int,
+        col: item['col'] as int,
       );
-    }
+    }).toList();
 
-    return facilities;
+    return {
+      'facilities': facilities,
+      'slot': raw['slot'], 
+    };
   }
 
   // -----------------
