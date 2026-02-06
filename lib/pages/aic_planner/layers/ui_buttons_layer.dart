@@ -61,6 +61,7 @@ class _UIButtonsLayerState extends State<UIButtonsLayer> {
             return FullScreenOverlay(
               onBack: () => showSaveOverlay.value = false,
               onContinue: () => showSaveOverlay.value = false,
+              controller: widget.controller,
               mapPreview: mapPreview,
             );
           },

@@ -16,15 +16,19 @@ class AciPlannerController extends ChangeNotifier {
   // -----------------
   // WORLD STATE
   // -----------------
-  final List<FacilityInstance> facilities = [];        // permanently placed factories
-  final List<FacilityInstance> editingFactories = [];  // factories currently being edited
-  final List<FacilityInstance> deletingFactories = []; // factories selected for deletion
+  final List<FacilityInstance> facilities = []; // permanently placed factories
+  final List<FacilityInstance> editingFactories =
+      []; // factories currently being edited
+  final List<FacilityInstance> deletingFactories =
+      []; // factories selected for deletion
 
-  bool isDeleteMode = false;        // delete mode active
+  bool isDeleteMode = false; // delete mode active
   FacilityInstance? activeFactoryType; // factory type selected for placement
   PlacementDirection placementDirection = PlacementDirection.up;
 
   Timer? _timer;
+
+  List<FacilityInstance> getFacilities() => facilities;
 
   AciPlannerController() {
     // Start periodic game loop

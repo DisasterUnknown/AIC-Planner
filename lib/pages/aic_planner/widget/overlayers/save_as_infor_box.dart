@@ -1,16 +1,39 @@
+import 'dart:ui';
+import 'package:aic_planner/pages/aic_planner/controller/aic_planner_controller.dart';
+import 'package:aic_planner/shared/storage/hive_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:aic_planner/shared/data/constants.dart';
 
-class MapPreviewWidget extends StatelessWidget {
+/// Stateful widget that allows zooming, panning, and snapshotting the map
+class MapPreviewWidget extends StatefulWidget {
   final Widget mapContent;
 
   const MapPreviewWidget({super.key, required this.mapContent});
 
   @override
+  MapPreviewWidgetState createState() => MapPreviewWidgetState();
+}
+
+class MapPreviewWidgetState extends State<MapPreviewWidget> {
+  final GlobalKey _repaintKey = GlobalKey();
+  Uint8List? mapImageBytes;
+
+  /// Call this to capture the map as image bytes
+  Future<void> captureMap() async {
+    await WidgetsBinding.instance.endOfFrame;
+    RenderRepaintBoundary boundary =
+        _repaintKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+    final image = await boundary.toImage(pixelRatio: 3.0);
+    final byteData = await image.toByteData(format: ImageByteFormat.png);
+    mapImageBytes = byteData!.buffer.asUint8List();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
-      key: GlobalKey(),
+      key: _repaintKey,
       child: Container(
         width: 150,
         height: 237,
@@ -32,12 +55,12 @@ class MapPreviewWidget extends StatelessWidget {
             minScale: 0.1,
             maxScale: 2.0,
             child: FittedBox(
-              fit: BoxFit.contain, // fit entire map inside the preview
+              fit: BoxFit.contain,
               alignment: Alignment.center,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 3,
                 height: MediaQuery.of(context).size.height * 3,
-                child: mapContent,
+                child: widget.mapContent,
               ),
             ),
           ),
@@ -47,9 +70,17 @@ class MapPreviewWidget extends StatelessWidget {
   }
 }
 
-void showSaveAsDialog(BuildContext context, {required Widget mapContent}) {
+/// Shows the save dialog with name, description, and map preview
+void showSaveAsDialog(
+  BuildContext context, {
+  required Widget mapContent,
+  required AciPlannerController controller,
+}) {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+
+  // Create a key to access MapPreviewWidgetState
+  final mapKey = GlobalKey<MapPreviewWidgetState>();
 
   showDialog(
     context: context,
@@ -80,8 +111,8 @@ void showSaveAsDialog(BuildContext context, {required Widget mapContent}) {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Map preview / Extra data
-                    MapPreviewWidget(mapContent: mapContent),
+                    // Map preview
+                    MapPreviewWidget(key: mapKey, mapContent: mapContent),
                     const SizedBox(width: 20),
                     Expanded(
                       child: Column(
@@ -97,6 +128,7 @@ void showSaveAsDialog(BuildContext context, {required Widget mapContent}) {
                             ),
                           ),
                           const SizedBox(height: 20),
+                          // Name field
                           TextField(
                             controller: nameController,
                             style: TextStyle(color: AppCustomColors.text),
@@ -119,6 +151,7 @@ void showSaveAsDialog(BuildContext context, {required Widget mapContent}) {
                             ),
                           ),
                           const SizedBox(height: 10),
+                          // Description field
                           TextField(
                             controller: descriptionController,
                             style: TextStyle(color: AppCustomColors.text),
@@ -137,8 +170,8 @@ void showSaveAsDialog(BuildContext context, {required Widget mapContent}) {
                               ),
                             ),
                           ),
-
                           const SizedBox(height: 25),
+                          // Buttons
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -161,7 +194,7 @@ void showSaveAsDialog(BuildContext context, {required Widget mapContent}) {
                               ),
                               const SizedBox(width: 10),
                               GestureDetector(
-                                onTap: () {
+                                onTap: () async {
                                   final name = nameController.text.trim();
                                   final description = descriptionController.text
                                       .trim();
@@ -175,6 +208,20 @@ void showSaveAsDialog(BuildContext context, {required Widget mapContent}) {
                                     return;
                                   }
 
+                                  // Capture map snapshot
+                                  await mapKey.currentState!.captureMap();
+                                  final mapImageBytes =
+                                      mapKey.currentState!.mapImageBytes!;
+
+                                  // Save slot with name, description, image, and facilities
+                                  await PlannerSaveStorage.saveSlot(
+                                    name: name,
+                                    description: description,
+                                    mapImageBytes: mapImageBytes,
+                                    facilities: controller.getFacilities(),
+                                  );
+
+                                  if (!context.mounted) return;
                                   Navigator.of(context).pop();
                                 },
                                 child: Container(
