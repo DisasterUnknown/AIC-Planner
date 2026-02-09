@@ -33,27 +33,39 @@ class SaveSlotPage extends StatelessWidget {
             Center(
               child: BlocConsumer<SaveSlotBloc, SaveSlotState>(
                 listener: (context, state) {
-                  // Future use:
-                  // - navigate to editor
-                  // - show locked dialog
-                  // - show snackbar
+                  // future: navigate, show dialog/snackbar
                 },
                 builder: (context, state) {
+                  // Handle loading / empty gracefully
+                  if (state is SaveSlotInitialState) {
+                    return const CircularProgressIndicator();
+                  }
+
+                  final slots = state.slots;
+
+                  if (slots.isEmpty) {
+                    return const Text(
+                      'No saves yet',
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    );
+                  }
+
                   return SizedBox(
                     height: 320,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
                       padding: const EdgeInsets.symmetric(horizontal: 48),
-                      itemCount: state.slots.length,
+                      itemCount: slots.length,
                       separatorBuilder: (_, __) => const SizedBox(width: 24),
                       itemBuilder: (context, index) {
-                        final slot = state.slots[index];
+                        final slot = slots[index];
+
                         return SaveSlotCard(
                           slot: slot,
                           onTap: () {
                             context.read<SaveSlotBloc>().add(
-                              SelectSaveSlot(slot.index),
+                              SelectSaveSlot(index),
                             );
                           },
                         );

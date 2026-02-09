@@ -6,11 +6,7 @@ class SaveSlotCard extends StatelessWidget {
   final SaveSlot slot;
   final VoidCallback onTap;
 
-  const SaveSlotCard({
-    super.key,
-    required this.slot,
-    required this.onTap,
-  });
+  const SaveSlotCard({super.key, required this.slot, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -20,33 +16,64 @@ class SaveSlotCard extends StatelessWidget {
         width: 200,
         height: 250,
         decoration: BoxDecoration(
-          color: AppCustomColors.secondaryUI.withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: slot.isUsed
-                ? AppCustomColors.selectedTiles
-                : Colors.white54,
-            width: 2,
-          ),
+          border: Border.all(color: Colors.white54, width: 2),
+          color: slot.mapImageBytes == null
+              ? AppCustomColors.secondaryUI.withOpacity(0.6)
+              : null,
+          image: slot.mapImageBytes != null
+              ? DecorationImage(
+                  image: MemoryImage(slot.mapImageBytes!),
+                  fit: BoxFit.contain, // zoom out to fit entire image
+                  alignment: Alignment.center,
+                  colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.25),
+                    BlendMode.darken,
+                  ),
+                )
+              : null,
         ),
         padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Slot ${slot.index + 1}',
-              style: TextStyle(
-                color: AppCustomColors.text,
+              slot.title != null && slot.title!.isNotEmpty
+                  ? slot.title!
+                  : 'Slot ${slot.index + 1}',
+              style: const TextStyle(
+                color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
+                shadows: [
+                  Shadow(
+                    blurRadius: 4,
+                    color: Colors.black,
+                    offset: Offset(1, 1),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
             Text(
-              slot.isUsed ? 'Saved Layout' : 'Empty Slot',
+              slot.description != null && slot.description!.isNotEmpty
+                  ? slot.description!
+                  : 'Empty Slot',
               style: TextStyle(
-                color: AppCustomColors.text.withValues(alpha: 0.7),
+                color: Colors.white.withOpacity(0.8),
+                fontSize: 14,
+                shadows: const [
+                  Shadow(
+                    blurRadius: 2,
+                    color: Colors.black,
+                    offset: Offset(1, 1),
+                  ),
+                ],
+                overflow: TextOverflow.ellipsis,
               ),
+              textAlign: TextAlign.justify,
+              maxLines: 3,
             ),
           ],
         ),

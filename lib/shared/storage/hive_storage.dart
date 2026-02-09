@@ -2,6 +2,7 @@
 import 'dart:typed_data';
 
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
+import 'package:aic_planner/pages/save_slots/model/save_slot.dart';
 import 'package:aic_planner/shared/data/config/config.dart' show AppConfig;
 import 'package:aic_planner/shared/model/saved_facility_model.dart';
 import 'package:aic_planner/shared/service/shared_pref_service.dart';
@@ -142,6 +143,57 @@ class PlannerSaveStorage {
     }).toList();
 
     return {'facilities': facilities, 'slot': raw['slot']};
+  }
+
+  // -----------------
+  // ALL SLOTS
+  // -----------------
+  static List<SaveSlot> getAllSaveSlotsTyped() {
+    final List<SaveSlot> result = [];
+    int index = 0;
+
+    for (final key in _box.keys) {
+      if (key is! String) continue;
+      if (!key.startsWith(AppConfig.hiveSlotKey)) continue;
+
+      result.add(loadSlotByKey(key, index));
+      index++;
+    }
+
+    return result;
+  }
+
+  // Load save slot by key
+  static SaveSlot loadSlotByKey(String key, int index) {
+    final raw = _box.get(key) as Map?;
+    if (raw == null) {
+      return SaveSlot(
+        index: index,
+        title: '',
+        description: '',
+        facilities: [],
+        mapImageBytes: null,
+      );
+    }
+
+    final facilitiesRaw = raw['facilities'] as List? ?? [];
+    final facilities = facilitiesRaw.map((item) {
+      return SavedFacility(
+        facilityId: item['id'],
+        x: item['x'] as int,
+        y: item['y'] as int,
+        row: item['row'] as int,
+        col: item['col'] as int,
+      );
+    }).toList();
+
+    return SaveSlot(
+      index: index,
+      title: raw['name'] as String? ?? '',
+      description: raw['description'] as String? ?? '',
+      facilities: facilities,
+      mapImageBytes: raw['mapImage'] as Uint8List?,
+    );
   }
 
   // -----------------

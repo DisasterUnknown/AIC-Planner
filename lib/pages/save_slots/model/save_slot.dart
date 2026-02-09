@@ -1,15 +1,18 @@
+import 'dart:typed_data';
+import 'package:aic_planner/shared/model/saved_facility_model.dart';
+
 class SaveSlot {
   final int index;
-  final bool isUsed;
   final String? title;
   final String? description;
-  final DateTime? lastUpdated;
+  final List<SavedFacility> facilities;
+  final Uint8List? mapImageBytes;
 
   const SaveSlot({
     required this.index,
-    this.isUsed = false,
-    this.title,
-    this.description,
-    this.lastUpdated,
+    required this.title,
+    required this.description,
+    required this.facilities,
+    required this.mapImageBytes,
   });
 }
