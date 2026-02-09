@@ -65,11 +65,15 @@ class SaveSlotBloc extends Bloc<SaveSlotEvent, SaveSlotState> {
     ImportBlueprintSlots event,
     Emitter<SaveSlotState> emit,
   ) async {
-    Map<String, dynamic> blueprintData = SaveSlotCompressor.decompress(
-      event.blueprint,
-    );
+    try {
+      Map<String, dynamic> blueprintData = SaveSlotCompressor.decompress(
+        event.blueprint,
+      );
 
-    await PlannerSaveStorage.importSlot(blueprintData);
-    emit(state.toImport());
+      await PlannerSaveStorage.importSlot(blueprintData);
+      emit(state.toImport());
+    } catch (e) {
+      emit(state.toError('Failed to import blueprint.'));
+    }
   }
 }

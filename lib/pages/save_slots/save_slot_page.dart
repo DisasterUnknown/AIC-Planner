@@ -27,15 +27,18 @@ class SaveSlotPage extends StatelessWidget {
               children: [
                 // Background image
                 SizedBox.expand(
-                  child: Image.asset('assets/aci_home_bg.png', fit: BoxFit.cover),
+                  child: Image.asset(
+                    'assets/aci_home_bg.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
-          
+
                 // Dark overlay
                 Container(color: Colors.black.withValues(alpha: 0.55)),
-          
+
                 // Game-style corner back button
                 cornerBackBtn(context),
-          
+
                 // Import btn
                 importBtn(
                   context,
@@ -43,12 +46,14 @@ class SaveSlotPage extends StatelessWidget {
                     showImportBlueprintDialog(
                       context: context,
                       onImport: (String blueprint) {
-                        context.read<SaveSlotBloc>().add(ImportBlueprintSlots(blueprint));
+                        context.read<SaveSlotBloc>().add(
+                          ImportBlueprintSlots(blueprint),
+                        );
                       },
                     );
                   },
                 ),
-          
+
                 // Content
                 Center(
                   child: BlocConsumer<SaveSlotBloc, SaveSlotState>(
@@ -65,25 +70,28 @@ class SaveSlotPage extends StatelessWidget {
                           },
                           onDelete: () {
                             showDeleteBlueprintDialog(
-                              blueprintName: state.slots[state.selectedIndex].title,
+                              blueprintName:
+                                  state.slots[state.selectedIndex].title,
                               context: context,
                               onConfirm: () {
                                 context.read<SaveSlotBloc>().add(
                                   DeleteSaveSlot(state.selectedIndex),
                                 );
                                 Navigator.pop(context);
-                                context.read<SaveSlotBloc>().add(InitSaveSlots());
+                                context.read<SaveSlotBloc>().add(
+                                  InitSaveSlots(),
+                                );
                               },
                             );
                           },
                         );
                       }
-          
+
                       if (state is SaveSlotLoadState) {
                         Navigator.pop(context);
                         Navigator.pushNamed(context, '/aic_planner');
                       }
-          
+
                       if (state is ShareSelectedSlotState) {
                         await SharePlus.instance.share(
                           ShareParams(
@@ -92,10 +100,44 @@ class SaveSlotPage extends StatelessWidget {
                           ),
                         );
                       }
-          
+
                       if (state is ImportSlotState) {
                         if (!context.mounted) return;
                         context.read<SaveSlotBloc>().add(InitSaveSlots());
+                      }
+
+                      if (state is SaveSlotErrorState) {
+                        if (!context.mounted) return;
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: const Color(
+                              0xFF1B1B1B,
+                            ).withValues(alpha: 0.5),
+                            content: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.warning_amber_rounded,
+                                  color: Colors.redAccent,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    state.errorMessage,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            duration: const Duration(seconds: 4),
+                          ),
+                        );
                       }
                     },
                     builder: (context, state) {
@@ -103,16 +145,16 @@ class SaveSlotPage extends StatelessWidget {
                       if (state is SaveSlotInitialState) {
                         return const CircularProgressIndicator();
                       }
-          
+
                       final slots = state.slots;
-          
+
                       if (slots.isEmpty) {
                         return const Text(
                           'No saves yet',
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         );
                       }
-          
+
                       return SizedBox(
                         height: 320,
                         child: ListView.separated(
@@ -120,10 +162,11 @@ class SaveSlotPage extends StatelessWidget {
                           physics: const BouncingScrollPhysics(),
                           padding: const EdgeInsets.symmetric(horizontal: 48),
                           itemCount: slots.length,
-                          separatorBuilder: (_, __) => const SizedBox(width: 24),
+                          separatorBuilder: (_, __) =>
+                              const SizedBox(width: 24),
                           itemBuilder: (context, index) {
                             final slot = slots[index];
-          
+
                             return SaveSlotCard(
                               slot: slot,
                               onTap: () {
@@ -141,7 +184,7 @@ class SaveSlotPage extends StatelessWidget {
               ],
             ),
           );
-        }
+        },
       ),
     );
   }
