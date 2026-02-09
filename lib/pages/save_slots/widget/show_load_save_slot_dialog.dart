@@ -203,7 +203,7 @@ Widget _actionBtn({
   return GestureDetector(
     onTap: onTap,
     child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
         color: isPrimary ? const Color(0xFF3D3D3D) : Colors.transparent,
         borderRadius: BorderRadius.circular(2),

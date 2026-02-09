@@ -35,6 +35,9 @@ sealed class SaveSlotState {
   SaveSlotLoadState toLoad(int selectedIndex) =>
       SaveSlotLoadState(slots: slots, selectedIndex: selectedIndex);
 
+  SaveSlotDeleteState toDelete() =>
+      SaveSlotDeleteState(slots: slots, selectedIndex: selectedIndex);
+
   ShareSelectedSlotState toShare(String shareString) => ShareSelectedSlotState(
     slots: slots,
     selectedIndex: selectedIndex,
@@ -81,6 +84,10 @@ class SaveSlotSelectedState extends SaveSlotState {
 
 class SaveSlotLoadState extends SaveSlotState {
   const SaveSlotLoadState({required super.slots, required super.selectedIndex});
+}
+
+class SaveSlotDeleteState extends SaveSlotState {
+  const SaveSlotDeleteState({required super.slots, required super.selectedIndex});
 }
 
 class ShareSelectedSlotState extends SaveSlotState {

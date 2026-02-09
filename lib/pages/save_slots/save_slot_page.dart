@@ -1,3 +1,4 @@
+import 'package:aic_planner/pages/save_slots/widget/show_delete_blueprint_dialog.dart';
 import 'package:aic_planner/pages/save_slots/widget/show_load_save_slot_dialog.dart';
 import 'package:aic_planner/shared/widget/corner_back_button.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,19 @@ class SaveSlotPage extends StatelessWidget {
                       onShare: () {
                         context.read<SaveSlotBloc>().add(ShareSaveSlot());
                       },
-                      onDelete: () {},
+                      onDelete: () {
+                        showDeleteBlueprintDialog(
+                          blueprintName: state.slots[state.selectedIndex].title,
+                          context: context,
+                          onConfirm: () {
+                            context.read<SaveSlotBloc>().add(
+                              DeleteSaveSlot(state.selectedIndex),
+                            );
+                            Navigator.pop(context);
+                            context.read<SaveSlotBloc>().add(InitSaveSlots());
+                          },
+                        );
+                      },
                     );
                   }
 

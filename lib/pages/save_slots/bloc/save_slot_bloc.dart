@@ -13,6 +13,7 @@ class SaveSlotBloc extends Bloc<SaveSlotEvent, SaveSlotState> {
     on<SelectSaveSlot>(_onSelect);
     on<LoadSaveSlot>(_onLoad);
     on<ShareSaveSlot>(_onShare);
+    on<DeleteSaveSlot>(_onDelete);
   }
 
   void _onInit(InitSaveSlots event, Emitter<SaveSlotState> emit) {
@@ -51,5 +52,11 @@ class SaveSlotBloc extends Bloc<SaveSlotEvent, SaveSlotState> {
     }
 
     emit(state.toShare(tinyString));
+  }
+
+  void _onDelete(DeleteSaveSlot event, Emitter<SaveSlotState> emit) async {
+    final id = state.selectedSlot!.id;
+    await PlannerSaveStorage.deleteSlot(id);
+    emit(state.toDelete());
   }
 }

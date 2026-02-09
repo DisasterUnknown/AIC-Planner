@@ -246,6 +246,13 @@ class PlannerSaveStorage {
   }
 
   // -----------------
+  // DELETE
+  // -----------------
+  static Future<void> deleteSlot(String slot) async {
+    await _box.delete(slot);
+  }
+
+  // -----------------
   // CLEAR
   // -----------------
   static Future<void> clearSlot(int slot) async {
