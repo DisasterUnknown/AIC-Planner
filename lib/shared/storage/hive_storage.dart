@@ -2,7 +2,7 @@
 import 'dart:typed_data';
 
 import 'package:aic_planner/pages/aic_planner/model/facility_instance.dart';
-import 'package:aic_planner/pages/save_slots/model/save_slot.dart';
+import 'package:aic_planner/shared/model/save_slot.dart';
 import 'package:aic_planner/shared/data/config/config.dart' show AppConfig;
 import 'package:aic_planner/shared/model/saved_facility_model.dart';
 import 'package:aic_planner/shared/service/shared_pref_service.dart';
@@ -38,6 +38,7 @@ class PlannerSaveStorage {
       'description': description,
       'mapImage': mapImageBytes,
       'facilities': savedFacilities,
+      'createdAt': DateTime.now(),
     };
 
     await _box.put('${AppConfig.hiveSlotKey}$slotId', data);
@@ -150,14 +151,33 @@ class PlannerSaveStorage {
   // -----------------
   static List<SaveSlot> getAllSaveSlotsTyped() {
     final List<SaveSlot> result = [];
-    int index = 0;
 
+    // Load all save slots
     for (final key in _box.keys) {
       if (key is! String) continue;
       if (!key.startsWith(AppConfig.hiveSlotKey)) continue;
 
-      result.add(loadSlotByKey(key, index));
-      index++;
+      result.add(loadSlotByKey(key, 0)); 
+    }
+
+    // Sort by createdAt ascending; nulls go to the end
+    result.sort((a, b) {
+      if (a.createdAt == null && b.createdAt == null) return 0;
+      if (a.createdAt == null) return 1;
+      if (b.createdAt == null) return -1;
+      return a.createdAt!.compareTo(b.createdAt!);
+    });
+
+    // Reassign index after sorting
+    for (int i = 0; i < result.length; i++) {
+      result[i] = SaveSlot(
+        index: i,
+        title: result[i].title,
+        description: result[i].description,
+        facilities: result[i].facilities,
+        mapImageBytes: result[i].mapImageBytes,
+        createdAt: result[i].createdAt,
+      );
     }
 
     return result;
@@ -173,6 +193,7 @@ class PlannerSaveStorage {
         description: '',
         facilities: [],
         mapImageBytes: null,
+        createdAt: DateTime.now(),
       );
     }
 
@@ -193,6 +214,7 @@ class PlannerSaveStorage {
       description: raw['description'] as String? ?? '',
       facilities: facilities,
       mapImageBytes: raw['mapImage'] as Uint8List?,
+      createdAt: raw['createdAt'] as DateTime?,
     );
   }
 

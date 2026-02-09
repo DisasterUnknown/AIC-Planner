@@ -1,6 +1,6 @@
 import 'package:aic_planner/shared/data/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:aic_planner/pages/save_slots/model/save_slot.dart';
+import 'package:aic_planner/shared/model/save_slot.dart';
 
 class SaveSlotCard extends StatelessWidget {
   final SaveSlot slot;
@@ -19,7 +19,7 @@ class SaveSlotCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: Colors.white54, width: 2),
           color: slot.mapImageBytes == null
-              ? AppCustomColors.secondaryUI.withOpacity(0.6)
+              ? AppCustomColors.secondaryUI.withValues(alpha: 0.6)
               : null,
           image: slot.mapImageBytes != null
               ? DecorationImage(
@@ -27,7 +27,7 @@ class SaveSlotCard extends StatelessWidget {
                   fit: BoxFit.contain, // zoom out to fit entire image
                   alignment: Alignment.center,
                   colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.25),
+                    Colors.black.withValues(alpha: 0.25),
                     BlendMode.darken,
                   ),
                 )
@@ -61,7 +61,7 @@ class SaveSlotCard extends StatelessWidget {
                   ? slot.description!
                   : 'Empty Slot',
               style: TextStyle(
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white.withValues(alpha: 0.8),
                 fontSize: 14,
                 shadows: const [
                   Shadow(

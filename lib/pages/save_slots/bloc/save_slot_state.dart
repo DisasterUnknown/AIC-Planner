@@ -1,4 +1,4 @@
-import 'package:aic_planner/pages/save_slots/model/save_slot.dart';
+import 'package:aic_planner/shared/model/save_slot.dart';
 
 sealed class SaveSlotState {
   final List<SaveSlot> slots;

@@ -7,6 +7,7 @@ class SaveSlot {
   final String? description;
   final List<SavedFacility> facilities;
   final Uint8List? mapImageBytes;
+  final DateTime? createdAt;
 
   const SaveSlot({
     required this.index,
@@ -14,5 +15,6 @@ class SaveSlot {
     required this.description,
     required this.facilities,
     required this.mapImageBytes,
+    required this.createdAt,
   });
 }
