@@ -246,6 +246,17 @@ class PlannerSaveStorage {
   }
 
   // -----------------
+  // IMPORT
+  // -----------------
+  static Future<void> importSlot(Map<String, dynamic> blueprintData) async {
+    final String slotId = Uuid().v4();
+    final String id = '${AppConfig.hiveSlotKey}$slotId';
+    blueprintData['id'] = id;
+
+    await _box.put(id, blueprintData);
+  }
+
+  // -----------------
   // DELETE
   // -----------------
   static Future<void> deleteSlot(String slot) async {

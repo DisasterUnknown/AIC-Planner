@@ -82,7 +82,6 @@ Future<void> showDeleteBlueprintDialog({
                             ),
                           ),
                           const SizedBox(height: 25),
-                          // Buttons
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [

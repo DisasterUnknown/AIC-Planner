@@ -25,6 +25,11 @@ class DeleteSaveSlot extends SaveSlotEvent {
   DeleteSaveSlot(this.index);
 }
 
+class ImportBlueprintSlots extends SaveSlotEvent {
+  final String blueprint;
+  ImportBlueprintSlots(this.blueprint);
+}
+
 class UpdateSaveSlot extends SaveSlotEvent {
   final int index;
   final String? title;

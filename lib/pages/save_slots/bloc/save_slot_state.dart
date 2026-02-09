@@ -43,6 +43,8 @@ sealed class SaveSlotState {
     selectedIndex: selectedIndex,
     shareString: shareString,
   );
+
+  ImportSlotState toImport() => ImportSlotState(slots: slots, selectedIndex: selectedIndex);
 }
 
 class SaveSlotInitialState extends SaveSlotState {
@@ -88,6 +90,10 @@ class SaveSlotLoadState extends SaveSlotState {
 
 class SaveSlotDeleteState extends SaveSlotState {
   const SaveSlotDeleteState({required super.slots, required super.selectedIndex});
+}
+
+class ImportSlotState extends SaveSlotState {
+  const ImportSlotState({required super.slots, required super.selectedIndex});
 }
 
 class ShareSelectedSlotState extends SaveSlotState {

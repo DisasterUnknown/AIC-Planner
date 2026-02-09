@@ -1,3 +1,5 @@
+import 'package:aic_planner/pages/save_slots/widget/import_blueprint_dialog.dart';
+import 'package:aic_planner/pages/save_slots/widget/import_btn.dart';
 import 'package:aic_planner/pages/save_slots/widget/show_delete_blueprint_dialog.dart';
 import 'package:aic_planner/pages/save_slots/widget/show_load_save_slot_dialog.dart';
 import 'package:aic_planner/shared/widget/corner_back_button.dart';
@@ -17,107 +19,129 @@ class SaveSlotPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => SaveSlotBloc()..add(InitSaveSlots()),
-      child: Scaffold(
-        backgroundColor: AppCustomColors.background,
-        body: Stack(
-          children: [
-            // Background image
-            SizedBox.expand(
-              child: Image.asset('assets/aci_home_bg.png', fit: BoxFit.cover),
-            ),
-
-            // Dark overlay
-            Container(color: Colors.black.withValues(alpha: 0.55)),
-
-            // Game-style corner back button
-            cornerBackBtn(context),
-
-            // Content
-            Center(
-              child: BlocConsumer<SaveSlotBloc, SaveSlotState>(
-                listener: (context, state) async {
-                  if (state is SaveSlotSelectedState) {
-                    showLoadSaveSlotDialog(
-                      context,
-                      slot: state.slots[state.selectedIndex],
-                      onLoad: () {
-                        context.read<SaveSlotBloc>().add(LoadSaveSlot());
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            backgroundColor: AppCustomColors.background,
+            body: Stack(
+              children: [
+                // Background image
+                SizedBox.expand(
+                  child: Image.asset('assets/aci_home_bg.png', fit: BoxFit.cover),
+                ),
+          
+                // Dark overlay
+                Container(color: Colors.black.withValues(alpha: 0.55)),
+          
+                // Game-style corner back button
+                cornerBackBtn(context),
+          
+                // Import btn
+                importBtn(
+                  context,
+                  onTap: () {
+                    showImportBlueprintDialog(
+                      context: context,
+                      onImport: (String blueprint) {
+                        context.read<SaveSlotBloc>().add(ImportBlueprintSlots(blueprint));
                       },
-                      onShare: () {
-                        context.read<SaveSlotBloc>().add(ShareSaveSlot());
-                      },
-                      onDelete: () {
-                        showDeleteBlueprintDialog(
-                          blueprintName: state.slots[state.selectedIndex].title,
-                          context: context,
-                          onConfirm: () {
-                            context.read<SaveSlotBloc>().add(
-                              DeleteSaveSlot(state.selectedIndex),
-                            );
-                            Navigator.pop(context);
-                            context.read<SaveSlotBloc>().add(InitSaveSlots());
+                    );
+                  },
+                ),
+          
+                // Content
+                Center(
+                  child: BlocConsumer<SaveSlotBloc, SaveSlotState>(
+                    listener: (context, state) async {
+                      if (state is SaveSlotSelectedState) {
+                        showLoadSaveSlotDialog(
+                          context,
+                          slot: state.slots[state.selectedIndex],
+                          onLoad: () {
+                            context.read<SaveSlotBloc>().add(LoadSaveSlot());
                           },
-                        );
-                      },
-                    );
-                  }
-
-                  if (state is SaveSlotLoadState) {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/aic_planner');
-                  }
-
-                  if (state is ShareSelectedSlotState) {
-                    await SharePlus.instance.share(
-                      ShareParams(
-                        text: state.shareString,
-                        title: 'AIC Planner Blueprint',
-                      ),
-                    );
-                  }
-                },
-                builder: (context, state) {
-                  // Handle loading / empty gracefully
-                  if (state is SaveSlotInitialState) {
-                    return const CircularProgressIndicator();
-                  }
-
-                  final slots = state.slots;
-
-                  if (slots.isEmpty) {
-                    return const Text(
-                      'No saves yet',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    );
-                  }
-
-                  return SizedBox(
-                    height: 320,
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      padding: const EdgeInsets.symmetric(horizontal: 48),
-                      itemCount: slots.length,
-                      separatorBuilder: (_, __) => const SizedBox(width: 24),
-                      itemBuilder: (context, index) {
-                        final slot = slots[index];
-
-                        return SaveSlotCard(
-                          slot: slot,
-                          onTap: () {
-                            context.read<SaveSlotBloc>().add(
-                              SelectSaveSlot(index),
+                          onShare: () {
+                            context.read<SaveSlotBloc>().add(ShareSaveSlot());
+                          },
+                          onDelete: () {
+                            showDeleteBlueprintDialog(
+                              blueprintName: state.slots[state.selectedIndex].title,
+                              context: context,
+                              onConfirm: () {
+                                context.read<SaveSlotBloc>().add(
+                                  DeleteSaveSlot(state.selectedIndex),
+                                );
+                                Navigator.pop(context);
+                                context.read<SaveSlotBloc>().add(InitSaveSlots());
+                              },
                             );
                           },
                         );
-                      },
-                    ),
-                  );
-                },
-              ),
+                      }
+          
+                      if (state is SaveSlotLoadState) {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, '/aic_planner');
+                      }
+          
+                      if (state is ShareSelectedSlotState) {
+                        await SharePlus.instance.share(
+                          ShareParams(
+                            text: state.shareString,
+                            title: 'AIC Planner Blueprint',
+                          ),
+                        );
+                      }
+          
+                      if (state is ImportSlotState) {
+                        if (!context.mounted) return;
+                        context.read<SaveSlotBloc>().add(InitSaveSlots());
+                      }
+                    },
+                    builder: (context, state) {
+                      // Handle loading / empty gracefully
+                      if (state is SaveSlotInitialState) {
+                        return const CircularProgressIndicator();
+                      }
+          
+                      final slots = state.slots;
+          
+                      if (slots.isEmpty) {
+                        return const Text(
+                          'No saves yet',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        );
+                      }
+          
+                      return SizedBox(
+                        height: 320,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          physics: const BouncingScrollPhysics(),
+                          padding: const EdgeInsets.symmetric(horizontal: 48),
+                          itemCount: slots.length,
+                          separatorBuilder: (_, __) => const SizedBox(width: 24),
+                          itemBuilder: (context, index) {
+                            final slot = slots[index];
+          
+                            return SaveSlotCard(
+                              slot: slot,
+                              onTap: () {
+                                context.read<SaveSlotBloc>().add(
+                                  SelectSaveSlot(index),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        }
       ),
     );
   }

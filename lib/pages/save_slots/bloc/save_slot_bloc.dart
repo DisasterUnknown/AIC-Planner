@@ -14,6 +14,7 @@ class SaveSlotBloc extends Bloc<SaveSlotEvent, SaveSlotState> {
     on<LoadSaveSlot>(_onLoad);
     on<ShareSaveSlot>(_onShare);
     on<DeleteSaveSlot>(_onDelete);
+    on<ImportBlueprintSlots>(_onImport);
   }
 
   void _onInit(InitSaveSlots event, Emitter<SaveSlotState> emit) {
@@ -58,5 +59,17 @@ class SaveSlotBloc extends Bloc<SaveSlotEvent, SaveSlotState> {
     final id = state.selectedSlot!.id;
     await PlannerSaveStorage.deleteSlot(id);
     emit(state.toDelete());
+  }
+
+  void _onImport(
+    ImportBlueprintSlots event,
+    Emitter<SaveSlotState> emit,
+  ) async {
+    Map<String, dynamic> blueprintData = SaveSlotCompressor.decompress(
+      event.blueprint,
+    );
+
+    await PlannerSaveStorage.importSlot(blueprintData);
+    emit(state.toImport());
   }
 }
