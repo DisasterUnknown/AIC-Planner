@@ -15,7 +15,7 @@ class PlannerSaveStorage {
   // -----------------
   // SAVE SLOT
   // -----------------
-  static Future<bool> saveSlot({
+  static Future<bool> saveBlueprint({
     required String name,
     required String description,
     required Uint8List mapImageBytes,
@@ -50,7 +50,7 @@ class PlannerSaveStorage {
     return true;
   }
 
-  static Future<bool> updateSlot({
+  static Future<bool> updateBlueprint({
     required List<FacilityInstance> facilities,
     String? name,
     String? description,
@@ -85,7 +85,7 @@ class PlannerSaveStorage {
     return true;
   }
 
-  static List<SavedFacility> loadSlot(int slot) {
+  static List<SavedFacility> loadBlueprint(int slot) {
     final raw = _box.get('${AppConfig.hiveSlotKey}$slot') as List?;
     if (raw == null) return [];
 
@@ -108,7 +108,7 @@ class PlannerSaveStorage {
   // -----------------
   // LAST SAVE
   // -----------------
-  static Future<void> saveLast(
+  static Future<void> saveWorkingBlueprint(
     List<FacilityInstance> facilities, {
     String? fromSlot,
   }) async {
@@ -129,7 +129,7 @@ class PlannerSaveStorage {
     await _box.put(AppConfig.hiveLastSaveKey, lastSaveData);
   }
 
-  static Future<Map<String, dynamic>> loadLast() async {
+  static Future<Map<String, dynamic>> loadWorkingBlueprint() async {
     final String? currentWorkingSlotId = await LocalSharedPreferences.getString(
       AppConfig.sharedPrefSaveSlotKey,
     );
@@ -173,7 +173,7 @@ class PlannerSaveStorage {
   // -----------------
   // ALL SLOTS
   // -----------------
-  static List<SaveSlot> getAllSaveSlotsTyped() {
+  static List<SaveSlot> getAllBlueprints() {
     final List<SaveSlot> result = [];
 
     // Load all save slots
@@ -181,7 +181,7 @@ class PlannerSaveStorage {
       if (key is! String) continue;
       if (!key.startsWith(AppConfig.hiveSlotKey)) continue;
 
-      result.add(loadSlotByKey(key, 0));
+      result.add(loadBlueprintByKey(key, 0));
     }
 
     // Sort by createdAt ascending; nulls go to the end
@@ -209,7 +209,7 @@ class PlannerSaveStorage {
   }
 
   // Load save slot by key
-  static SaveSlot loadSlotByKey(String key, int index) {
+  static SaveSlot loadBlueprintByKey(String key, int index) {
     final raw = _box.get(key) as Map?;
     if (raw == null) {
       return SaveSlot(
@@ -248,7 +248,7 @@ class PlannerSaveStorage {
   // -----------------
   // IMPORT
   // -----------------
-  static Future<void> importSlot(Map<String, dynamic> blueprintData) async {
+  static Future<void> importBlueprint(Map<String, dynamic> blueprintData) async {
     final String slotId = Uuid().v4();
     final String id = '${AppConfig.hiveSlotKey}$slotId';
     blueprintData['id'] = id;
@@ -259,14 +259,14 @@ class PlannerSaveStorage {
   // -----------------
   // DELETE
   // -----------------
-  static Future<void> deleteSlot(String slot) async {
+  static Future<void> deleteBlueprint(String slot) async {
     await _box.delete(slot);
   }
 
   // -----------------
   // CLEAR
   // -----------------
-  static Future<void> clearSlot(int slot) async {
+  static Future<void> clearBlueprint(int slot) async {
     await _box.delete('${AppConfig.hiveSlotKey}$slot');
   }
 }

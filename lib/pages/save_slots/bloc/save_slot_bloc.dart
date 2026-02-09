@@ -18,7 +18,7 @@ class SaveSlotBloc extends Bloc<SaveSlotEvent, SaveSlotState> {
   }
 
   void _onInit(InitSaveSlots event, Emitter<SaveSlotState> emit) {
-    final slots = PlannerSaveStorage.getAllSaveSlotsTyped();
+    final slots = PlannerSaveStorage.getAllBlueprints();
     emit(SaveSlotReadyState(slots: slots, selectedIndex: -1));
   }
 
@@ -57,7 +57,7 @@ class SaveSlotBloc extends Bloc<SaveSlotEvent, SaveSlotState> {
 
   void _onDelete(DeleteSaveSlot event, Emitter<SaveSlotState> emit) async {
     final id = state.selectedSlot!.id;
-    await PlannerSaveStorage.deleteSlot(id);
+    await PlannerSaveStorage.deleteBlueprint(id);
     emit(state.toDelete());
   }
 
@@ -70,7 +70,7 @@ class SaveSlotBloc extends Bloc<SaveSlotEvent, SaveSlotState> {
         event.blueprint,
       );
 
-      await PlannerSaveStorage.importSlot(blueprintData);
+      await PlannerSaveStorage.importBlueprint(blueprintData);
       emit(state.toImport());
     } catch (e) {
       emit(state.toError('Failed to import blueprint.'));

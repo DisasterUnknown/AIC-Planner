@@ -216,7 +216,7 @@ Future<bool?> showSaveAsDialog(
 
                                   // Save slot with name, description, image, and facilities
                                   final bool ressult =
-                                      await PlannerSaveStorage.saveSlot(
+                                      await PlannerSaveStorage.saveBlueprint(
                                         name: name,
                                         description: description,
                                         mapImageBytes: mapImageBytes,

@@ -2,7 +2,7 @@ part of '../aic_planner_controller.dart';
 
 // Save last save
 void saveLastSaveController(List<FacilityInstance> facilities) {
-  PlannerSaveStorage.saveLast(facilities);
+  PlannerSaveStorage.saveWorkingBlueprint(facilities);
 }
 
 // Load last save
@@ -11,7 +11,7 @@ Future<void> loadLastSaveController(
   Function notifyListeners,
 ) async {
   // Load saved data from Hive
-  final savedData = await PlannerSaveStorage.loadLast();
+  final savedData = await PlannerSaveStorage.loadWorkingBlueprint();
   if (savedData.isEmpty) return; // nothing to load
 
   // Clear current facilities

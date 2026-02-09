@@ -50,7 +50,7 @@ class FullScreenOverlay extends StatelessWidget {
                       controller: controller,
                     );
                   } else if (context.mounted) {
-                    final bool result = await PlannerSaveStorage.updateSlot(
+                    final bool result = await PlannerSaveStorage.updateBlueprint(
                       facilities: controller.facilities,
                     );
 
