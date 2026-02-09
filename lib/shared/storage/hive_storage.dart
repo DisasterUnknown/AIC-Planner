@@ -158,6 +158,19 @@ class PlannerSaveStorage {
   }
 
   // -----------------
+  // GET BY ID
+  // -----------------
+  static Future<Map<String, dynamic>> getById(String id) async {
+    final dynamic rawData = _box.get(id);
+
+    if (rawData != null && rawData is Map) {
+      return Map<String, dynamic>.from(rawData);
+    }
+
+    return {};
+  }
+
+  // -----------------
   // ALL SLOTS
   // -----------------
   static List<SaveSlot> getAllSaveSlotsTyped() {

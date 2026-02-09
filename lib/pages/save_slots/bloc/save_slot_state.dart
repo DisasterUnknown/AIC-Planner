@@ -34,6 +34,12 @@ sealed class SaveSlotState {
 
   SaveSlotLoadState toLoad(int selectedIndex) =>
       SaveSlotLoadState(slots: slots, selectedIndex: selectedIndex);
+
+  ShareSelectedSlotState toShare(String shareString) => ShareSelectedSlotState(
+    slots: slots,
+    selectedIndex: selectedIndex,
+    shareString: shareString,
+  );
 }
 
 class SaveSlotInitialState extends SaveSlotState {
@@ -75,4 +81,13 @@ class SaveSlotSelectedState extends SaveSlotState {
 
 class SaveSlotLoadState extends SaveSlotState {
   const SaveSlotLoadState({required super.slots, required super.selectedIndex});
+}
+
+class ShareSelectedSlotState extends SaveSlotState {
+  final String shareString;
+  const ShareSelectedSlotState({
+    required super.slots,
+    required super.selectedIndex,
+    required this.shareString,
+  });
 }

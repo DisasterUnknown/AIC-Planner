@@ -1,3 +1,4 @@
+import 'package:aic_planner/pages/save_slots/util/save_slot_share_compressor.dart';
 import 'package:aic_planner/shared/data/config/config.dart';
 import 'package:aic_planner/shared/service/shared_pref_service.dart';
 import 'package:aic_planner/shared/storage/hive_storage.dart';
@@ -33,11 +34,22 @@ class SaveSlotBloc extends Bloc<SaveSlotEvent, SaveSlotState> {
 
   void _onLoad(LoadSaveSlot event, Emitter<SaveSlotState> emit) async {
     final loadSaveSlotId = state.selectedSlot!.id;
-    await LocalSharedPreferences.setString(AppConfig.sharedPrefSaveSlotKey, loadSaveSlotId);  
+    await LocalSharedPreferences.setString(
+      AppConfig.sharedPrefSaveSlotKey,
+      loadSaveSlotId,
+    );
     emit(state.toLoad(state.selectedIndex));
   }
 
   void _onShare(ShareSaveSlot event, Emitter<SaveSlotState> emit) async {
-    
+    final id = state.selectedSlot!.id;
+    final rawData = await PlannerSaveStorage.getById(id);
+
+    String tinyString = '';
+    if (rawData.isNotEmpty) {
+      tinyString = SaveSlotCompressor.compress(rawData);
+    }
+
+    emit(state.toShare(tinyString));
   }
 }

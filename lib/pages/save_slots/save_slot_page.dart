@@ -2,6 +2,7 @@ import 'package:aic_planner/pages/save_slots/widget/show_load_save_slot_dialog.d
 import 'package:aic_planner/shared/widget/corner_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_plus/share_plus.dart';
 import 'bloc/save_slot_bloc.dart';
 import 'bloc/save_slot_event.dart';
 import 'bloc/save_slot_state.dart';
@@ -33,7 +34,7 @@ class SaveSlotPage extends StatelessWidget {
             // Content
             Center(
               child: BlocConsumer<SaveSlotBloc, SaveSlotState>(
-                listener: (context, state) {
+                listener: (context, state) async {
                   if (state is SaveSlotSelectedState) {
                     showLoadSaveSlotDialog(
                       context,
@@ -42,7 +43,7 @@ class SaveSlotPage extends StatelessWidget {
                         context.read<SaveSlotBloc>().add(LoadSaveSlot());
                       },
                       onShare: () {
-                        
+                        context.read<SaveSlotBloc>().add(ShareSaveSlot());
                       },
                       onDelete: () {},
                     );
@@ -51,6 +52,15 @@ class SaveSlotPage extends StatelessWidget {
                   if (state is SaveSlotLoadState) {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, '/aic_planner');
+                  }
+
+                  if (state is ShareSelectedSlotState) {
+                    await SharePlus.instance.share(
+                      ShareParams(
+                        text: state.shareString,
+                        title: 'AIC Planner Blueprint',
+                      ),
+                    );
                   }
                 },
                 builder: (context, state) {
