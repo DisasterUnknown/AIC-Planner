@@ -1,3 +1,4 @@
+import 'package:aic_planner/pages/save_slots/widget/show_load_save_slot_dialog.dart';
 import 'package:aic_planner/shared/widget/corner_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +34,16 @@ class SaveSlotPage extends StatelessWidget {
             Center(
               child: BlocConsumer<SaveSlotBloc, SaveSlotState>(
                 listener: (context, state) {
-                  // future: navigate, show dialog/snackbar
+                  if (state is SaveSlotSelectedState) {
+                    print('Selected slot: ${state.slots[state.selectedIndex]}');
+                    showLoadSaveSlotDialog(
+                      context,
+                      slot: state.slots[state.selectedIndex],
+                      onLoad: () {},
+                      onShare: () {},
+                      onDelete: () {},
+                    );
+                  }
                 },
                 builder: (context, state) {
                   // Handle loading / empty gracefully

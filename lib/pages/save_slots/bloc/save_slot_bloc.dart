@@ -24,6 +24,6 @@ class SaveSlotBloc extends Bloc<SaveSlotEvent, SaveSlotState> {
 
     if (index < 0 || index >= currentState.slots.length) return;
 
-    emit(currentState.toReady(selectedIndex: index));
+    emit(currentState.toSelected(index));
   }
 }
