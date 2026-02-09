@@ -1,6 +1,7 @@
 import 'package:aic_planner/shared/data/constants.dart';
 import 'package:aic_planner/shared/model/save_slot.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 /// Full-screen styled dialog for Loading/Deleting Save Slots
 Future<void> showLoadSaveSlotDialog(
@@ -148,7 +149,7 @@ Future<void> showLoadSaveSlotDialog(
                               // TIMESTAMP
                               if (slot.createdAt != null)
                                 Text(
-                                  'Created: ${slot.createdAt}',
+                                  'Created: ${DateFormat('dd/MMM/yyyy hh.mm a').format(slot.createdAt!).toUpperCase()}',
                                   style: TextStyle(
                                     color: AppCustomColors.text.withValues(
                                       alpha: 0.4,

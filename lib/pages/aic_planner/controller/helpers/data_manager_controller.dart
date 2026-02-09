@@ -10,6 +10,11 @@ Future<void> loadLastSaveController(
   List<FacilityInstance> facilities,
   Function notifyListeners,
 ) async {
+  final slotSaveId = await LocalSharedPreferences.getString(
+    AppConfig.sharedPrefSaveSlotKey,
+  );
+  if (slotSaveId == null) return;
+
   // Load saved data from Hive
   final savedData = PlannerSaveStorage.loadLast();
   if (savedData.isEmpty) return; // nothing to load
@@ -37,7 +42,10 @@ Future<void> loadLastSaveController(
 
   // add save slot to pref
   if (savedData['slot'] != null) {
-    await LocalSharedPreferences.setString(AppConfig.sharedPrefSaveSlotKey, savedData['slot']);
+    await LocalSharedPreferences.setString(
+      AppConfig.sharedPrefSaveSlotKey,
+      savedData['slot'],
+    );
   }
 
   // Notify UI to rebuild
