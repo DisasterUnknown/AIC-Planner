@@ -1,4 +1,3 @@
-import 'package:aic_planner/pages/aic_planner/widget/overlayers/save_as_infor_box.dart';
 import 'package:aic_planner/shared/data/constants.dart';
 import 'package:aic_planner/shared/model/save_slot.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +10,6 @@ Future<void> showLoadSaveSlotDialog(
   required VoidCallback onShare,
   required VoidCallback onDelete,
 }) {
-  final mapKey = GlobalKey<MapPreviewWidgetState>();
-
   return showDialog(
     context: context,
     barrierDismissible: true,
@@ -51,23 +48,32 @@ Future<void> showLoadSaveSlotDialog(
                       children: [
                         // --- LEFT SIDE: MAP PREVIEW ---
                         if (slot.mapImageBytes != null)
-                          SizedBox(
-                            width: 150,
-                            height: 280,
-                            child: MapPreviewWidget(
-                              key: mapKey,
-                              mapContent: Image.memory(
-                                slot.mapImageBytes!,
-                                fit: BoxFit.contain,
-                                // Debug helper in case image data is corrupted
-                                errorBuilder: (context, error, stackTrace) =>
-                                    const Center(
-                                      child: Icon(
-                                        Icons.broken_image,
-                                        color: Colors.white24,
-                                      ),
-                                    ),
+                          Container(
+                            width: 155,
+                            height: 250,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(2),
+                              border: Border.all(
+                                color: Colors.white54,
+                                width: 1,
                               ),
+                              color: slot.mapImageBytes == null
+                                  ? AppCustomColors.secondaryUI.withValues(
+                                      alpha: 0.6,
+                                    )
+                                  : null,
+                              image: slot.mapImageBytes != null
+                                  ? DecorationImage(
+                                      image: MemoryImage(slot.mapImageBytes!),
+                                      fit: BoxFit
+                                          .contain, // zoom out to fit entire image
+                                      alignment: Alignment.center,
+                                      colorFilter: ColorFilter.mode(
+                                        Colors.black.withValues(alpha: 0.25),
+                                        BlendMode.darken,
+                                      ),
+                                    )
+                                  : null,
                             ),
                           ),
 
@@ -129,7 +135,9 @@ Future<void> showLoadSaveSlotDialog(
                                     ? slot.description!
                                     : 'No description provided.',
                                 style: TextStyle(
-                                  color: AppCustomColors.text.withOpacity(0.7),
+                                  color: AppCustomColors.text.withValues(
+                                    alpha: 0.7,
+                                  ),
                                   fontSize: 15,
                                 ),
                                 maxLines: 5,
@@ -142,8 +150,8 @@ Future<void> showLoadSaveSlotDialog(
                                 Text(
                                   'Created: ${slot.createdAt}',
                                   style: TextStyle(
-                                    color: AppCustomColors.text.withOpacity(
-                                      0.4,
+                                    color: AppCustomColors.text.withValues(
+                                      alpha: 0.4,
                                     ),
                                     fontSize: 12,
                                   ),

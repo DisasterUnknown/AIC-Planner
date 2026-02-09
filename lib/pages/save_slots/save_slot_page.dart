@@ -35,7 +35,6 @@ class SaveSlotPage extends StatelessWidget {
               child: BlocConsumer<SaveSlotBloc, SaveSlotState>(
                 listener: (context, state) {
                   if (state is SaveSlotSelectedState) {
-                    print('Selected slot: ${state.slots[state.selectedIndex]}');
                     showLoadSaveSlotDialog(
                       context,
                       slot: state.slots[state.selectedIndex],
