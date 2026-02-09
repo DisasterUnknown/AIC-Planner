@@ -34,7 +34,7 @@ Future<void> showClearWorkspaceDialog({
                   border: Border.all(color: const Color(0xB3717171), width: 2),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xB3717171).withOpacity(0.4),
+                      color: const Color(0xB3717171).withValues(alpha: 0.4),
                       offset: const Offset(0, 4),
                       blurRadius: 2,
                     ),
@@ -62,7 +62,7 @@ Future<void> showClearWorkspaceDialog({
                         'Make sure you have saved your current workspace before creating a new workspace. All unsaved changes will be lost.',
                         textAlign: TextAlign.justify,
                         style: TextStyle(
-                          color: AppCustomColors.text.withOpacity(0.7),
+                          color: AppCustomColors.text.withValues(alpha: 0.7),
                           fontSize: 16,
                         ),
                       ),

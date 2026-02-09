@@ -95,13 +95,6 @@ class FullScreenOverlay extends StatelessWidget {
               const SizedBox(height: 15),
 
               buildSaveOverlayerButton(
-                title: 'Load From',
-                color: const Color(0xB3717171),
-                onTap: onContinue,
-              ),
-              const SizedBox(height: 15),
-
-              buildSaveOverlayerButton(
                 title: 'New Workspace',
                 color: const Color(0xB3717171),
                 onTap: () {
