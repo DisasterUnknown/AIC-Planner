@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:aic_planner/shared/model/saved_facility_model.dart';
 
 class SaveSlot {
+  final String id;
   final int index;
   final String? title;
   final String? description;
@@ -10,6 +11,7 @@ class SaveSlot {
   final DateTime? createdAt;
 
   const SaveSlot({
+    required this.id,
     required this.index,
     required this.title,
     required this.description,

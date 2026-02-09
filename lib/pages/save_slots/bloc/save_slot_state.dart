@@ -31,6 +31,9 @@ sealed class SaveSlotState {
 
   SaveSlotSelectedState toSelected(int selectedIndex) =>
       SaveSlotSelectedState(slots: slots, selectedIndex: selectedIndex);
+
+  SaveSlotLoadState toLoad(int selectedIndex) =>
+      SaveSlotLoadState(slots: slots, selectedIndex: selectedIndex);
 }
 
 class SaveSlotInitialState extends SaveSlotState {
@@ -68,4 +71,8 @@ class SaveSlotSelectedState extends SaveSlotState {
     required super.slots,
     required super.selectedIndex,
   });
+}
+
+class SaveSlotLoadState extends SaveSlotState {
+  const SaveSlotLoadState({required super.slots, required super.selectedIndex});
 }

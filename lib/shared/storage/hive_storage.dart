@@ -34,6 +34,7 @@ class PlannerSaveStorage {
     }).toList();
 
     final data = {
+      'id': '${AppConfig.hiveSlotKey}$slotId',
       'name': name,
       'description': description,
       'mapImage': mapImageBytes,
@@ -157,7 +158,7 @@ class PlannerSaveStorage {
       if (key is! String) continue;
       if (!key.startsWith(AppConfig.hiveSlotKey)) continue;
 
-      result.add(loadSlotByKey(key, 0)); 
+      result.add(loadSlotByKey(key, 0));
     }
 
     // Sort by createdAt ascending; nulls go to the end
@@ -171,6 +172,7 @@ class PlannerSaveStorage {
     // Reassign index after sorting
     for (int i = 0; i < result.length; i++) {
       result[i] = SaveSlot(
+        id: result[i].id,
         index: i,
         title: result[i].title,
         description: result[i].description,
@@ -188,6 +190,7 @@ class PlannerSaveStorage {
     final raw = _box.get(key) as Map?;
     if (raw == null) {
       return SaveSlot(
+        id: '',
         index: index,
         title: '',
         description: '',
@@ -210,6 +213,7 @@ class PlannerSaveStorage {
 
     return SaveSlot(
       index: index,
+      id: raw['id'] as String? ?? '',
       title: raw['name'] as String? ?? '',
       description: raw['description'] as String? ?? '',
       facilities: facilities,

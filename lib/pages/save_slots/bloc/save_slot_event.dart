@@ -1,10 +1,14 @@
 sealed class SaveSlotEvent {}
 
-class LoadSaveSlots extends SaveSlotEvent {}
+class InitSaveSlots extends SaveSlotEvent {}
 
 class SelectSaveSlot extends SaveSlotEvent {
   final int index;
   SelectSaveSlot(this.index);
+}
+
+class LoadSaveSlot extends SaveSlotEvent {
+  LoadSaveSlot();
 }
 
 class CreateSaveSlot extends SaveSlotEvent {
@@ -21,9 +25,5 @@ class UpdateSaveSlot extends SaveSlotEvent {
   final int index;
   final String? title;
   final String? description;
-  UpdateSaveSlot({
-    required this.index,
-    this.title,
-    this.description,
-  });
+  UpdateSaveSlot({required this.index, this.title, this.description});
 }

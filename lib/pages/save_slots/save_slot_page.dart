@@ -14,7 +14,7 @@ class SaveSlotPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => SaveSlotBloc()..add(LoadSaveSlots()),
+      create: (_) => SaveSlotBloc()..add(InitSaveSlots()),
       child: Scaffold(
         backgroundColor: AppCustomColors.background,
         body: Stack(
@@ -38,10 +38,17 @@ class SaveSlotPage extends StatelessWidget {
                     showLoadSaveSlotDialog(
                       context,
                       slot: state.slots[state.selectedIndex],
-                      onLoad: () {},
+                      onLoad: () {
+                        context.read<SaveSlotBloc>().add(LoadSaveSlot());
+                      },
                       onShare: () {},
                       onDelete: () {},
                     );
+                  }
+
+                  if (state is SaveSlotLoadState) {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/aic_planner');
                   }
                 },
                 builder: (context, state) {
