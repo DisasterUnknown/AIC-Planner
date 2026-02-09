@@ -131,6 +131,7 @@ Future<bool?> showSaveAsDialog(
                           // Name field
                           TextField(
                             controller: nameController,
+                            textCapitalization: TextCapitalization.words,
                             style: TextStyle(color: AppCustomColors.text),
                             inputFormatters: [
                               LengthLimitingTextInputFormatter(20),
@@ -154,6 +155,7 @@ Future<bool?> showSaveAsDialog(
                           // Description field
                           TextField(
                             controller: descriptionController,
+                            textCapitalization: TextCapitalization.sentences,
                             style: TextStyle(color: AppCustomColors.text),
                             decoration: InputDecoration(
                               labelText: 'Description',

@@ -129,8 +129,18 @@ class PlannerSaveStorage {
     await _box.put(AppConfig.hiveLastSaveKey, lastSaveData);
   }
 
-  static Map<String, dynamic> loadLast() {
-    final raw = _box.get(AppConfig.hiveLastSaveKey) as Map?;
+  static Future<Map<String, dynamic>> loadLast() async {
+    final String? currentWorkingSlotId = await LocalSharedPreferences.getString(
+      AppConfig.sharedPrefSaveSlotKey,
+    );
+
+    Map<dynamic, dynamic>? raw;
+    if (currentWorkingSlotId != null) {
+      raw = _box.get(currentWorkingSlotId) as Map?;
+    } else {
+      raw = _box.get(AppConfig.hiveLastSaveKey) as Map?;
+    }
+
     if (raw == null) return {'facilities': <SavedFacility>[], 'slot': null};
 
     final facilitiesRaw = raw['facilities'] as List?;

@@ -10,13 +10,8 @@ Future<void> loadLastSaveController(
   List<FacilityInstance> facilities,
   Function notifyListeners,
 ) async {
-  final slotSaveId = await LocalSharedPreferences.getString(
-    AppConfig.sharedPrefSaveSlotKey,
-  );
-  if (slotSaveId == null) return;
-
   // Load saved data from Hive
-  final savedData = PlannerSaveStorage.loadLast();
+  final savedData = await PlannerSaveStorage.loadLast();
   if (savedData.isEmpty) return; // nothing to load
 
   // Clear current facilities

@@ -41,7 +41,9 @@ class SaveSlotPage extends StatelessWidget {
                       onLoad: () {
                         context.read<SaveSlotBloc>().add(LoadSaveSlot());
                       },
-                      onShare: () {},
+                      onShare: () {
+                        
+                      },
                       onDelete: () {},
                     );
                   }

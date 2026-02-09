@@ -16,6 +16,11 @@ class CreateSaveSlot extends SaveSlotEvent {
   CreateSaveSlot(this.title);
 }
 
+class ShareSaveSlot extends SaveSlotEvent {
+  final String title;
+  ShareSaveSlot(this.title);
+}
+
 class DeleteSaveSlot extends SaveSlotEvent {
   final int index;
   DeleteSaveSlot(this.index);

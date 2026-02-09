@@ -11,6 +11,7 @@ class SaveSlotBloc extends Bloc<SaveSlotEvent, SaveSlotState> {
     on<InitSaveSlots>(_onInit);
     on<SelectSaveSlot>(_onSelect);
     on<LoadSaveSlot>(_onLoad);
+    on<ShareSaveSlot>(_onShare);
   }
 
   void _onInit(InitSaveSlots event, Emitter<SaveSlotState> emit) {
@@ -34,5 +35,9 @@ class SaveSlotBloc extends Bloc<SaveSlotEvent, SaveSlotState> {
     final loadSaveSlotId = state.selectedSlot!.id;
     await LocalSharedPreferences.setString(AppConfig.sharedPrefSaveSlotKey, loadSaveSlotId);  
     emit(state.toLoad(state.selectedIndex));
+  }
+
+  void _onShare(ShareSaveSlot event, Emitter<SaveSlotState> emit) async {
+    
   }
 }
