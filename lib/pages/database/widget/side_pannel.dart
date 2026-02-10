@@ -76,7 +76,7 @@ class _SidePannelState extends State<SidePannel> {
         Positioned(
           top: 50,
           left: -2,
-          bottom: -2, // ← fills remaining height
+          bottom: -2, 
           child: Container(
             width: 60,
             decoration: BoxDecoration(
@@ -159,8 +159,8 @@ class _SidePannelState extends State<SidePannel> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Wrap(
-                      spacing: 8, // horizontal spacing
-                      runSpacing: 8, // vertical spacing
+                      spacing: 8, 
+                      runSpacing: 8, 
                       children: filteredFacilities.map((facility) {
                         final isSelected = selectedFacility == facility;
 
