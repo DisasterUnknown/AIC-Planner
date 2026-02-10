@@ -248,7 +248,9 @@ class PlannerSaveStorage {
   // -----------------
   // IMPORT
   // -----------------
-  static Future<void> importBlueprint(Map<String, dynamic> blueprintData) async {
+  static Future<void> importBlueprint(
+    Map<String, dynamic> blueprintData,
+  ) async {
     final String slotId = Uuid().v4();
     final String id = '${AppConfig.hiveSlotKey}$slotId';
     blueprintData['id'] = id;
@@ -260,6 +262,14 @@ class PlannerSaveStorage {
   // DELETE
   // -----------------
   static Future<void> deleteBlueprint(String slot) async {
+    final sharePrefBlueprintId = await LocalSharedPreferences.getString(
+      AppConfig.sharedPrefSaveSlotKey,
+    );
+
+    if ((sharePrefBlueprintId == slot)) {
+      await LocalSharedPreferences.removeKey(AppConfig.sharedPrefSaveSlotKey);
+    }
+
     await _box.delete(slot);
   }
 
