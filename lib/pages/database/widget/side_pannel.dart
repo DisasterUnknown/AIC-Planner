@@ -14,7 +14,7 @@ class SidePannel extends StatefulWidget {
 }
 
 class _SidePannelState extends State<SidePannel> {
-  FacilityType? selectedType;
+  FacilityType? selectedType = FacilityType.processing;
   FacilityDefinition? selectedFacility;
   final List<FacilityType> facilityTypes = FacilityType.values;
 
@@ -25,17 +25,23 @@ class _SidePannelState extends State<SidePannel> {
         .toList();
   }
 
+  @override
+  void initState() {
+    super.initState();
+    if (filteredFacilities.isNotEmpty) {
+      selectedFacility = filteredFacilities.first;
+    }
+  }
+
   void toggleType(FacilityType type) {
     setState(() {
-      selectedType = selectedType == type ? null : type;
+      selectedType = type;
     });
   }
 
   void toggleFacility(FacilityDefinition facility) {
     setState(() {
-      if (selectedFacility == facility) {
-        selectedFacility = null;
-      } else {
+      if (selectedFacility != facility) {
         selectedFacility = facility;
       }
     });
@@ -150,6 +156,7 @@ class _SidePannelState extends State<SidePannel> {
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(8),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Wrap(
                       spacing: 8, // horizontal spacing
