@@ -1,4 +1,6 @@
 import 'package:aic_planner/shared/data/enums/facility_type_enums.dart';
+import 'package:aic_planner/shared/data/registry/facility_registry/facility_registry_list.dart';
+import 'package:aic_planner/shared/model/facility_model.dart';
 import 'package:flutter/material.dart';
 import 'package:aic_planner/shared/data/constants.dart';
 
@@ -13,11 +15,29 @@ class SidePannel extends StatefulWidget {
 
 class _SidePannelState extends State<SidePannel> {
   FacilityType? selectedType;
+  FacilityDefinition? selectedFacility;
   final List<FacilityType> facilityTypes = FacilityType.values;
+
+  List<FacilityDefinition> get filteredFacilities {
+    if (selectedType == null) return [];
+    return AllFacilitiesList.allFacilities
+        .where((f) => f.facilityType == selectedType)
+        .toList();
+  }
 
   void toggleType(FacilityType type) {
     setState(() {
       selectedType = selectedType == type ? null : type;
+    });
+  }
+
+  void toggleFacility(FacilityDefinition facility) {
+    setState(() {
+      if (selectedFacility == facility) {
+        selectedFacility = null;
+      } else {
+        selectedFacility = facility;
+      }
     });
   }
 
@@ -107,6 +127,79 @@ class _SidePannelState extends State<SidePannel> {
             ),
           ),
         ),
+
+        // ─────────── Filtered facilities (RTL scroll, max 10 visible) ───────────
+        if (filteredFacilities.isNotEmpty)
+          Positioned(
+            top: -2,
+            right: -2,
+            bottom: -2,
+            child: Container(
+              width: 140,
+              decoration: BoxDecoration(
+                color: AppCustomColors.secondaryUI.withValues(alpha: 0.92),
+                border: Border.all(color: Colors.white38, width: 2),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.35),
+                    blurRadius: 8,
+                    offset: const Offset(0, -2),
+                  ),
+                ],
+              ),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: [
+                    Wrap(
+                      spacing: 8, // horizontal spacing
+                      runSpacing: 8, // vertical spacing
+                      children: filteredFacilities.map((facility) {
+                        final isSelected = selectedFacility == facility;
+
+                        return GestureDetector(
+                          onTap: () => toggleFacility(facility),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 150),
+                            height: 56,
+                            width: 56,
+                            decoration: BoxDecoration(
+                              color: AppCustomColors.secondaryUI.withValues(
+                                alpha: 0.9,
+                              ),
+                              border: Border.all(
+                                color: isSelected
+                                    ? Colors.orange
+                                    : Colors.white54,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Center(
+                              child: facility.baseImgPath != null
+                                  ? Image.asset(
+                                      facility.baseImgPath!,
+                                      fit: BoxFit.contain,
+                                    )
+                                  : Icon(
+                                      Icons.help_outline,
+                                      color: isSelected
+                                          ? Colors.orange
+                                          : Colors.white,
+                                      size: 24,
+                                    ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+
+                    const SizedBox(height: 36),
+                  ],
+                ),
+              ),
+            ),
+          ),
       ],
     );
   }
