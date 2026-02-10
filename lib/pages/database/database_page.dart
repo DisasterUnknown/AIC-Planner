@@ -1,6 +1,7 @@
 import 'package:aic_planner/pages/database/bloc/database_bloc.dart';
 import 'package:aic_planner/pages/database/bloc/database_event.dart';
 import 'package:aic_planner/pages/database/bloc/database_state.dart';
+import 'package:aic_planner/pages/database/widget/side_pannel.dart';
 import 'package:aic_planner/shared/data/constants.dart';
 import 'package:aic_planner/shared/widget/corner_back_button.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class DatabasePage extends StatelessWidget {
                         return const CircularProgressIndicator();
                       }
 
-                      return SizedBox.shrink();
+                      return Stack(children: [SidePannel()]);
                     },
                   ),
                 ),
