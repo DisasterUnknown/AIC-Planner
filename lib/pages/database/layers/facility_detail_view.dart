@@ -28,43 +28,46 @@ class FacilityDetailView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // ===== Fixed top header =====
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                Column(
                   children: [
-                    const SizedBox(width: 60),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 14,
-                        left: 8,
-                        right: 8,
-                        bottom: 0,
-                      ),
-                      child: Text(
-                        facility.name,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w500,
+                    const SizedBox(height: 5),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(width: 60),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 14,
+                            left: 8,
+                            right: 8,
+                            bottom: 0,
+                          ),
+                          child: Text(
+                            facility.name,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                         ),
-                      ),
+                        const Spacer(),
+                        ImportImgBox(
+                          lable: 'Top View',
+                          facility: facility,
+                          onTapCallback: () {},
+                        ),
+                        const SizedBox(width: 10),
+                        ImportImgBox(
+                          lable: 'Side View',
+                          facility: facility,
+                          onTapCallback: () {},
+                        ),
+                        const SizedBox(width: 15),
+                      ],
                     ),
-                    const Spacer(),
-                    ImportImgBox(
-                      lable: 'Top View',
-                      facility: facility,
-                      onTapCallback: () {},
-                    ),
-                    const SizedBox(width: 10),
-                    ImportImgBox(
-                      lable: 'Side View',
-                      facility: facility,
-                      onTapCallback: () {},
-                    ),
-                    const SizedBox(width: 15),
                   ],
                 ),
-
-                const SizedBox(height: 6),
 
                 // ===== Scrollable content with fade =====
                 Expanded(
@@ -116,21 +119,21 @@ class FacilityDetailView extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       if (facility.tier != null)
-                                      Text(
-                                        "Tier: ${facility.tier}",
-                                        style: const TextStyle(
-                                          color: Colors.white70,
-                                          fontSize: 16,
+                                        Text(
+                                          "Tier: ${facility.tier}",
+                                          style: const TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 16,
+                                          ),
                                         ),
-                                      ),
                                       if (facility.power != null)
-                                      Text(
-                                        "Power: ${facility.power}",
-                                        style: const TextStyle(
-                                          color: Colors.white70,
-                                          fontSize: 16,
+                                        Text(
+                                          "Power: ${facility.power}",
+                                          style: const TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 16,
+                                          ),
                                         ),
-                                      ),
                                       if (facility.atk != null)
                                         Text(
                                           "ATK: ${facility.atk}",
