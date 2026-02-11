@@ -27,11 +27,6 @@ class AciPlannerController extends ChangeNotifier {
   Timer? _timer;
 
   List<FacilityInstance> getFacilities() => facilities;
-  void clearFacilities() {
-    facilities.clear();
-    editingFactories.clear();
-    deletingFactories.clear();
-  }
 
   AciPlannerController() {
     // Start periodic game loop
@@ -57,6 +52,17 @@ class AciPlannerController extends ChangeNotifier {
   // -----------------
   Future<void> loadLastSave() async {
     loadLastSaveController(facilities, notifyListeners);
+  }
+
+  void clearFacilities() async {
+    final sharePrefBlueprintId = await LocalSharedPreferences.getString(
+      AppConfig.sharedPrefSaveSlotKey,
+    );
+
+    facilities.clear();
+    editingFactories.clear();
+    deletingFactories.clear();
+    if (sharePrefBlueprintId != null) clearWorkstationController(sharePrefBlueprintId);
   }
 
   // -----------------

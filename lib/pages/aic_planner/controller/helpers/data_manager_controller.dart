@@ -1,5 +1,10 @@
 part of '../aic_planner_controller.dart';
 
+// Clear work station
+void clearWorkstationController(String workstationId) {
+  PlannerSaveStorage.deleteBlueprint(workstationId);
+}
+
 // Save last save
 void saveLastSaveController(List<FacilityInstance> facilities) {
   PlannerSaveStorage.saveWorkingBlueprint(facilities);

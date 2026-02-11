@@ -1,6 +1,4 @@
 import 'package:aic_planner/pages/aic_planner/controller/aic_planner_controller.dart';
-import 'package:aic_planner/shared/data/config/config.dart';
-import 'package:aic_planner/shared/service/shared_pref_service.dart';
 import 'package:flutter/material.dart';
 import 'package:aic_planner/shared/data/constants.dart';
 
@@ -100,9 +98,6 @@ Future<void> showClearWorkspaceDialog({
                         // Clear
                         GestureDetector(
                           onTap: () async {
-                            await LocalSharedPreferences.removeKey(
-                              AppConfig.sharedPrefSaveSlotKey,
-                            );
                             controller.clearFacilities();
 
                             if (!context.mounted) return;
