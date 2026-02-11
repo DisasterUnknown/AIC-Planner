@@ -6,8 +6,8 @@ class FacilityDefinition {
   final int row;
   final int col;
   final String name;
-  final int power;
-  final String tier;
+  final int? power;
+  final String? tier;
   final String? skill;
   final String? node;
   final String description;
@@ -29,10 +29,11 @@ class FacilityDefinition {
     required this.row,
     required this.col,
     required this.name,
-    required this.power,
-    required this.tier,
     required this.description,
     required this.facilityType,
+
+    this.power,
+    this.tier,
 
     this.skill,
     this.node,

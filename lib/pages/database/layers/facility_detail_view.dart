@@ -82,7 +82,7 @@ class FacilityDetailView extends StatelessWidget {
                               children: [
                                 // Image box (always present)
                                 Container(
-                                  width: 180,
+                                  width: (180 / facility.col) * facility.row,
                                   height: 180,
                                   decoration: BoxDecoration(
                                     border: Border.all(
@@ -115,6 +115,7 @@ class FacilityDetailView extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
+                                      if (facility.tier != null)
                                       Text(
                                         "Tier: ${facility.tier}",
                                         style: const TextStyle(
@@ -122,6 +123,7 @@ class FacilityDetailView extends StatelessWidget {
                                           fontSize: 16,
                                         ),
                                       ),
+                                      if (facility.power != null)
                                       Text(
                                         "Power: ${facility.power}",
                                         style: const TextStyle(
