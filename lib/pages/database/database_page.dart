@@ -1,6 +1,7 @@
 import 'package:aic_planner/pages/database/bloc/database_bloc.dart';
 import 'package:aic_planner/pages/database/bloc/database_event.dart';
 import 'package:aic_planner/pages/database/bloc/database_state.dart';
+import 'package:aic_planner/pages/database/widget/facility_detail_view.dart';
 import 'package:aic_planner/pages/database/widget/side_pannel.dart';
 import 'package:aic_planner/shared/data/constants.dart';
 import 'package:aic_planner/shared/widget/corner_back_button.dart';
@@ -44,8 +45,7 @@ class DatabasePage extends StatelessWidget {
                       return Stack(
                         children: [
                           SidePannel(),
-                          // if (selectedFacility != null)
-                          //   FacilityDetailView(facility: selectedFacility),
+                          FacilityDetailView(),
                         ],
                       );
                     },
