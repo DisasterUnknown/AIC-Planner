@@ -41,7 +41,13 @@ class DatabasePage extends StatelessWidget {
                         return const CircularProgressIndicator();
                       }
 
-                      return Stack(children: [SidePannel()]);
+                      return Stack(
+                        children: [
+                          SidePannel(),
+                          // if (selectedFacility != null)
+                          //   FacilityDetailView(facility: selectedFacility),
+                        ],
+                      );
                     },
                   ),
                 ),
