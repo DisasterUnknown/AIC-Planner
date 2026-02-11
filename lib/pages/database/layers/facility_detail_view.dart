@@ -28,46 +28,42 @@ class FacilityDetailView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // ===== Fixed top header =====
-                Column(
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 5),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(width: 60),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 14,
-                            left: 8,
-                            right: 8,
-                            bottom: 0,
-                          ),
-                          child: Text(
-                            facility.name,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                    const SizedBox(width: 60),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 8,
+                        left: 8,
+                        right: 8,
+                        bottom: 0,
+                      ),
+                      child: Text(
+                        facility.name,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500,
                         ),
-                        const Spacer(),
-                        ImportImgBox(
-                          lable: 'Top View',
-                          facility: facility,
-                          onTapCallback: () {},
-                        ),
-                        const SizedBox(width: 10),
-                        ImportImgBox(
-                          lable: 'Side View',
-                          facility: facility,
-                          onTapCallback: () {},
-                        ),
-                        const SizedBox(width: 15),
-                      ],
+                      ),
                     ),
+                    const Spacer(),
+                    ImportImgBox(
+                      lable: 'Top View',
+                      facility: facility,
+                      onTapCallback: () {},
+                    ),
+                    const SizedBox(width: 10),
+                    ImportImgBox(
+                      lable: 'Side View',
+                      facility: facility,
+                      onTapCallback: () {},
+                    ),
+                    const SizedBox(width: 15),
                   ],
                 ),
+                const SizedBox(height: 4),
 
                 // ===== Scrollable content with fade =====
                 Expanded(
