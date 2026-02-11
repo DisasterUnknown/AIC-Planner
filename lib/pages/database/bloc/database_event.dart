@@ -14,8 +14,9 @@ class SelectDatabaseRecord extends DatabaseEvent {
 }
 
 class SelectFacilityType extends DatabaseEvent {
+  final FacilityDefinition facility;
   final FacilityType type;
-  SelectFacilityType(this.type);
+  SelectFacilityType(this.facility, this.type);
 }
 
 class SelectFacility extends DatabaseEvent {

@@ -46,7 +46,12 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
     Emitter<DatabaseState> emit,
   ) {
     if (state is DatabaseReady) {
-      emit(state.toReady(selectedType: event.type));
+      emit(
+        state.toReady(
+          selectedFacility: event.facility,
+          selectedType: event.type,
+        ),
+      );
     }
   }
 

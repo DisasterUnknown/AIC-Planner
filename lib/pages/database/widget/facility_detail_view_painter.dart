@@ -8,7 +8,7 @@ class FacilityDetailPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppCustomColors.secondaryUI.withValues(alpha: 0.5)
+      ..color = AppCustomColors.secondaryUI.withValues(alpha: 0.7)
       ..style = PaintingStyle.fill;
 
     final borderPaint = Paint()

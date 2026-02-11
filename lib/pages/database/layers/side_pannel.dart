@@ -8,10 +8,7 @@ import 'package:aic_planner/shared/data/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SidePannel extends StatelessWidget {
-
-  const SidePannel({
-    super.key,
-  });
+  const SidePannel({super.key});
 
   IconData _iconForFacilityType(FacilityType type) {
     switch (type) {
@@ -75,9 +72,9 @@ class SidePannel extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 6),
                         child: GestureDetector(
-                          onTap: () => context
-                              .read<DatabaseBloc>()
-                              .add(SelectFacilityType(type)),
+                          onTap: () => context.read<DatabaseBloc>().add(
+                            SelectFacilityType(selectedFacility!, type),
+                          ),
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 150),
                             height: 38,
@@ -87,8 +84,9 @@ class SidePannel extends StatelessWidget {
                                   ? Colors.orange.withValues(alpha: 0.15)
                                   : Colors.transparent,
                               border: Border.all(
-                                color:
-                                    isSelected ? Colors.orange : Colors.white24,
+                                color: isSelected
+                                    ? Colors.orange
+                                    : Colors.white24,
                                 width: isSelected ? 2 : 1,
                               ),
                               borderRadius: BorderRadius.circular(6),
@@ -137,16 +135,17 @@ class SidePannel extends StatelessWidget {
                           children: filteredFacilities.map((facility) {
                             final isSelected = selectedFacility == facility;
                             return GestureDetector(
-                              onTap: () => context
-                                  .read<DatabaseBloc>()
-                                  .add(SelectFacility(facility, facility.facilityType)),
+                              onTap: () => context.read<DatabaseBloc>().add(
+                                SelectFacility(facility, facility.facilityType),
+                              ),
                               child: AnimatedContainer(
                                 duration: const Duration(milliseconds: 150),
                                 height: 56,
                                 width: 56,
                                 decoration: BoxDecoration(
                                   color: AppCustomColors.secondaryUI.withValues(
-                                      alpha: 0.9),
+                                    alpha: 0.9,
+                                  ),
                                   border: Border.all(
                                     color: isSelected
                                         ? Colors.orange
