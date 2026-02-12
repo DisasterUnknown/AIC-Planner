@@ -24,3 +24,12 @@ class SelectFacility extends DatabaseEvent {
   final FacilityType type;
   SelectFacility(this.facility, this.type);
 }
+
+class ImportFacilityImage extends DatabaseEvent {
+  final FacilityType type;
+  final FacilityDefinition facility;
+  final String facilityId;
+  final String slotKey; 
+
+  ImportFacilityImage(this.facility, this.type, {required this.facilityId, required this.slotKey});
+}

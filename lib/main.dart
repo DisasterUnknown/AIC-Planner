@@ -22,6 +22,7 @@ void main() async {
   // Initialize Hive
   await Hive.initFlutter();
   await Hive.openBox(AppConfig.hiveBoxName);
+  await Hive.openBox(AppConfig.hiveImageBoxName);
 
   runApp(const AciPlannerApp());
 }

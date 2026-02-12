@@ -1,7 +1,9 @@
 import 'package:aic_planner/pages/database/bloc/database_bloc.dart';
+import 'package:aic_planner/pages/database/bloc/database_event.dart';
 import 'package:aic_planner/pages/database/bloc/database_state.dart';
 import 'package:aic_planner/pages/database/widget/facility_detail_view_painter.dart';
 import 'package:aic_planner/pages/database/widget/import_img_box.dart';
+import 'package:aic_planner/shared/data/config/config.dart';
 import 'package:aic_planner/shared/data/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +16,7 @@ class FacilityDetailView extends StatelessWidget {
     return BlocBuilder<DatabaseBloc, DatabaseState>(
       builder: (context, state) {
         final facility = state.selectedFacility;
+        final type = state.selectedType;
 
         if (facility == null) return const SizedBox();
 
@@ -52,13 +55,31 @@ class FacilityDetailView extends StatelessWidget {
                     ImportImgBox(
                       lable: 'Top View',
                       facility: facility,
-                      onTapCallback: () {},
+                      onTapCallback: () {
+                        context.read<DatabaseBloc>().add(
+                          ImportFacilityImage(
+                            facility, 
+                            type!,
+                            facilityId: facility.id,
+                            slotKey: AppConfig.hiveTopImageSlotKey,
+                          ),
+                        );
+                      },
                     ),
                     const SizedBox(width: 10),
                     ImportImgBox(
                       lable: 'Side View',
                       facility: facility,
-                      onTapCallback: () {},
+                      onTapCallback: () {
+                        context.read<DatabaseBloc>().add(
+                          ImportFacilityImage(
+                            facility, 
+                            type!,
+                            facilityId: facility.id,
+                            slotKey: AppConfig.hiveSideImageSlotKey,
+                          ),
+                        );
+                      },
                     ),
                     const SizedBox(width: 15),
                   ],
