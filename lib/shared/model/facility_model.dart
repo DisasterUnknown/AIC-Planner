@@ -16,6 +16,16 @@ class FacilityDefinition {
   final String? baseImgPath;
   final String? topDownImgPath;
 
+  final List<List<int>>? inputs;
+  final List<List<int>>? outputs;
+  final List<List<int>>? resourceDisplayLocation;
+  final bool? isResourceDisplayLocationMiddle;
+  final List<List<int>>? pipeInputs;
+  final List<List<int>>? pipeOutputs;
+
+  final int? powerAreaRow;
+  final int? powerAreaCol;
+
   // Conbat Stats
   final int? atk;
   final String? atkInterval;
@@ -39,6 +49,16 @@ class FacilityDefinition {
     this.node,
     this.baseImgPath,
     this.topDownImgPath,
+
+    this.inputs,
+    this.outputs,
+    this.resourceDisplayLocation,
+    this.isResourceDisplayLocationMiddle = false,
+    this.pipeInputs,
+    this.pipeOutputs,
+
+    this.powerAreaRow,
+    this.powerAreaCol,
 
     // Combat Stats
     this.atk,
