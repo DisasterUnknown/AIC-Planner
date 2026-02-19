@@ -1,10 +1,12 @@
 enum FacilityType {
-  processing,
-  combat,
+  combat, //
   exploration,
-  logistics,
-  power,
-  resourcing,
-  xiranite,
-  hero,
+  logistics, //
+  power, //
+  resourcing, //
+  transport, //
+  deportAccess, //
+  productionI, //
+  productionII, //
+  miscellaneous, //
 }

@@ -223,7 +223,7 @@ class FacilityRegistry {
     skill: 'Protocol Transfer Technology',
     description:
         'Provides direct access to the local Depot even when outside in the wilderness. Must be connected to power though, so you will need to use it near a Pylon or Relay Tower.',
-    facilityType: FacilityType.exploration,
+    facilityType: FacilityType.miscellaneous,
     baseImgPath: null,
     topDownImgPath: null,
   );
@@ -286,6 +286,30 @@ class FacilityRegistry {
     description:
         'Set up zipline routes with Zipline Tower to quickly zip from one Tower to another. Zipline distances can cover ~110m.',
     facilityType: FacilityType.exploration,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
+  static const kTransportBelt = FacilityDefinition(
+    id: 'kTransportBelt',
+    row: 1,
+    col: 1,
+    name: 'Transport Belt',
+    description:
+        'Allows to transport metrials in the factory',
+    facilityType: FacilityType.transport,
+    baseImgPath: null,
+    topDownImgPath: null,
+  );
+
+  static const kPipe = FacilityDefinition(
+    id: 'kPipe',
+    row: 1,
+    col: 1,
+    name: 'Pipe',
+    description:
+        'Allows to transport lequids in the factory',
+    facilityType: FacilityType.transport,
     baseImgPath: null,
     topDownImgPath: null,
   );
@@ -464,7 +488,7 @@ class FacilityRegistry {
     skill: 'Fluid Sprinkler',
     description:
         'Connects to a water source to automatically sprinkle water on a target.',
-    facilityType: FacilityType.logistics,
+    facilityType: FacilityType.miscellaneous,
     pipeInputs: [[2, 4]],
     baseImgPath: null,
     topDownImgPath: null,
@@ -555,7 +579,7 @@ class FacilityRegistry {
     col: 9,
     name: 'Automation Core',
     description: 'Error: Not Yet Added Ask Admin.',
-    facilityType: FacilityType.hero,
+    facilityType: FacilityType.logistics,
     inputs: [[0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [0, 8], [10, 2], [10, 3], [10, 4], [10, 5], [10, 6], [10, 7], [10, 8]],
     outputs: [[2, 0], [5, 0], [8, 0], [2, 10], [5, 10], [8, 10]],
     resourceDisplayLocation: [[2, 1], [5, 1], [8, 1], [2, 9], [5, 9], [8, 9]],
@@ -572,7 +596,7 @@ class FacilityRegistry {
     tier: 'Wuling I',
     skill: 'Wuling Depot Bus',
     description: 'Error: Not Yet Added Ask Admin.',
-    facilityType: FacilityType.xiranite,
+    facilityType: FacilityType.deportAccess,
     baseImgPath: null,
     topDownImgPath: null,
   );
@@ -586,7 +610,7 @@ class FacilityRegistry {
     tier: 'Wuling I',
     skill: 'Wuling Depot Bus',
     description: 'Error: Not Yet Added Ask Admin.',
-    facilityType: FacilityType.xiranite,
+    facilityType: FacilityType.deportAccess,
     baseImgPath: null,
     topDownImgPath: null,
   );
@@ -600,7 +624,7 @@ class FacilityRegistry {
     tier: 'Wuling I',
     skill: 'Xiranite Forging',
     description: 'A facility for making Xiranite-based products.',
-    facilityType: FacilityType.xiranite,
+    facilityType: FacilityType.productionII,
     inputs: [[6, 1], [6, 2], [6, 3], [6, 4], [6, 5]],
     outputs: [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5]],
     pipeInputs: [[3, 6]],
@@ -618,7 +642,7 @@ class FacilityRegistry {
     tier: 'Wuling I',
     skill: 'Wuling Power',
     description: 'Error: Not Yet Added Ask Admin.',
-    facilityType: FacilityType.xiranite,
+    facilityType: FacilityType.power,
     powerAreaRow: 12,
     powerAreaCol: 12,
     baseImgPath: null,
@@ -634,7 +658,7 @@ class FacilityRegistry {
     tier: 'Wuling I',
     skill: 'Wuling Power',
     description: 'Error: Not Yet Added Ask Admin.',
-    facilityType: FacilityType.xiranite,
+    facilityType: FacilityType.power,
     baseImgPath: null,
     topDownImgPath: null,
   );
@@ -711,7 +735,7 @@ class FacilityRegistry {
     tier: 'Basic I',
     node: 'Refine I',
     description: 'Performs high temperature refining of various materials.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.productionI,
     inputs: [[4, 1], [4, 2], [4, 3]],
     outputs: [[0, 1], [0, 2], [0, 3]],
     pipeInputs: [[2, 4]],
@@ -731,7 +755,7 @@ class FacilityRegistry {
     tier: 'Basic I',
     node: 'Shredding I',
     description: 'Heavy facility that shreds and pulverizes various materials.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.productionI,
     inputs: [[4, 1], [4, 2], [4, 3]],
     outputs: [[0, 1], [0, 2], [0, 3]],
     isResourceDisplayLocationMiddle: true,
@@ -750,7 +774,7 @@ class FacilityRegistry {
     node: 'Gearing Tech',
     description:
         'A facility that laminates different materials together to create gear components. Important for Operator Gear component creation.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.productionII,
     inputs: [[5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6]],
     outputs: [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6]],
     isResourceDisplayLocationMiddle: true,
@@ -769,7 +793,7 @@ class FacilityRegistry {
     node: 'Material Moulding',
     description:
         'A facility capable of producing various containers via stamp moulding. Bottles are usually produced here.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.productionI,
     inputs: [[4, 1], [4, 2], [4, 3]],
     outputs: [[0, 1], [0, 2], [0, 3]],
     isResourceDisplayLocationMiddle: true,
@@ -788,7 +812,7 @@ class FacilityRegistry {
     node: 'Parts Fitting',
     description:
         'A facility capable of processing various parts that can be fitted together.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.productionI,
     inputs: [[4, 1], [4, 2], [4, 3]],
     outputs: [[0, 1], [0, 2], [0, 3]],
     isResourceDisplayLocationMiddle: true,
@@ -807,7 +831,7 @@ class FacilityRegistry {
     node: 'Solid Filling',
     description:
         'Fills containers with various materials. Can also accept fluids.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.productionII,
     inputs: [[5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6]],
     outputs: [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6]],
     pipeInputs: [[3, 7]],
@@ -827,7 +851,7 @@ class FacilityRegistry {
     node: 'Packaging Tech',
     description:
         'A facility for packaging certain power components. Mostly used for batteries, but also for used for other items.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.productionII,
     inputs: [[5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6]],
     outputs: [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6]],
     isResourceDisplayLocationMiddle: true,
@@ -846,7 +870,7 @@ class FacilityRegistry {
     node: 'Planting',
     description:
         'A facility that extracts seeds from common crops. Can also be upgraded to have a pipe input for some plants and crops.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.productionI,
     inputs: [[6, 1], [6, 2], [6, 3], [6, 4], [6, 5]],
     outputs: [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5]],
     isResourceDisplayLocationMiddle: true,
@@ -865,7 +889,7 @@ class FacilityRegistry {
     node: 'Planting',
     description:
         'A cultivating silo for growing various common plants and crops. Can also be upgraded to have a pipe input for some plants and crops.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.productionI,
     inputs: [[6, 1], [6, 2], [6, 3], [6, 4], [6, 5]],
     outputs: [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5]],
     isResourceDisplayLocationMiddle: true,
@@ -885,7 +909,7 @@ class FacilityRegistry {
     node: 'Grinding',
     description:
         'Performs fine grinding of powdered materials. Mostly processes shredded items and turn them into a finer material.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.productionII,
     baseImgPath: null,
     topDownImgPath: null,
     recipes: RefiningUnitRecipesRegistry.kGrindingUnitRecipes,
@@ -901,7 +925,7 @@ class FacilityRegistry {
     node: 'Liquid Reaction',
     description:
         'A facility for running solid or liquid-state chemical reactions.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.productionII,
     inputs: [[6, 2], [6, 4]],
     outputs: [[0, 2], [0, 4]],
     pipeInputs: [[2, 6], [4, 6]],
@@ -922,7 +946,7 @@ class FacilityRegistry {
     node: 'Separation Technique',
     description:
         'A facility for disassembling various items or extracting liquid from filled bottles.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.productionII,
     inputs: [[5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6]],
     outputs: [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6]],
     pipeOutputs: [[3, 0]],
@@ -942,7 +966,7 @@ class FacilityRegistry {
     node: 'Fluid Supply',
     description:
         'Placed near a lake or other bodies of water to supply fluids into the target area. The fluid outlet must be above the water body.',
-    facilityType: FacilityType.processing,
+    facilityType: FacilityType.miscellaneous,
     pipeInputs: [[2, 4]],
     baseImgPath: null,
     topDownImgPath: null,
