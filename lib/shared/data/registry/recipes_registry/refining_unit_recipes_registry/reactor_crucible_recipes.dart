@@ -1,34 +1,20 @@
-import 'package:aic_planner/shared/data/registry/product_registry.dart';
+import 'package:aic_planner/shared/data/registry/product_registry/product_registry.dart';
 import 'package:aic_planner/shared/model/unit_recipes_input_model.dart';
 import 'package:aic_planner/shared/model/unit_recipes_model.dart';
 import 'package:aic_planner/shared/model/unit_recipes_output_model.dart';
 
-class SeedPickingUnitRecipesRegistryClass {
+class ReactorCrucibleRecipesRegistryClass {
   static const List<UnitRecipes> data = [
     UnitRecipes(
       input: [
         UnitRecipesInputModel(
-          input: ProductRegistry.kBuckFlower,
+          input: ProductRegistry.kJincaoPowder,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
         ),
-      ],
-      processingTime: 2,
-      processingTimeUnit: 's',
-      output: [
-        UnitRecipesOutputModel(
-          output: ProductRegistry.kBuckFlowerSeed,
-          outputAmount: 2,
-          outputTime: 60,
-          outputTimeUnit: 'min',
-        ),
-      ],
-    ),
-    UnitRecipes(
-      input: [
         UnitRecipesInputModel(
-          input: ProductRegistry.kCitrome,
+          input: ProductRegistry.kCleanWater,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
@@ -38,47 +24,7 @@ class SeedPickingUnitRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kCitromeSeed,
-          outputAmount: 2,
-          outputTime: 60,
-          outputTimeUnit: 'min',
-        ),
-      ],
-    ),
-    UnitRecipes(
-      input: [
-        UnitRecipesInputModel(
-          input: ProductRegistry.kAketine,
-          inputAmount: 1,
-          inputTime: 30,
-          inputTimeUnit: 'min',
-        ),
-      ],
-      processingTime: 2,
-      processingTimeUnit: 's',
-      output: [
-        UnitRecipesOutputModel(
-          output: ProductRegistry.kAketineSeed,
-          outputAmount: 2,
-          outputTime: 60,
-          outputTimeUnit: 'min',
-        ),
-      ],
-    ),
-    UnitRecipes(
-      input: [
-        UnitRecipesInputModel(
-          input: ProductRegistry.kYazhen,
-          inputAmount: 1,
-          inputTime: 30,
-          inputTimeUnit: 'min',
-        ),
-      ],
-      processingTime: 2,
-      processingTimeUnit: 's',
-      output: [
-        UnitRecipesOutputModel(
-          output: ProductRegistry.kYazhenSeed,
+          output: ProductRegistry.kJincaoSolution,
           outputAmount: 1,
           outputTime: 30,
           outputTimeUnit: 'min',
@@ -88,7 +34,13 @@ class SeedPickingUnitRecipesRegistryClass {
     UnitRecipes(
       input: [
         UnitRecipesInputModel(
-          input: ProductRegistry.kJincao,
+          input: ProductRegistry.kJincaoPowder,
+          inputAmount: 1,
+          inputTime: 30,
+          inputTimeUnit: 'min',
+        ),
+        UnitRecipesInputModel(
+          input: ProductRegistry.kCleanWater,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
@@ -98,7 +50,33 @@ class SeedPickingUnitRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kJincaoSeed,
+          output: ProductRegistry.kYazhenSolution,
+          outputAmount: 1,
+          outputTime: 30,
+          outputTimeUnit: 'min',
+        ),
+      ],
+    ),
+    UnitRecipes(
+      input: [
+        UnitRecipesInputModel(
+          input: ProductRegistry.kJincaoPowder,
+          inputAmount: 1,
+          inputTime: 30,
+          inputTimeUnit: 'min',
+        ),
+        UnitRecipesInputModel(
+          input: ProductRegistry.kCleanWater,
+          inputAmount: 1,
+          inputTime: 30,
+          inputTimeUnit: 'min',
+        ),
+      ],
+      processingTime: 2,
+      processingTimeUnit: 's',
+      output: [
+        UnitRecipesOutputModel(
+          output: ProductRegistry.kLiquidXiranite,
           outputAmount: 1,
           outputTime: 30,
           outputTimeUnit: 'min',

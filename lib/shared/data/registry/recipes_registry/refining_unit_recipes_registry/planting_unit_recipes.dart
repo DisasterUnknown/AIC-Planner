@@ -1,14 +1,14 @@
-import 'package:aic_planner/shared/data/registry/product_registry.dart';
+import 'package:aic_planner/shared/data/registry/product_registry/product_registry.dart';
 import 'package:aic_planner/shared/model/unit_recipes_input_model.dart';
 import 'package:aic_planner/shared/model/unit_recipes_model.dart';
 import 'package:aic_planner/shared/model/unit_recipes_output_model.dart';
 
-class FittingUnitRecipesRegistryClass {
+class PlantingUnitRecipesRegistryClass {
   static const List<UnitRecipes> data = [
     UnitRecipes(
       input: [
         UnitRecipesInputModel(
-          input: ProductRegistry.kAmethystFiber,
+          input: ProductRegistry.kBuckFlowerSeed,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
@@ -18,7 +18,7 @@ class FittingUnitRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kAmethystPart,
+          output: ProductRegistry.kBuckFlower,
           outputAmount: 1,
           outputTime: 30,
           outputTimeUnit: 'min',
@@ -28,7 +28,7 @@ class FittingUnitRecipesRegistryClass {
     UnitRecipes(
       input: [
         UnitRecipesInputModel(
-          input: ProductRegistry.kFerrium,
+          input: ProductRegistry.kCitromeSeed,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
@@ -38,7 +38,7 @@ class FittingUnitRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kFerriumPart,
+          output: ProductRegistry.kCitrome,
           outputAmount: 1,
           outputTime: 30,
           outputTimeUnit: 'min',
@@ -48,7 +48,7 @@ class FittingUnitRecipesRegistryClass {
     UnitRecipes(
       input: [
         UnitRecipesInputModel(
-          input: ProductRegistry.kCrystonFiber,
+          input: ProductRegistry.kAketineSeed,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
@@ -58,7 +58,7 @@ class FittingUnitRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kCrystonPart,
+          output: ProductRegistry.kAketine,
           outputAmount: 1,
           outputTime: 30,
           outputTimeUnit: 'min',
@@ -68,7 +68,13 @@ class FittingUnitRecipesRegistryClass {
     UnitRecipes(
       input: [
         UnitRecipesInputModel(
-          input: ProductRegistry.kSteel,
+          input: ProductRegistry.kYazhenSeed,
+          inputAmount: 1,
+          inputTime: 30,
+          inputTimeUnit: 'min',
+        ),
+        UnitRecipesInputModel(
+          input: ProductRegistry.kCleanWater,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
@@ -78,9 +84,35 @@ class FittingUnitRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kSteelPart,
-          outputAmount: 1,
-          outputTime: 30,
+          output: ProductRegistry.kYazhen,
+          outputAmount: 2,
+          outputTime: 60,
+          outputTimeUnit: 'min',
+        ),
+      ],
+    ),
+    UnitRecipes(
+      input: [
+        UnitRecipesInputModel(
+          input: ProductRegistry.kJincaoSeed,
+          inputAmount: 1,
+          inputTime: 30,
+          inputTimeUnit: 'min',
+        ),
+        UnitRecipesInputModel(
+          input: ProductRegistry.kCleanWater,
+          inputAmount: 1,
+          inputTime: 30,
+          inputTimeUnit: 'min',
+        ),
+      ],
+      processingTime: 2,
+      processingTimeUnit: 's',
+      output: [
+        UnitRecipesOutputModel(
+          output: ProductRegistry.kJincao,
+          outputAmount: 2,
+          outputTime: 60,
           outputTimeUnit: 'min',
         ),
       ],

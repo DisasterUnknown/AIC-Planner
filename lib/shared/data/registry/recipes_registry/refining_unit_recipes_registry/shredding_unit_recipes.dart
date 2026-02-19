@@ -1,30 +1,10 @@
-import 'package:aic_planner/shared/data/registry/product_registry.dart';
+import 'package:aic_planner/shared/data/registry/product_registry/product_registry.dart';
 import 'package:aic_planner/shared/model/unit_recipes_input_model.dart';
 import 'package:aic_planner/shared/model/unit_recipes_model.dart';
 import 'package:aic_planner/shared/model/unit_recipes_output_model.dart';
 
-class RefiningRecipesRegistryClass {
+class ShreddingUnitRecipesRegistryClass {
   static const List<UnitRecipes> data = [
-    UnitRecipes(
-      input: [
-        UnitRecipesInputModel(
-          input: ProductRegistry.kAmethystOre,
-          inputAmount: 1,
-          inputTime: 30,
-          inputTimeUnit: 'min',
-        ),
-      ],
-      processingTime: 2,
-      processingTimeUnit: 's',
-      output: [
-        UnitRecipesOutputModel(
-          output: ProductRegistry.kAmethystFiber,
-          outputAmount: 1,
-          outputTime: 30,
-          outputTimeUnit: 'min',
-        ),
-      ],
-    ),
     UnitRecipes(
       input: [
         UnitRecipesInputModel(
@@ -38,7 +18,67 @@ class RefiningRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kOrigocrust,
+          output: ProductRegistry.kOriginiumPowder,
+          outputAmount: 1,
+          outputTime: 30,
+          outputTimeUnit: 'min',
+        ),
+      ],
+    ),
+    UnitRecipes(
+      input: [
+        UnitRecipesInputModel(
+          input: ProductRegistry.kAmethystOre,
+          inputAmount: 1,
+          inputTime: 30,
+          inputTimeUnit: 'min',
+        ),
+      ],
+      processingTime: 2,
+      processingTimeUnit: 's',
+      output: [
+        UnitRecipesOutputModel(
+          output: ProductRegistry.kAmethystPowder,
+          outputAmount: 1,
+          outputTime: 30,
+          outputTimeUnit: 'min',
+        ),
+      ],
+    ),
+    UnitRecipes(
+      input: [
+        UnitRecipesInputModel(
+          input: ProductRegistry.kCarbon,
+          inputAmount: 1,
+          inputTime: 30,
+          inputTimeUnit: 'min',
+        ),
+      ],
+      processingTime: 2,
+      processingTimeUnit: 's',
+      output: [
+        UnitRecipesOutputModel(
+          output: ProductRegistry.kCarbonPowder,
+          outputAmount: 2,
+          outputTime: 60,
+          outputTimeUnit: 'min',
+        ),
+      ],
+    ),
+    UnitRecipes(
+      input: [
+        UnitRecipesInputModel(
+          input: ProductRegistry.kOrigocrust,
+          inputAmount: 1,
+          inputTime: 30,
+          inputTimeUnit: 'min',
+        ),
+      ],
+      processingTime: 2,
+      processingTimeUnit: 's',
+      output: [
+        UnitRecipesOutputModel(
+          output: ProductRegistry.kOrigocrustPowder,
           outputAmount: 1,
           outputTime: 30,
           outputTimeUnit: 'min',
@@ -58,9 +98,9 @@ class RefiningRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kCarbon,
-          outputAmount: 1,
-          outputTime: 30,
+          output: ProductRegistry.kBuckFlowerPowder,
+          outputAmount: 2,
+          outputTime: 60,
           outputTimeUnit: 'min',
         ),
       ],
@@ -68,7 +108,7 @@ class RefiningRecipesRegistryClass {
     UnitRecipes(
       input: [
         UnitRecipesInputModel(
-          input: ProductRegistry.kFerriumOre,
+          input: ProductRegistry.kAketine,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
@@ -78,9 +118,9 @@ class RefiningRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kFerrium,
-          outputAmount: 1,
-          outputTime: 30,
+          output: ProductRegistry.kAketinePowder,
+          outputAmount: 2,
+          outputTime: 60,
           outputTimeUnit: 'min',
         ),
       ],
@@ -88,7 +128,7 @@ class RefiningRecipesRegistryClass {
     UnitRecipes(
       input: [
         UnitRecipesInputModel(
-          input: ProductRegistry.kDenseCarbonPowder,
+          input: ProductRegistry.kFerrium,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
@@ -98,7 +138,7 @@ class RefiningRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kStabilizedCarbon,
+          output: ProductRegistry.kFerriumPowder,
           outputAmount: 1,
           outputTime: 30,
           outputTimeUnit: 'min',
@@ -108,7 +148,7 @@ class RefiningRecipesRegistryClass {
     UnitRecipes(
       input: [
         UnitRecipesInputModel(
-          input: ProductRegistry.kDenseOrigocrustPowder,
+          input: ProductRegistry.kSandLeaf,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
@@ -118,9 +158,9 @@ class RefiningRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kPackedOrigocrust,
-          outputAmount: 1,
-          outputTime: 30,
+          output: ProductRegistry.kSandLeafPowder,
+          outputAmount: 3,
+          outputTime: 90,
           outputTimeUnit: 'min',
         ),
       ],
@@ -128,7 +168,7 @@ class RefiningRecipesRegistryClass {
     UnitRecipes(
       input: [
         UnitRecipesInputModel(
-          input: ProductRegistry.kCrystonPowder,
+          input: ProductRegistry.kCitrome,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
@@ -138,9 +178,9 @@ class RefiningRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kCrystonFiber,
-          outputAmount: 1,
-          outputTime: 30,
+          output: ProductRegistry.kCitromePowder,
+          outputAmount: 2,
+          outputTime: 60,
           outputTimeUnit: 'min',
         ),
       ],
@@ -148,7 +188,7 @@ class RefiningRecipesRegistryClass {
     UnitRecipes(
       input: [
         UnitRecipesInputModel(
-          input: ProductRegistry.kDenseFerriumPowder,
+          input: ProductRegistry.kJincao,
           inputAmount: 1,
           inputTime: 30,
           inputTimeUnit: 'min',
@@ -158,9 +198,29 @@ class RefiningRecipesRegistryClass {
       processingTimeUnit: 's',
       output: [
         UnitRecipesOutputModel(
-          output: ProductRegistry.kSteel,
-          outputAmount: 1,
-          outputTime: 30,
+          output: ProductRegistry.kJincaoPowder,
+          outputAmount: 2,
+          outputTime: 60,
+          outputTimeUnit: 'min',
+        ),
+      ],
+    ),
+    UnitRecipes(
+      input: [
+        UnitRecipesInputModel(
+          input: ProductRegistry.kYazhen,
+          inputAmount: 1,
+          inputTime: 30,
+          inputTimeUnit: 'min',
+        ),
+      ],
+      processingTime: 2,
+      processingTimeUnit: 's',
+      output: [
+        UnitRecipesOutputModel(
+          output: ProductRegistry.kYazhenPowder,
+          outputAmount: 2,
+          outputTime: 60,
           outputTimeUnit: 'min',
         ),
       ],

@@ -1,4 +1,4 @@
-import 'package:aic_planner/shared/data/registry/product_registry.dart';
+import 'package:aic_planner/shared/data/registry/product_registry/product_registry.dart';
 import 'package:aic_planner/shared/model/unit_recipes_input_model.dart';
 import 'package:aic_planner/shared/model/unit_recipes_model.dart';
 import 'package:aic_planner/shared/model/unit_recipes_output_model.dart';

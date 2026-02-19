@@ -1,5 +1,5 @@
 import 'package:aic_planner/shared/data/enums/facility_type_enums.dart';
-import 'package:aic_planner/shared/data/registry/recipes/refining_unit_recipes_registry.dart';
+import 'package:aic_planner/shared/data/registry/recipes_registry/refining_unit_recipes_registry.dart';
 import 'package:aic_planner/shared/model/facility_model.dart';
 
 class FacilityRegistry {
