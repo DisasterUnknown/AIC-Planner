@@ -13,21 +13,25 @@ class SidePannel extends StatelessWidget {
   IconData _iconForFacilityType(FacilityType type) {
     switch (type) {
       case FacilityType.combat:
-        return Icons.sports_mma;
+        return Icons.shield; 
       case FacilityType.exploration:
-        return Icons.explore;
+        return Icons.travel_explore;
       case FacilityType.logistics:
-        return Icons.local_shipping;
+        return Icons.inventory_2;
       case FacilityType.power:
-        return Icons.bolt;
-      case FacilityType.processing:
+        return Icons.electric_bolt;
+      case FacilityType.productionI:
+        return Icons.factory;
+      case FacilityType.productionII:
         return Icons.precision_manufacturing;
       case FacilityType.resourcing:
-        return Icons.handyman;
-      case FacilityType.xiranite:
-        return Icons.circle;
-      case FacilityType.hero:
-        return Icons.star;
+        return Icons.engineering;
+      case FacilityType.deportAccess:
+        return Icons.door_front_door;
+      case FacilityType.transport:
+        return Icons.alt_route;
+      case FacilityType.miscellaneous:
+        return Icons.category;
     }
   }
 

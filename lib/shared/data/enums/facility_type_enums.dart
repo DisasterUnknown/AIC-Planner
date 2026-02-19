@@ -1,8 +1,8 @@
 enum FacilityType {
+  power, //
   combat, //
   exploration,
   logistics, //
-  power, //
   resourcing, //
   transport, //
   deportAccess, //

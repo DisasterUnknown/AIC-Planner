@@ -18,12 +18,12 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
 
   void _onInitialize(InitializeDatabase event, Emitter<DatabaseState> emit) {
     final filtered = AllFacilitiesList.allFacilities
-        .where((f) => f.facilityType == FacilityType.processing)
+        .where((f) => f.facilityType == FacilityType.power)
         .toList();
 
     emit(
       state.toReady(
-        selectedType: FacilityType.processing,
+        selectedType: FacilityType.power,
         selectedFacility: filtered.first,
       ),
     );
