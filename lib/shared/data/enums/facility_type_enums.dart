@@ -1,4 +1,6 @@
 enum FacilityType {
+  productionI, //
+  productionII, //
   power, //
   combat, //
   exploration,
@@ -6,7 +8,5 @@ enum FacilityType {
   resourcing, //
   transport, //
   deportAccess, //
-  productionI, //
-  productionII, //
   miscellaneous, //
 }
