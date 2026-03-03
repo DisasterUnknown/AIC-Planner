@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:aic_planner/pages/database/bloc/database_event.dart';
 import 'package:aic_planner/pages/database/bloc/database_state.dart';
 import 'package:aic_planner/pages/database/service/image_picking_service.dart';
@@ -16,17 +18,55 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
     on<ImportFacilityImage>(_onImportFacilityImage);
   }
 
-  void _onInitialize(InitializeDatabase event, Emitter<DatabaseState> emit) {
+  void _onInitialize(
+    InitializeDatabase event,
+    Emitter<DatabaseState> emit,
+  ) async {
     final filtered = AllFacilitiesList.allFacilities
         .where((f) => f.facilityType == FacilityType.productionI)
         .toList();
+
+    final sideImages = await _loadSideImagesFromFacilityType(
+      FacilityType.productionI,
+    );
+
+    final topImages = await ImageStorage.getByKey(
+      filtered.first.id,
+      AppConfig.hiveTopImageSlotKey,
+    );
 
     emit(
       state.toReady(
         selectedType: FacilityType.productionI,
         selectedFacility: filtered.first,
+        sideImages: sideImages,
+        topImages: topImages,
       ),
     );
+  }
+
+  Future<Map<String, Uint8List?>> _loadSideImagesFromFacilityType(
+    FacilityType facilityType,
+  ) async {
+    final facilityList = AllFacilitiesList.allFacilities
+        .where((f) => f.facilityType == facilityType)
+        .toList();
+
+    final Map<String, Uint8List?> imageMap = {};
+    final allowedIds = facilityList.map((f) => f.id.toString()).toList();
+
+    for (final facilityId in allowedIds) {
+      final bytes = await ImageStorage.getByKey(
+        facilityId,
+        AppConfig.hiveSideImageSlotKey,
+      );
+
+      if (bytes != null) {
+        imageMap[facilityId] = bytes;
+      }
+    }
+
+    return imageMap;
   }
 
   Future<void> _onLoadRecord(
@@ -39,23 +79,37 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
   void _onSelectFacilityType(
     SelectFacilityType event,
     Emitter<DatabaseState> emit,
-  ) {
+  ) async {
     if (state is DatabaseReady) {
+      final sideImages = await _loadSideImagesFromFacilityType(event.type);
+
       emit(
         state.toReady(
           selectedFacility: event.facility,
           selectedType: event.type,
+          topImages: state.topImages,
+          sideImages: sideImages,
         ),
       );
     }
   }
 
-  void _onSelectFacility(SelectFacility event, Emitter<DatabaseState> emit) {
+  void _onSelectFacility(
+    SelectFacility event,
+    Emitter<DatabaseState> emit,
+  ) async {
     if (state is DatabaseReady) {
+      final topImages = await ImageStorage.getByKey(
+        event.facility.id,
+        AppConfig.hiveTopImageSlotKey,
+      );
+
       emit(
         state.toReady(
           selectedFacility: event.facility,
           selectedType: event.type,
+          topImages: topImages,
+          sideImages: state.sideImages,
         ),
       );
     }
@@ -83,8 +137,22 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
       await ImageStorage.saveSideImage(event.facilityId, bytes);
     }
 
+    var currentTopImages = state.topImages;
+    final currentSideImages = state.sideImages ?? {};
+
+    if (event.slotKey == AppConfig.hiveTopImageSlotKey) {
+      currentTopImages = bytes;
+    } else {
+      currentSideImages[event.facilityId] = bytes;
+    }
+
     emit(
-      state.toReady(selectedFacility: event.facility, selectedType: event.type),
+      state.toReady(
+        selectedFacility: event.facility,
+        selectedType: event.type,
+        topImages: currentTopImages,
+        sideImages: currentSideImages,
+      ),
     );
   }
 }

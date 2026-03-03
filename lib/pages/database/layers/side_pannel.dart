@@ -13,7 +13,7 @@ class SidePannel extends StatelessWidget {
   IconData _iconForFacilityType(FacilityType type) {
     switch (type) {
       case FacilityType.combat:
-        return Icons.shield; 
+        return Icons.shield;
       case FacilityType.exploration:
         return Icons.travel_explore;
       case FacilityType.logistics:
@@ -138,6 +138,7 @@ class SidePannel extends StatelessWidget {
                           runSpacing: 8,
                           children: filteredFacilities.map((facility) {
                             final isSelected = selectedFacility == facility;
+                            final sideImage = state.sideImages?[facility.id];
                             return GestureDetector(
                               onTap: () => context.read<DatabaseBloc>().add(
                                 SelectFacility(facility, facility.facilityType),
@@ -159,9 +160,9 @@ class SidePannel extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(6),
                                 ),
                                 child: Center(
-                                  child: facility.baseImgPath != null
-                                      ? Image.asset(
-                                          facility.baseImgPath!,
+                                  child: sideImage != null
+                                      ? Image.memory(
+                                          sideImage,
                                           fit: BoxFit.contain,
                                         )
                                       : Icon(

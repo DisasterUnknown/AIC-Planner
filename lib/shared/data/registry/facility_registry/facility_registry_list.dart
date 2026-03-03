@@ -58,5 +58,7 @@ class AllFacilitiesList {
     FacilityRegistry.kReactorCrucible,
     FacilityRegistry.kSeparatingUnit,
     FacilityRegistry.kFluidSupplyUnit,
+    FacilityRegistry.kTransportBelt,
+    FacilityRegistry.kPipe
   ];
 }

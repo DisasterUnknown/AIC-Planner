@@ -17,6 +17,7 @@ class FacilityDetailView extends StatelessWidget {
       builder: (context, state) {
         final facility = state.selectedFacility;
         final type = state.selectedType;
+        final topImage = state.topImages;
 
         if (facility == null) return const SizedBox();
 
@@ -58,7 +59,7 @@ class FacilityDetailView extends StatelessWidget {
                       onTapCallback: () {
                         context.read<DatabaseBloc>().add(
                           ImportFacilityImage(
-                            facility, 
+                            facility,
                             type!,
                             facilityId: facility.id,
                             slotKey: AppConfig.hiveTopImageSlotKey,
@@ -73,7 +74,7 @@ class FacilityDetailView extends StatelessWidget {
                       onTapCallback: () {
                         context.read<DatabaseBloc>().add(
                           ImportFacilityImage(
-                            facility, 
+                            facility,
                             type!,
                             facilityId: facility.id,
                             slotKey: AppConfig.hiveSideImageSlotKey,
@@ -112,9 +113,9 @@ class FacilityDetailView extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(8),
                                     color: Colors.grey[900],
                                   ),
-                                  child: facility.topDownImgPath != null
-                                      ? Image.asset(
-                                          facility.topDownImgPath!,
+                                  child: topImage != null
+                                      ? Image.memory(
+                                          topImage,
                                           fit: BoxFit.contain,
                                         )
                                       : const Center(
