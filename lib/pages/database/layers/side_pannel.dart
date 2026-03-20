@@ -71,39 +71,77 @@ class SidePannel extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: SingleChildScrollView(
                   child: Column(
-                    children: facilityTypes.map((type) {
-                      final isSelected = selectedType == type;
-                      return Padding(
+                    children: [
+                      ...facilityTypes.map((type) {
+                        final isSelected = selectedType == type;
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 6),
+                          child: GestureDetector(
+                            onTap: () => context.read<DatabaseBloc>().add(
+                              SelectFacilityType(selectedFacility!, type),
+                            ),
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 150),
+                              height: 38,
+                              width: 38,
+                              decoration: BoxDecoration(
+                                color: isSelected
+                                    ? Colors.orange.withValues(alpha: 0.15)
+                                    : Colors.transparent,
+                                border: Border.all(
+                                  color: isSelected
+                                      ? Colors.orange
+                                      : Colors.white24,
+                                  width: isSelected ? 2 : 1,
+                                ),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Icon(
+                                _iconForFacilityType(type),
+                                size: 20,
+                                color: isSelected
+                                    ? Colors.orange
+                                    : Colors.white,
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+
+                      const SizedBox(height: 36),
+                      Padding(
                         padding: const EdgeInsets.symmetric(vertical: 6),
                         child: GestureDetector(
                           onTap: () => context.read<DatabaseBloc>().add(
-                            SelectFacilityType(selectedFacility!, type),
+                            SelectProducts(selectedFacility!),
                           ),
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 150),
                             height: 38,
                             width: 38,
                             decoration: BoxDecoration(
-                              color: isSelected
+                              color: state.isProductSelection
                                   ? Colors.orange.withValues(alpha: 0.15)
                                   : Colors.transparent,
                               border: Border.all(
-                                color: isSelected
+                                color: state.isProductSelection
                                     ? Colors.orange
                                     : Colors.white24,
-                                width: isSelected ? 2 : 1,
+                                width: state.isProductSelection ? 2 : 1,
                               ),
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Icon(
-                              _iconForFacilityType(type),
+                              Icons.polyline_rounded,
                               size: 20,
-                              color: isSelected ? Colors.orange : Colors.white,
+                              color: state.isProductSelection
+                                  ? Colors.orange
+                                  : Colors.white,
                             ),
                           ),
                         ),
-                      );
-                    }).toList(),
+                      ),
+                    ],
                   ),
                 ),
               ),

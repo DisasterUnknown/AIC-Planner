@@ -1,9 +1,9 @@
 import 'package:aic_planner/shared/data/constants.dart';
 import 'package:flutter/material.dart';
 
-class FacilityDetailPainter extends CustomPainter {
+class DetailViewPainter extends CustomPainter {
 
-  const FacilityDetailPainter();
+  const DetailViewPainter();
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -16,6 +16,7 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
     on<SelectFacilityType>(_onSelectFacilityType);
     on<SelectFacility>(_onSelectFacility);
     on<ImportFacilityImage>(_onImportFacilityImage);
+    on<SelectProducts>(_onSelectProducts);
   }
 
   void _onInitialize(
@@ -89,6 +90,19 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
           selectedType: event.type,
           topImages: state.topImages,
           sideImages: sideImages,
+        ),
+      );
+    }
+  }
+
+  void _onSelectProducts(SelectProducts event, Emitter<DatabaseState> emit) {
+    if (state is DatabaseReady) {
+      emit(
+        state.toReady(
+          selectedFacility: event.facility,
+          topImages: state.topImages,
+          sideImages: state.sideImages,
+          isProductSelection: true,
         ),
       );
     }

@@ -19,6 +19,11 @@ class SelectFacilityType extends DatabaseEvent {
   SelectFacilityType(this.facility, this.type);
 }
 
+class SelectProducts extends DatabaseEvent {
+  final FacilityDefinition facility;
+  SelectProducts(this.facility);
+}
+
 class SelectFacility extends DatabaseEvent {
   final FacilityDefinition facility;
   final FacilityType type;
@@ -29,7 +34,12 @@ class ImportFacilityImage extends DatabaseEvent {
   final FacilityType type;
   final FacilityDefinition facility;
   final String facilityId;
-  final String slotKey; 
+  final String slotKey;
 
-  ImportFacilityImage(this.facility, this.type, {required this.facilityId, required this.slotKey});
+  ImportFacilityImage(
+    this.facility,
+    this.type, {
+    required this.facilityId,
+    required this.slotKey,
+  });
 }

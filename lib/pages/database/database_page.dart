@@ -2,6 +2,7 @@ import 'package:aic_planner/pages/database/bloc/database_bloc.dart';
 import 'package:aic_planner/pages/database/bloc/database_event.dart';
 import 'package:aic_planner/pages/database/bloc/database_state.dart';
 import 'package:aic_planner/pages/database/layers/facility_detail_view.dart';
+import 'package:aic_planner/pages/database/layers/facility_product_view.dart';
 import 'package:aic_planner/pages/database/layers/side_pannel.dart';
 import 'package:aic_planner/shared/data/constants.dart';
 import 'package:aic_planner/shared/widget/corner_back_button.dart';
@@ -45,7 +46,9 @@ class DatabasePage extends StatelessWidget {
                       return Stack(
                         children: [
                           SidePannel(),
-                          FacilityDetailView(),
+                          state.isProductSelection
+                              ? FacilityProductView()
+                              : FacilityDetailView(),
                         ],
                       );
                     },

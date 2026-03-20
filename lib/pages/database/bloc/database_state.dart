@@ -8,8 +8,9 @@ sealed class DatabaseState {
   final FacilityDefinition? selectedFacility;
   final Uint8List? topImages;
   final Map<String, Uint8List?>? sideImages;
+  final bool isProductSelection;
 
-  const DatabaseState({this.selectedType, this.selectedFacility, this.topImages, this.sideImages});
+  const DatabaseState({this.selectedType, this.selectedFacility, this.topImages, this.sideImages, this.isProductSelection = false});
 
   DatabaseInitial toInitial() => DatabaseInitial();
 
@@ -20,11 +21,13 @@ sealed class DatabaseState {
     FacilityDefinition? selectedFacility,
     Uint8List? topImages,
     Map<String, Uint8List?>? sideImages,
+    bool isProductSelection = false,
   }) => DatabaseReady(
     selectedType: selectedType,
     selectedFacility: selectedFacility,
     topImages: topImages,
     sideImages: sideImages ?? {},
+    isProductSelection: isProductSelection,
   );
 
   DatabaseError toError(String errorMessage) =>
@@ -45,6 +48,7 @@ class DatabaseReady extends DatabaseState {
     required super.selectedFacility,
     required super.topImages,
     required super.sideImages,
+    required super.isProductSelection,
   });
 }
 
